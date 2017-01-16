@@ -17,8 +17,8 @@
     "honzabrecka",
     "incik",
     "lupuszr",
-    "ondrejbartas"
-    "TondaHack",
+    "ondrejbartas",
+    "TondaHack"
   ],
   "devDependencies": {
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -30,5 +30,12 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-1": "^6.16.0",
     "babel-register": "^6.18.0"
+  },
+  "dependencies": {
+    "compression": "^1.6.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "helmet": "^3.4.0",
+    "morgan": "^1.7.0"
   }
 }
