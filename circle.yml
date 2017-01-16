@@ -1,0 +1,29 @@
+machine:
+  node:
+    version: 6.9
+  pre:
+    - echo -e "npmreadblueberry\nB4v3nAEy\nnpm.read@blueberryapps.com" | npm login
+
+dependencies:
+  pre:
+    - curl -o- -L https://yarnpkg.com/install.sh | bash
+    - yarn global add gulp cypress-cli
+  override:
+    - yarn
+  post:
+    - cypress install
+    #- STUB_API=true gulp server-node > $CIRCLE_ARTIFACTS/server.log 2>&1:
+    #    background: true
+  cache_directories:
+    - /home/ubuntu/.cypress/Cypress
+    - /home/ubuntu/.cache/yarn
+
+test:
+  override:
+    # - gulp eslint-ci
+    - yarn test
+    # - cypress run --config videoRecording=false,screenshotOnHeadlessFailure=false || cypress run --config videoRecording=true,screenshotOnHeadlessFailure=true
+general:
+  artifacts:
+    - "cypress/screenshots"
+    - "cypress/videos"
