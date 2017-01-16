@@ -26,7 +26,7 @@ const rootDir = require('path').resolve(__dirname, '..', '..');
 const preloadApplication = () => {
   try {
     console.log(chalk.cyan('Application preload started'));
-    require('./app'); // eslint-disable-line global-require
+    require('./main'); // eslint-disable-line global-require
     console.log(chalk.green('♥ Application preload finished'));
     return true;
   } catch (error) {
@@ -81,12 +81,12 @@ const watchChanges = () => {
 // Create express app
 const app = express();
 
-// HOT RELOAD: We need to require('./app') in every call to express app
+// HOT RELOAD: We need to require('./main') in every call to express app
 // When application is required and in cache it will not slow it down
 // But for development it is crucial for reload to perform require on every call.
 app.use((req, res, cb) => {
   try {
-    require('./app')(req, res, cb); // eslint-disable-line global-require
+    require('./main')(req, res, cb); // eslint-disable-line global-require
   } catch (error) {
     // This error handling is for developer to see nice formated output
     // of node in browser whe it was not able to load code
@@ -112,7 +112,7 @@ app.listen(port, () => {
   }
 });
 
-// HOT RELOAD: enforce node to cache app.js so first request will be already from cache
+// HOT RELOAD: enforce node to cache main.js so first request will be already from cache
 if (preloadApplication()) {
 
   if (process.env.NODE_ENV === 'development') {

@@ -16,7 +16,7 @@ app.use(helmet.ieNoOpen());
 app.use(helmet.noSniff());
 
 // Middlewares
-app.use(morgan('short'));
+app.use(morgan('dev'));
 app.use(compression());
 app.use(cookieParser());
 

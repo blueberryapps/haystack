@@ -1,3 +1,4 @@
+import App from '../../browser/App.react.js';
 import express from 'express';
 import htmlErrorHandler from './htmlErrorHandler';
 import InternalServerError from './errors/InternalServerError.react';
@@ -12,7 +13,7 @@ app.get('*', (req, res, next) => {
     if (req.path === '/unknown') {
       res.status(200).send(render(<NotFound path={req.path} />));
     }
-    return res.status(200).send(render(<h1>{sss}Haystack</h1>));
+    return res.status(200).send(render(<App />));
   } catch (e) {
     return next(e);
   }
