@@ -2,6 +2,24 @@
   "name": "Haystack",
   "description": "Blueberry JS stack",
   "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=6.9",
+    "npm": ">=3.10"
+  },
+  "scripts": {
+    "start": "",
+    "build": "",
+    "test": "",
+    "test:watch": ""
+  },
+  "authors": [
+    "honzabrecka",
+    "incik",
+    "lupuszr",
+    "ondrejbartas"
+    "TondaHack",
+  ],
   "dependencies": {
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-class-properties": "^6.19.0",
