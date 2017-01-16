@@ -1,3 +1,4 @@
+![Haystack](https://github.com/blueberryapps/haystack/blob/master/docs/haystack_logo.png?raw=true)
 # Haystack
 
 > Blueberry JS Stack
