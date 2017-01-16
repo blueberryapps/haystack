@@ -1,24 +1,39 @@
 // Bootstrap environment
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
+// Enabling Source maps for node
 require('source-map-support/register');
+require('pretty-error').start();
 require('babel-register');
+
+// Start timer
 const timer = require('../utils/timer')
 timer.start();
 
+// Require libraries
+const chalk = require('chalk');
+const clearConsole = require('react-dev-utils/clearConsole');
 const drawHaystack = require('../utils/drawHaystack');
 const express = require('express');
 const path = require('path');
+const sendTerminalError = require('../utils/sendTerminalError');
+
+const isInteractive = process.stdout.isTTY;
 const rootDir = require('path').resolve(__dirname, '..', '..');
 
 // HOT RELOAD: preload application so it will be loaded directly after removing cache
 // and it will not wait for user interacation :D
 const preloadApplication = () => {
   try {
+    console.log(chalk.cyan('Application preload started'));
     require('./app'); // eslint-disable-line global-require
+    console.log(chalk.green('♥ Application preload finished'));
+    return true;
   } catch (error) {
-    console.error('Unable to server application because of syntax error');
-    console.log(error)
+    console.error(chalk.red('❌  Unable to preload application because of syntax error'));
+    console.log()
+    console.error(error)
+    return false;
   }
 };
 
@@ -30,8 +45,10 @@ const watchChanges = () => {
   const sourceFilesRegexp = new RegExp(path.resolve(__dirname, '..'));
 
   // Chokidar is watching for file changes in src directory and ignoring dotfiles and *.json
-  watcher.watch(path.join(__dirname, '..'), { ignored: ignoreRegexp }).on('all', (event) => {
+  watcher.watch(path.join(__dirname, '..'), { ignored: ignoreRegexp }).on('all', (event, file) => {
     if (event === 'change') {
+      if (isInteractive) { clearConsole(); }
+      console.log(chalk.red('NODE HOT RELOAD:') + ' Changes detected in ' + chalk.yellow(path.relative(rootDir, file)));
       timer.start();
 
       // remember cache size
@@ -47,38 +64,47 @@ const watchChanges = () => {
       // This speeds up development process - after change node is caching new changed content
       // and user will get faster response
       if (originalCacheSize !== Object.keys(require.cache).length) {
-        preloadApplication();
-        console.log('NODE HOT RELOAD: caching new version finished in %dms', timer.get());
+        if (preloadApplication()) {
+          console.log(
+            chalk.green('NODE HOT RELOAD:') +
+              ' Caching new version finished in ' +
+              chalk.green('%dms') + ' at %s',
+            timer.get(),
+            new Date()
+          );
+        }
       }
     }
   });
 };
 
+// Create express app
 const app = express();
 
-// HOT RELOAD: We need to require('./main') in every call to express app
+// HOT RELOAD: We need to require('./app') in every call to express app
 // When application is required and in cache it will not slow it down
 // But for development it is crucial for reload to perform require on every call.
 app.use((req, res, cb) => {
   try {
     require('./app')(req, res, cb); // eslint-disable-line global-require
   } catch (error) {
-    // This error handling is for developer to see nice formateed output
+    // This error handling is for developer to see nice formated output
     // of node in browser whe it was not able to load code
-    const errorText = error.stack.toString()
-      .replace(/\[1m/mg, '<span style="color: red">')
-      .replace(/\[39m/mg, '<span style="color: gray">')
-      .replace(/\[32m/mg, '<span style="color: green">')
-      .replace(/\[90m/mg, '<span style="color: darkgray">')
-      .replace(/\[33m/mg, '<span style="color: black">')
-      .replace(/\[\d+m/mg, '<span style="color: gray">')
-      .replace(/\[0m/mg, '</span>')
-      .replace(/\n/gm, '<br />');
-
-    res.status(500).send(`<html></body><code><pre>${errorText}</pre></code></body></html>`);
+    sendTerminalError(req, res, error);
   }
 });
 
+// This is most simple error handler which will show error,
+// when there is some error in other error handlers
+app.use((err, req, res, next) => {
+  console.error(chalk.red('Last resort error handler catched'), err.stack)
+  res.status(500).send(`
+    Last resort error handler caught error at path: ${req.path}
+    ${err.stack.toString().replace(/\[\d+m/mg, '')}
+  `);
+})
+
+// Make express to listen on port
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
   if (process.env.NODE_ENV === 'development') {
@@ -87,10 +113,16 @@ app.listen(port, () => {
 });
 
 // HOT RELOAD: enforce node to cache app.js so first request will be already from cache
-preloadApplication();
+if (preloadApplication()) {
 
-console.log('Server started in %dms at port %d ENV:[%s]', timer.get(), port, process.env.NODE_ENV);
+  if (process.env.NODE_ENV === 'development') {
+    drawHaystack();
+  }
 
-if (process.env.NODE_ENV === 'development') {
-  drawHaystack();
+  console.log(
+    'Server started in %sms at port %s in %s ENV',
+    chalk.green(timer.get()),
+    chalk.blue(port),
+    chalk.yellow(process.env.NODE_ENV)
+  );
 }

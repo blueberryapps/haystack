@@ -1,6 +1,8 @@
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import express from 'express';
+import errorHandler from './middlewares/errorHandler';
+import frontend from './frontend';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
@@ -19,8 +21,9 @@ app.use(compression());
 app.use(cookieParser());
 
 // Apps
-app.get('/', (req, res) => {
-  res.send('Haystack')
-})
+app.use(frontend);
+
+// Error handler
+app.use(errorHandler);
 
 export default app;
