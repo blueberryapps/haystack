@@ -11,7 +11,7 @@ const app = express();
 app.get('*', (req, res, next) => {
   try {
     if (req.path === '/unknown') {
-      res.status(200).send(render(<NotFound path={req.path} />));
+      return res.status(404).send(render(<NotFound path={req.path} />));
     }
     return res.status(200).send(render(<App />));
   } catch (e) {
