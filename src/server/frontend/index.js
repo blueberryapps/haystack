@@ -28,7 +28,7 @@ app.use((err, req, res, next) => {
     res.status(500).send(render(<InternalServerError />));
   } else {
     // In development show errors that make sense to developer
-    next(e);
+    next(err);
   }
 });
 
