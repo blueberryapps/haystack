@@ -112,7 +112,7 @@ console.log(__dirname + '/cert/server.key')
 const options = {
   key: fs.readFileSync(__dirname + '/cert/server.key'),
   cert:  fs.readFileSync(__dirname + '/cert/server.crt')
-}
+};
 
 // Make express to listen on port
 const port = process.env.PORT || 8000;
