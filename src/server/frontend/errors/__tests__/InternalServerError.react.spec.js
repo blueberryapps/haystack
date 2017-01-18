@@ -3,5 +3,5 @@ import { shallow } from 'enzyme';
 import React from 'react';
 
 test('shallowly renders InternalServerError', () => {
-  expect(shallow(<InternalServerError path="whatever" />)).toMatchSnapshot();
+  expect(shallow(<InternalServerError />)).toMatchSnapshot();
 });
