@@ -11,7 +11,7 @@
     "start": "node src/server",
     "build": "",
     "test": "jest",
-    "test:watch": ""
+    "test:watch": "jest --watch"
   },
   "authors": [
     "honzabrecka",
