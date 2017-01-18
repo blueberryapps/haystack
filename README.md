@@ -1,5 +1,5 @@
 ![Haystack](https://github.com/blueberryapps/haystack/blob/master/docs/haystack_logo.png?raw=true)
-# Haystack
+# Haystack [![CircleCI](https://circleci.com/gh/blueberryapps/haystack/tree/master.svg?style=svg&circle-token=e5efa5dbeb9c1f6c9f3bab2a2e7602d625055e31)](https://circleci.com/gh/blueberryapps/haystack/tree/master)
 
 > Blueberry JS Stack
 
