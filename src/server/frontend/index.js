@@ -13,14 +13,14 @@ app.get('*', (req, res, next) => {
       return res.status(404).send(render(<NotFound path={req.path} />));
     }
     return res.status(200).send(render(<App />));
-  } catch (e) {
-    return next(e);
+  } catch (err) {
+    return next(err);
   }
 });
 
 // Internal server error handled by nice formatted HTML
 app.use((err, req, res, next) => {
-  console.error('Internal server error at ', req.path);
+  console.error('Internal server error at %s', req.path);
   console.error(err);
 
   if (process.env.NODE_ENV === 'production' || process.env.HTML_ERRORS) {
