@@ -1,6 +1,5 @@
 import App from '../../browser/App.react.js';
 import express from 'express';
-import htmlErrorHandler from './htmlErrorHandler';
 import InternalServerError from './errors/InternalServerError.react';
 import NotFound from './errors/NotFound.react';
 import React from 'react';
