@@ -1,0 +1,15 @@
+exports[`test shallowly renders NotFound 1`] = `
+<div>
+  <h1>
+    404: Needle (
+    whatever
+    ) not found in Haystack :(
+  </h1>
+  You can redirect to 
+  <a
+    href="/">
+    home
+  </a>
+  .
+</div>
+`;

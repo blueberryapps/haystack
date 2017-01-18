@@ -1,10 +1,10 @@
 import React from 'react';
 
-const NotFound = ({ path }) => (
+const InternalServerError = ({ path }) => (
   <div>
-    <h1>500: Haystak in fire.</h1>
+    <h1>500: Haystack in fire.</h1>
     Run to <a href="/">home</a>.
   </div>
 )
 
-export default NotFound;
+export default InternalServerError;
