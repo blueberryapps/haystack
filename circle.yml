@@ -12,8 +12,8 @@ dependencies:
     - yarn
   post:
     - cypress install
-    #- STUB_API=true gulp server-node > $CIRCLE_ARTIFACTS/server.log 2>&1:
-    #    background: true
+    - NODE_ENV=production yarn start > $CIRCLE_ARTIFACTS/server.log 2>&1:
+        background: true
   cache_directories:
     - /home/ubuntu/.cypress/Cypress
     - /home/ubuntu/.cache/yarn
