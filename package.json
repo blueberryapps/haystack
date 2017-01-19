@@ -11,6 +11,7 @@
     "start": "node src/server",
     "build": "",
     "eslint": "eslint .",
+    "jest": " jest",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -60,6 +61,9 @@
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js"
     ]
   }
 }
