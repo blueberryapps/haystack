@@ -1,8 +1,8 @@
-import App from '../../browser/App.react.js';
 import express from 'express';
+import React from 'react';
 import InternalServerError from './errors/InternalServerError.react';
 import NotFound from './errors/NotFound.react';
-import React from 'react';
+import App from '../../browser/App.react';
 import render from './render';
 
 const app = express();

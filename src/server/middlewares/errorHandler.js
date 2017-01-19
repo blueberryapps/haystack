@@ -1,5 +1,5 @@
-export default function errorHandler(err, req, res, next) {
-  const stackOutput = error
+export default function errorHandler(err, req, res, next) { // eslint-disable-line no-unused-vars
+  const stackOutput = err
     .stack
     .toString()
     .replace(/\[1m/mg, '<span style="color: red">')

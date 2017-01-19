@@ -1,10 +1,10 @@
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import express from 'express';
-import errorHandler from './middlewares/errorHandler';
-import frontend from './frontend';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import errorHandler from './middlewares/errorHandler';
+import frontend from './frontend';
 
 const app = express();
 

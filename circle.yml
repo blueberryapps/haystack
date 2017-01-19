@@ -20,7 +20,7 @@ dependencies:
 
 test:
   override:
-    # - gulp eslint-ci
+    - yarn eslint
     - yarn test
     # - cypress run --config videoRecording=false,screenshotOnHeadlessFailure=false || cypress run --config videoRecording=true,screenshotOnHeadlessFailure=true
 general:

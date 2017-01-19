@@ -1,6 +1,6 @@
-import React, { Component, PropTypes as RPT } from 'react';
+import React, { PropTypes as RPT } from 'react';
 
-const Html = ({ children }) => (
+const Html = ({ children }) => (
   <html lang="en">
     <head>
       <meta charSet="utf-8" />
@@ -17,7 +17,7 @@ const Html = ({ children }) => (
 );
 
 Html.propTypes = {
-  children:  RPT.oneOfType([RPT.node, RPT.string, RPT.element]).isRequired
+  children: RPT.oneOfType([RPT.node, RPT.string, RPT.element]).isRequired
 };
 
 export default Html;

@@ -9,4 +9,4 @@ export default function () {
   console.log('                __/ |');
   console.log('               |___/');
   console.log('');
-};
+}

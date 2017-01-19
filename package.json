@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node src/server",
     "build": "",
+    "eslint": "eslint .",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -21,11 +22,13 @@
     "TondaHack"
   ],
   "devDependencies": {
+    "babel-eslint": "^7.1.1",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-class-properties": "^6.19.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-es2015-classes": "^6.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
+    "babel-polyfill": "^6.20.0",
     "babel-preset-es2015-node6": "^0.4.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-1": "^6.16.0",
@@ -33,6 +36,11 @@
     "chokidar": "^1.6.1",
     "enzyme": "^2.7.0",
     "enzyme-to-json": "^1.4.5",
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
     "jest": "^18.1.0",
     "react-addons-test-utils": "^15.4.2"
   },
@@ -50,6 +58,8 @@
     "source-map-support": "^0.4.9"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }

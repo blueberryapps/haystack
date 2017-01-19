@@ -1,13 +1,14 @@
 // Bootstrap environment
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Enabling Source maps for node
 require('source-map-support/register');
 require('pretty-error').start();
-require('babel-register');
+require('babel-register');// eslint-disable-line import/no-extraneous-dependencies
 
 // Start timer
-const timer = require('../utils/timer')
+const timer = require('../utils/timer');
+
 timer.start();
 
 // Require libraries
@@ -31,8 +32,8 @@ const preloadApplication = () => {
     return true;
   } catch (error) {
     console.error(chalk.red('❌  Unable to preload application because of syntax error'));
-    console.log()
-    console.error(error)
+    console.log();
+    console.error(error);
     return false;
   }
 };
@@ -40,7 +41,7 @@ const preloadApplication = () => {
 // HOT RELOAD: Reloading code in running node application without need of restart
 // https://medium.com/@kevinsimper/dont-use-nodemon-there-are-better-ways-fc016b50b45e#.gn0pnlbnb
 const watchChanges = () => {
-  const watcher = require('chokidar'); // eslint-disable-line global-require
+  const watcher = require('chokidar'); // eslint-disable-line import/no-extraneous-dependencies, global-require
   const ignoreRegexp = /([/\\]\.)|(\.json$)/;
   const sourceFilesRegexp = new RegExp(path.resolve(__dirname, '..'));
 
@@ -48,7 +49,7 @@ const watchChanges = () => {
   watcher.watch(path.join(__dirname, '..'), { ignored: ignoreRegexp }).on('all', (event, file) => {
     if (event === 'change') {
       if (isInteractive) { clearConsole(); }
-      console.log(chalk.red('NODE HOT RELOAD:') + ' Changes detected in ' + chalk.yellow(path.relative(rootDir, file)));
+      console.log(chalk.red('NODE HOT RELOAD:'), ' Changes detected in ', chalk.yellow(path.relative(rootDir, file)));
       timer.start();
 
       // remember cache size
@@ -66,9 +67,9 @@ const watchChanges = () => {
       if (originalCacheSize !== Object.keys(require.cache).length) {
         if (preloadApplication()) {
           console.log(
-            chalk.green('NODE HOT RELOAD:') +
-              ' Caching new version finished in ' +
-              chalk.green('%dms') + ' at %s',
+            chalk.green('NODE HOT RELOAD:'),
+            ' Caching new version finished in ',
+            chalk.green('%dms'), ' at %s',
             timer.get(),
             new Date()
           );
@@ -96,13 +97,13 @@ app.use((req, res, cb) => {
 
 // This is most simple error handler which will show error,
 // when there is some error in other error handlers
-app.use((err, req, res, next) => {
-  console.error(chalk.red('Last resort error handler catched'), err.stack)
+app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+  console.error(chalk.red('Last resort error handler catched'), err.stack);
   res.status(500).send(`
     Last resort error handler caught error at path: ${req.path}
     ${err.stack.toString().replace(/\[\d+m/mg, '')}
   `);
-})
+});
 
 // Make express to listen on port
 const port = process.env.PORT || 8000;
@@ -114,7 +115,6 @@ app.listen(port, () => {
 
 // HOT RELOAD: enforce node to cache main.js so first request will be already from cache
 if (preloadApplication()) {
-
   if (process.env.NODE_ENV === 'development') {
     drawHaystack();
   }
