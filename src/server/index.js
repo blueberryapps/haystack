@@ -16,7 +16,7 @@ const clearConsole = require('react-dev-utils/clearConsole');
 const drawHaystack = require('../utils/drawHaystack');
 const express = require('express');
 const path = require('path');
-const sendTerminalError = require('../utils/sendTerminalError');
+const errorHandler = require('./middlewares/errorHandler');
 
 const isInteractive = process.stdout.isTTY;
 const rootDir = require('path').resolve(__dirname, '..', '..');
@@ -90,7 +90,7 @@ app.use((req, res, cb) => {
   } catch (error) {
     // This error handling is for developer to see nice formated output
     // of node in browser whe it was not able to load code
-    sendTerminalError(req, res, error);
+    errorHandler(error, req, res);
   }
 });
 
