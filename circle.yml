@@ -21,7 +21,7 @@ dependencies:
 test:
   override:
     - yarn eslint
-    - yarn test
+    - yarn test -- --coverage
     # - cypress run --config videoRecording=false,screenshotOnHeadlessFailure=false || cypress run --config videoRecording=true,screenshotOnHeadlessFailure=true
 general:
   artifacts:
