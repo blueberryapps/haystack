@@ -10,6 +10,7 @@ npm-debug.log
 webpack-assets.json
 .nyc_output
 stats.json
+coverage
 
 # Cypress
 cypress/screenshots
