@@ -105,13 +105,34 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   `);
 });
 
+const fs = require('fs');
+const spdy = require('spdy');
+console.log(__dirname + '/cert/server.key')
+
+const options = {
+  key: fs.readFileSync(__dirname + '/cert/server.key'),
+  cert:  fs.readFileSync(__dirname + '/cert/server.crt')
+}
+
 // Make express to listen on port
 const port = process.env.PORT || 8000;
-app.listen(port, () => {
-  if (process.env.NODE_ENV === 'development') {
-    watchChanges();
-  }
-});
+
+if (process.env.NODE_ENV === 'development') {
+  spdy
+    .createServer(options, app)
+    .listen(port, (error) => {
+      if (error) {
+        console.error(error);
+        return process.exit(1);
+      } else {
+        watchChanges();
+      }
+
+    });
+
+} else {
+  app.listen(port);
+}
 
 // HOT RELOAD: enforce node to cache main.js so first request will be already from cache
 if (preloadApplication()) {

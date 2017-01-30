@@ -1,5 +1,4 @@
-# Este
-*.sublime-workspace
+dist
 
 # OSX
 .DS_Store
@@ -16,3 +15,7 @@ coverage
 cypress/screenshots
 cypress/fixtures
 cypress/videos
+
+# IDE
+.idea
+*.sublime-workspace
