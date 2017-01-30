@@ -105,6 +105,12 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   `);
 });
 
+
+const webpackMiddleware = require('webpack-dev-middleware');
+// const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpack = require('webpack');
+const config = require('../../webpack/webpack.config');
+
 const fs = require('fs');
 const spdy = require('spdy');
 console.log(__dirname + '/cert/server.key')
@@ -117,7 +123,30 @@ const options = {
 // Make express to listen on port
 const port = process.env.PORT || 8000;
 
+
+
 if (process.env.NODE_ENV === 'development') {
+  const compiler = webpack(config);
+  const middleware = webpackMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+    contentBase: 'src',
+    stats: {
+      colors: true,
+      // hash: false,
+      // timings: true,
+      // chunks: false,
+      // chunkModules: false,
+      // modules: false
+    }
+  });
+
+  app.use(middleware);
+  // app.use(webpackHotMiddleware(compiler));
+
+
+
+
+
   spdy
     .createServer(options, app)
     .listen(port, (error) => {
@@ -127,8 +156,8 @@ if (process.env.NODE_ENV === 'development') {
       } else {
         watchChanges();
       }
-
     });
+
 
 } else {
   app.listen(port);

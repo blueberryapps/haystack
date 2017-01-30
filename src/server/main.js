@@ -21,7 +21,7 @@ app.use(compression());
 app.use(cookieParser());
 
 // Apps
-app.use(frontend);
+// app.use(frontend);
 
 // Error handler
 app.use(errorHandler);

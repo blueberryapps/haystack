@@ -1,14 +1,16 @@
+const webpack = require('webpack');
 const path = require('path');
-
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: [
-    path.join(__dirname, '../src/browser/index.js')
-  ],
+  entry: {
+    entry: path.join(__dirname, '../src/browser/main.js'),
+    vendor: ['react', 'react-dom'],
+  },
   output: {
-    filename: 'bundle.js',
-    path: './dist'
+    filename: '[name].[chunkhash].js',
+    path: path.join(__dirname, '../dist/'),
+    chunkFilename: "[id].[chunkhash].bundle.js"
   },
   module: {
     rules: [
@@ -17,7 +19,7 @@ module.exports = {
         // instead of excluding we just include source files
         // otherwise there will be a problem with linked modules
         include: [
-          path.join(__dirname, '../src'),
+          path.join(__dirname, '../src/'),
         ],
         use: [{ loader: 'babel-loader',
           options: {
@@ -30,9 +32,9 @@ module.exports = {
             ],
             env: {
               development: {
-                // plugins: [
-                //   'react-hot-loader/babel'
-                // ]
+                plugins: [
+                  // 'react-hot-loader/babel'
+                ]
               },
               production: {
                 plugins: [
@@ -46,5 +48,28 @@ module.exports = {
         }]
       },
     ]
-  }
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
+      filename: '[name].[chunkhash].js',
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, '../webpack/index.html'),
+      chunks: ['entry', 'vendor']
+      // inject: 'body',
+      // title: 'Title',
+      // filename: 'index.html'
+
+    }),
+    // new webpack.optimize.AggressiveSplittingPlugin({
+    //   minSize: 30000,
+    //   maxSize: 50000
+    // }),
+
+  ],
+  target: 'web',
+  recordsPath: path.join(__dirname, '../dist/records.json'),
+  recordsOutputPath: path.join(__dirname, '../dist/records.json'),
 };
