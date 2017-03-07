@@ -123,8 +123,6 @@ const options = {
 // Make express to listen on port
 const port = process.env.PORT || 8000;
 
-
-
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(config);
   const middleware = webpackMiddleware(compiler, {
@@ -132,20 +130,15 @@ if (process.env.NODE_ENV === 'development') {
     contentBase: 'src',
     stats: {
       colors: true,
-      // hash: false,
-      // timings: true,
-      // chunks: false,
-      // chunkModules: false,
-      // modules: false
+      hash: false,
+      timings: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false
     }
   });
-
   app.use(middleware);
   app.use(require("webpack-hot-middleware")(compiler));
-
-
-
-
 
   spdy
     .createServer(options, app)
@@ -159,8 +152,6 @@ if (process.env.NODE_ENV === 'development') {
     });
 
   // app.listen(port);
-
-
 } else {
   app.listen(port);
 }
