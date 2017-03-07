@@ -141,7 +141,7 @@ if (process.env.NODE_ENV === 'development') {
   });
 
   app.use(middleware);
-  // app.use(webpackHotMiddleware(compiler));
+  app.use(require("webpack-hot-middleware")(compiler));
 
 
 
@@ -157,6 +157,8 @@ if (process.env.NODE_ENV === 'development') {
         watchChanges();
       }
     });
+
+  // app.listen(port);
 
 
 } else {

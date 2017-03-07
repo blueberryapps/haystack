@@ -4,11 +4,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    entry: path.join(__dirname, '../src/browser/main.js'),
+    entry: [
+        "webpack-hot-middleware/client?reload=true",
+        path.join(__dirname, '../src/browser/main.js')
+    ],
     vendor: ['react', 'react-dom'],
   },
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: '[name].[hash].js',
     path: path.join(__dirname, '../dist/'),
     chunkFilename: "[id].[chunkhash].bundle.js"
   },
@@ -50,26 +53,25 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
-      filename: '[name].[chunkhash].js',
+      filename: '[name].[hash].js',
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '../webpack/index.html'),
       chunks: ['entry', 'vendor']
-      // inject: 'body',
-      // title: 'Title',
-      // filename: 'index.html'
-
     }),
     // new webpack.optimize.AggressiveSplittingPlugin({
     //   minSize: 30000,
     //   maxSize: 50000
     // }),
+    //  TODO AggressiveSplittingPlugin don't work with HtmlWebpackPlugin.
+    //  status: https://github.com/jantimon/html-webpack-plugin/issues/446
 
   ],
   target: 'web',
-  recordsPath: path.join(__dirname, '../dist/records.json'),
-  recordsOutputPath: path.join(__dirname, '../dist/records.json'),
+  // recordsPath: path.join(__dirname, '../dist/records.json'),
+  // recordsOutputPath: path.join(__dirname, '../dist/records.json'),
 };
