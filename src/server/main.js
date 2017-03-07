@@ -4,7 +4,7 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import errorHandler from './middlewares/errorHandler';
-import frontend from './frontend';
+// import frontend from './frontend';
 
 const app = express();
 

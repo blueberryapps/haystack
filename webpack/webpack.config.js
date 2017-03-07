@@ -5,15 +5,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     entry: [
-        "webpack-hot-middleware/client?reload=true",
-        path.join(__dirname, '../src/browser/main.js')
+      'webpack-hot-middleware/client?reload=true',
+      path.join(__dirname, '../src/browser/main.js')
     ],
     vendor: ['react', 'react-dom'],
   },
   output: {
     filename: '[name].[hash].js',
     path: path.join(__dirname, '../dist/'),
-    chunkFilename: "[id].[chunkhash].bundle.js"
+    chunkFilename: '[id].[chunkhash].bundle.js'
   },
   module: {
     rules: [
