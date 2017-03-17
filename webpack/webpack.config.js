@@ -1,6 +1,14 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const enviroment = require('../env');
+
+const environemtVariables = enviroment(process.env, { isBrowser: true });
+
+const isProduction = environemtVariables.NODE_PRODUCTION;
+
+const plugins = isProduction
+  ? [new webpack.optimize.UglifyJsPlugin({ sourceMaps: true }), new webpack.optimize.OccurrenceOrderPlugin()]
+  : [];
 
 module.exports = {
   entry: {
@@ -10,9 +18,11 @@ module.exports = {
     ],
     vendor: ['react', 'react-dom'],
   },
+  devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
   output: {
     filename: '[name].[hash].js',
     path: path.join(__dirname, '../dist/'),
+    sourceMapFilename: '[file].map',
     chunkFilename: '[id].[chunkhash].bundle.js'
   },
   module: {
@@ -52,16 +62,15 @@ module.exports = {
       },
     ]
   },
-  plugins: [
+  plugins: plugins.concat([
+    new webpack.DefinePlugin({
+      'process.env': environemtVariables
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
       filename: '[name].[hash].js',
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../webpack/index.html'),
-      chunks: ['entry', 'vendor']
     }),
     // new webpack.optimize.AggressiveSplittingPlugin({
     //   minSize: 30000,
@@ -70,7 +79,7 @@ module.exports = {
     //  TODO AggressiveSplittingPlugin don't work with HtmlWebpackPlugin.
     //  status: https://github.com/jantimon/html-webpack-plugin/issues/446
 
-  ],
+  ]),
   target: 'web',
   // recordsPath: path.join(__dirname, '../dist/records.json'),
   // recordsOutputPath: path.join(__dirname, '../dist/records.json'),

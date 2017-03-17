@@ -4,7 +4,7 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import errorHandler from './middlewares/errorHandler';
-// import frontend from './frontend';
+import frontend from './frontend';
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.use(compression());
 app.use(cookieParser());
 
 // Apps
-// app.use(frontend);
+app.use(frontend);
 
 // Error handler
 app.use(errorHandler);

@@ -1,5 +1,5 @@
 // Bootstrap environment
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+require('../../env');
 
 // Enabling Source maps for node
 require('source-map-support/register');
@@ -15,9 +15,10 @@ timer.start();
 const chalk = require('chalk');
 const clearConsole = require('react-dev-utils/clearConsole');
 const drawHaystack = require('../utils/drawHaystack');
-const express = require('express');
-const path = require('path');
 const errorHandler = require('./middlewares/errorHandler');
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
 
 const isInteractive = process.stdout.isTTY;
 const rootDir = require('path').resolve(__dirname, '..', '..');
@@ -111,18 +112,16 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpack = require('webpack');
 const config = require('../../webpack/webpack.config');
 
-const fs = require('fs');
-const spdy = require('spdy');
-
-const options = {
-  key: fs.readFileSync(path.join(__dirname, '/cert/server.key')),
-  cert: fs.readFileSync(path.join(__dirname, '/cert/server.crt'))
-};
-
 // Make express to listen on port
 const port = process.env.PORT || 8000;
 
 if (process.env.NODE_ENV === 'development') {
+  const options = {
+    key: fs.readFileSync(path.join(__dirname, '/cert/server.key')),
+    cert: fs.readFileSync(path.join(__dirname, '/cert/server.crt'))
+  };
+
+  const spdy = require('spdy'); // eslint-disable-line global-require
   const compiler = webpack(config);
   const middleware = webpackMiddleware(compiler, {
     publicPath: config.output.publicPath,
@@ -137,6 +136,7 @@ if (process.env.NODE_ENV === 'development') {
     }
   });
   app.use(middleware);
+  console.log(middleware)
   app.use(webpackHotMiddleware(compiler));
 
   spdy
@@ -149,8 +149,6 @@ if (process.env.NODE_ENV === 'development') {
       watchChanges();
       return undefined;
     });
-
-  // app.listen(port);
 } else {
   app.listen(port);
 }
