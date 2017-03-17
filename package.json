@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node src/server",
     "build": "",
-    "eslint": "eslint .",
+    "eslint": "eslint ./src",
     "jest": " jest",
     "test": "jest",
     "test:watch": "jest --watch",
