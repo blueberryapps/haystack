@@ -1,4 +1,6 @@
 import React, { PropTypes as RPT } from 'react';
+import manifestScripts from '../../../dist/manifest.json';
+import Script from './Script.react';
 
 const Html = ({ children }) => (
   <html lang="en">
@@ -12,6 +14,8 @@ const Html = ({ children }) => (
     </head>
     <body>
       {children}
+      <Script src={manifestScripts['vendor.js']} />
+      <Script src={manifestScripts['entry.js']} />
     </body>
   </html>
 );

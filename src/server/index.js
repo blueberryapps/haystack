@@ -136,9 +136,7 @@ if (process.env.NODE_ENV === 'development') {
     }
   });
   app.use(middleware);
-  console.log(middleware)
   app.use(webpackHotMiddleware(compiler));
-
   spdy
     .createServer(options, app)
     .listen(port, (error) => {

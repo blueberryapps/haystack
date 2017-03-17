@@ -10,6 +10,11 @@
 - build app: `yarn build`
 - test app: `yarn test`
 
+## Production Build
+- production build: `yarn build`
+- production server: `yarn production:server`
+- production build and server: `yarn run production`
+
 ## Configuration
 
 | env | values | default | meaning |
