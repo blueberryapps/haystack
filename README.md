@@ -34,3 +34,4 @@ You can set ENV variables from `.bash_profile`, `export NODE_ENV=production`, ru
 
 * [with basic redux](https://github.com/blueberryapps/haystack/tree/redux)
 * [with basic router](https://github.com/blueberryapps/haystack/tree/router)
+* [with redux + router](https://github.com/blueberryapps/haystack/tree/redux-router)
