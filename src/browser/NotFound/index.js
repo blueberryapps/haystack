@@ -14,13 +14,14 @@ const NotFound = ({ location: { pathname }, staticContext }) => {
 NotFound.propTypes = {
   location: RPT.shape({
     pathname: RPT.string.isRequired
-  }).isRequired,
+  }),
   staticContext: RPT.shape({
     status: RPT.number
   })
 };
 
 NotFound.defaultProps = {
+  location: { pathname: '' },
   staticContext: {}
 };
 

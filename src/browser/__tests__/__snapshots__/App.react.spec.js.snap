@@ -1,7 +1,15 @@
 exports[`test shallowly renders App 1`] = `
 <div>
-  <HelmetWrapper
-    title="Haystack" />
+  <Link
+    replace={false}
+    to="/">
+    Home
+  </Link>
+  <Link
+    replace={false}
+    to="/about">
+    About
+  </Link>
   <button
     onClick={[Function]}>
     Haystack
@@ -9,5 +17,19 @@ exports[`test shallowly renders App 1`] = `
       alt="logo"
       src="test-file-stub" />
   </button>
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/" />
+    <Route
+      component={[Function]}
+      path="/about" />
+    <Route
+      component={[Function]}
+      path="/someRedirect" />
+    <Route
+      component={[Function]} />
+  </Switch>
 </div>
 `;

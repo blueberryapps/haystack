@@ -20,6 +20,13 @@ exports[`test shallowly renders Html 1`] = `
         }
       }
       id="app" />
+    <script
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "window.REDUX_STATE={}",
+        }
+      }
+      type="text/javascript" />
     <Script
       src="app.xxxx.js" />
   </body>
