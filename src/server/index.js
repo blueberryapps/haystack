@@ -130,7 +130,6 @@ if (process.env.NODE_ENV === 'development') {
 // When application is required and in cache it will not slow it down
 // But for development it is crucial for reload to perform require on every call.
 app.use((req, res, cb) => {
-  req.generatedAssets = generatedAssets; // eslint-disable-line no-param-reassign
   try {
     require('./main')(req, res, cb); // eslint-disable-line global-require
   } catch (error) {
