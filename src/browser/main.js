@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.react';
+import BrowserProvider from './BrowserProvider.react';
 
 const renderApp = () => {
   ReactDOM.render(
-    <App />,
+    <BrowserProvider>
+      <App />
+    </BrowserProvider>,
     window.document.getElementById('app')
   );
 };
