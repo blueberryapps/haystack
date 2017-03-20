@@ -48,6 +48,6 @@ Html.propTypes = {
 Html.defaultProps = {
   helmet: {},
   options: { disableJS: false }
-}
+};
 
 export default Html;
