@@ -17,6 +17,8 @@
 
 ## Configuration
 
+You can set ENV variables from `.bash_profile`, `export NODE_ENV=production`, running them inline `NODE_ENV=production yarn start` or use `.env` file in project root.
+
 | env | values | default | meaning |
 |-----|--------|---------|---------|
 | NODE_ENV | development, production | development  | development - hot reload, production - compiled & minified code |
