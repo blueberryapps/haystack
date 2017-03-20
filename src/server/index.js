@@ -106,6 +106,13 @@ if (process.env.NODE_ENV === 'development') {
     contentBase: 'src',
     noInfo: true
   });
+
+  // Refresh isomorphic tools on every call which enforce correct checkusum
+  app.use((req, res, next) => {
+    webpackIsomorphicTools.refresh();
+    next();
+  });
+
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
 
