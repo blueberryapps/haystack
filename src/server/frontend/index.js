@@ -1,4 +1,5 @@
 import express from 'express';
+import PrettyError from 'pretty-error';
 import React from 'react';
 import InternalServerError from './errors/InternalServerError.react';
 import NotFound from './errors/NotFound.react';
@@ -6,6 +7,7 @@ import App from '../../browser/App.react';
 import render from './render';
 
 const app = express();
+const prettyError = new PrettyError();
 
 app.use(express.static('dist'));
 
@@ -23,10 +25,11 @@ app.get('*', (req, res, next) => {
 // Internal server error handled by nice formatted HTML
 app.use((err, req, res, next) => {
   console.error('Internal server error at %s', req.path);
-  console.error(err);
+  console.error(prettyError.render(err));
 
-  if (process.env.NODE_ENV === 'production' || process.env.HTML_ERRORS) {
-    res.status(500).send(render(<InternalServerError />, req.generatedAssets));
+  if (process.env.APP_ENV === 'production' || process.env.HTML_ERRORS) {
+    // we need to disable JS for 500 so there will be no react rendering at all
+    res.status(500).send(render(<InternalServerError />, req.generatedAssets, { disableJS: true }));
   } else {
     // In development show errors that make sense to developer
     next(err);

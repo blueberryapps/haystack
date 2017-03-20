@@ -1,7 +1,8 @@
+import PrettyError from 'pretty-error';
+const prettyError = new PrettyError();
+
 export default function errorHandler(err, req, res, next) { // eslint-disable-line no-unused-vars
-  const stackOutput = err
-    .stack
-    .toString()
+  const stackOutput = prettyError.render(err, false, true)
     .replace(/\[1m/mg, '<span style="color: red">')
     .replace(/\[97m/mg, '<span style="color: red">')
     .replace(/\[93m/mg, '<span style="color: blue">')

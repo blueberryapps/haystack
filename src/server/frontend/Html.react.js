@@ -1,7 +1,8 @@
 import React, { PropTypes as RPT } from 'react';
+import Rollbar from './scripts/Rollbar';
 import Script from './Script.react';
 
-const Html = ({ children, generatedAssets = {} }) => (
+const Html = ({ children, generatedAssets = {}, options = { disableJS: false } }) => (
   <html lang="en">
     <head>
       <meta charSet="utf-8" />
@@ -10,11 +11,12 @@ const Html = ({ children, generatedAssets = {} }) => (
         name="viewport"
       />
       <meta content="ie=edge" httpEquiv="x-ua-compatible" />
+      <Rollbar />
     </head>
     <body>
       {children}
-      <Script src={`/${generatedAssets['vendor.js']}`} />
-      <Script src={`/${generatedAssets['app.js']}`} />
+      {!options.disableJS && <Script src={`/${generatedAssets['vendor.js']}`} />}
+      {!options.disableJS && <Script src={`/${generatedAssets['app.js']}`} />}
     </body>
   </html>
 );
@@ -24,6 +26,9 @@ Html.propTypes = {
   generatedAssets: RPT.shape({
     'vendor.js': RPT.string,
     'app.js': RPT.string
+  }).isRequired,
+  options: RPT.shape({
+    disableJS: RPT.bool
   }).isRequired
 };
 

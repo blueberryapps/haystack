@@ -3,7 +3,6 @@ require('../../env');
 
 // Enabling Source maps for node
 require('source-map-support/register');
-require('pretty-error').start();
 require('babel-register');// eslint-disable-line import/no-extraneous-dependencies
 
 // Start timer
@@ -174,9 +173,10 @@ if (preloadApplication()) {
   }
 
   console.log(
-    'Server started in %sms at port %s in %s ENV',
+    'Server started in %sms at port %s in %s ENV and %s APP ENV',
     chalk.green(timer.get()),
     chalk.blue(port),
-    chalk.yellow(process.env.NODE_ENV)
+    chalk.yellow(process.env.NODE_ENV),
+    chalk.red(process.env.APP_ENV)
   );
 }

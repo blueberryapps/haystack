@@ -70,6 +70,7 @@
     "react-dev-utils": "^0.4.2",
     "react-dom": "^15.4.2",
     "rimraf": "^2.6.1",
+    "rollbar": "^0.6.5",
     "source-map-support": "^0.4.9",
     "spdy": "^3.4.4",
     "webpack": "2.2.0",

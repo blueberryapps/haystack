@@ -20,6 +20,9 @@
 | env | values | default | meaning |
 |-----|--------|---------|---------|
 | NODE_ENV | development, production | development  | development - hot reload, production - compiled & minified code |
+| APP_ENV | development, staging, production | development | env for APP where it runs |
 | PORT | number | 8000 | which port to use to run server side express App |
 | HTML_ERRORS | true | enabled by default in production | Show nicely formatted html errors for 404 and 500 |
+| ROLLBAR_CLIENT_TOKEN | string | default project in rollbar | token for browser error reporting |
+| ROLLBAR_SERVER_TOKEN | string | default project in rollbar | token for server error reporting |
 | | | | |
