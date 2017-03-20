@@ -8,7 +8,7 @@ const environemtVariables = enviroment(process.env, { isBrowser: true });
 const isProduction = environemtVariables.NODE_PRODUCTION;
 
 const plugins = isProduction
-  ? [new webpack.optimize.UglifyJsPlugin({ sourceMaps: true }), new webpack.optimize.OccurrenceOrderPlugin()]
+  ? [new webpack.optimize.UglifyJsPlugin({ sourceMap: true }), new webpack.optimize.OccurrenceOrderPlugin()]
   : [new webpack.HotModuleReplacementPlugin()];
 
 const appEntry = isProduction
