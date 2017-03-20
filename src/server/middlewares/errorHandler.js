@@ -1,4 +1,5 @@
 import PrettyError from 'pretty-error';
+
 const prettyError = new PrettyError();
 
 export default function errorHandler(err, req, res, next) { // eslint-disable-line no-unused-vars

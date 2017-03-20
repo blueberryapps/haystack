@@ -3,6 +3,7 @@ const path = require('path');
 const enviroment = require('../env');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MD5Hash = require('webpack-md5-hash');
+
 const environemtVariables = enviroment(process.env, { isBrowser: true });
 
 const isProduction = environemtVariables.NODE_PRODUCTION;

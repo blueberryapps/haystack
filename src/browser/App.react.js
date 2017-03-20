@@ -1,5 +1,5 @@
 import React from 'react';
 
-const App = () => (<h1 onClick={e => window.console.log(e)}>Haystack</h1>);
+const App = () => (<button onClick={e => window.console.log(e)}>Haystack</button>);
 
 export default App;
