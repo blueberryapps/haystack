@@ -3,7 +3,7 @@ import React, { PropTypes as RPT } from 'react';
 import Rollbar from './scripts/Rollbar';
 import Script from './Script.react';
 
-const Html = ({ bodyHtml, javascripts = {}, helmet, options = { disableJS: false } }) => (
+const Html = ({ bodyHtml, javascripts = {}, helmet, options }) => (
   <html lang="en">
     <head>
       <meta charSet="utf-8" />
@@ -12,17 +12,17 @@ const Html = ({ bodyHtml, javascripts = {}, helmet, options = { disableJS: false
         name="viewport"
       />
       <meta content="ie=edge" httpEquiv="x-ua-compatible" />
-      {helmet.title.toComponent()}
-      {helmet.base.toComponent()}
-      {helmet.meta.toComponent()}
-      {helmet.link.toComponent()}
-      {helmet.script.toComponent()}
+      {helmet && helmet.title && helmet.title.toComponent()}
+      {helmet && helmet.base && helmet.base.toComponent()}
+      {helmet && helmet.meta && helmet.meta.toComponent()}
+      {helmet && helmet.link && helmet.link.toComponent()}
+      {helmet && helmet.script && helmet.script.toComponent()}
       <Rollbar />
     </head>
     <body>
       <div id="app" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
-      {!options.disableJS && <Script src={javascripts.vendor} />}
-      {!options.disableJS && <Script src={javascripts.app} />}
+      {!options.disableJS && javascripts.vendor && <Script src={javascripts.vendor} />}
+      {!options.disableJS && javascripts.app && <Script src={javascripts.app} />}
     </body>
   </html>
 );
@@ -39,10 +39,15 @@ Html.propTypes = {
     meta: RPT.shape({ toComponent: RPT.func }),
     link: RPT.shape({ toComponent: RPT.func }),
     script: RPT.shape({ toComponent: RPT.func })
-  }).isRequired,
+  }),
   options: RPT.shape({
     disableJS: RPT.bool
-  }).isRequired
+  })
 };
+
+Html.defaultProps = {
+  helmet: {},
+  options: { disableJS: false }
+}
 
 export default Html;

@@ -204,7 +204,10 @@ function getRollbarScript() {
   `;
 }
 
-const Rollbar = () => process.env.ROLLBAR_CLIENT_TOKEN && process.env.APP_ENV !== 'development' &&
-  <script key="Rollbar" dangerouslySetInnerHTML={{ __html: getRollbarScript(process.env.ROLLBAR_CLIENT_TOKEN, process.env.APP_ENV) }} />; // eslint-disable-line react/no-danger
+const Rollbar = () => (
+  process.env.ROLLBAR_CLIENT_TOKEN &&
+  process.env.APP_ENV !== 'development' &&
+  <script key="Rollbar" dangerouslySetInnerHTML={{ __html: getRollbarScript(process.env.ROLLBAR_CLIENT_TOKEN, process.env.APP_ENV) }} />) || // eslint-disable-line react/no-danger
+  null;
 
 export default Rollbar;

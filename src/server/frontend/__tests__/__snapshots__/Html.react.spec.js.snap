@@ -10,9 +10,18 @@ exports[`test shallowly renders Html 1`] = `
     <meta
       content="ie=edge"
       httpEquiv="x-ua-compatible" />
+    <Rollbar />
   </head>
   <body>
-    <div />
+    <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<div />",
+        }
+      }
+      id="app" />
+    <Script
+      src="app.xxxx.js" />
   </body>
 </html>
 `;
