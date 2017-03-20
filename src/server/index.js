@@ -84,8 +84,13 @@ const app = express();
 
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackIsomorphicAssets = require('../../webpack/assets');
+const WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 const webpack = require('webpack');
 const config = require('../../webpack/webpack.config');
+
+global.webpackIsomorphicTools = new WebpackIsomorphicTools(webpackIsomorphicAssets)
+  .server(rootDir, () => console.log('Webpack isomorphic tools started.'));
 
 // Make express to listen on port
 const port = process.env.PORT || 8000;
@@ -107,14 +112,7 @@ if (process.env.NODE_ENV === 'development') {
   const middleware = webpackMiddleware(compiler, {
     publicPath: config.output.publicPath,
     contentBase: 'src',
-    stats: {
-      colors: true,
-      hash: false,
-      timings: true,
-      chunks: false,
-      chunkModules: false,
-      modules: false
-    }
+    noInfo: true
   });
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
