@@ -1,14 +1,16 @@
 import { applyMiddleware, createStore as createReduxStore, compose, combineReducers } from 'redux';
+import { routerReducer as router } from 'react-router-redux';
 
-const emptyReducer = (state = {}) => state;
+const createStore = (initialState = {}, { middlewares = [] }) => {
+  const reducers = {
+    router
+  };
 
-const createStore = ({ initialState }) => {
-  const reducers = { emptyReducer };
-  const middlewares = applyMiddleware();
+  const customMiddlewares = applyMiddleware(...middlewares);
 
   const allMiddlewares = process.env.IS_BROWSER && window.devToolsExtension
-    ? compose(middlewares, window.devToolsExtension())
-    : middlewares;
+    ? compose(customMiddlewares, window.devToolsExtension())
+    : customMiddlewares;
 
   return createReduxStore(
     combineReducers(reducers),

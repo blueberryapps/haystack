@@ -6,7 +6,7 @@ import Html from './Html.react';
 import ServerProvider from './ServerProvider.react';
 
 export default function render(req, app, options = {}) {
-  const store = createStore({});
+  const store = createStore({}, {});
   const appHtml = ReactDOMServer.renderToString(
     <ServerProvider
       url={req.url}
@@ -25,6 +25,7 @@ export default function render(req, app, options = {}) {
       options={options}
       helmet={Helmet.rewind()}
       bodyHtml={`<div id="app">${appHtml}</div>`}
+      reduxState={store.getState()}
     />
   );
   return `<!DOCTYPE html>${docHtml}`;
