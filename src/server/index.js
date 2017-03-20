@@ -95,12 +95,6 @@ global.webpackIsomorphicTools = new WebpackIsomorphicTools(webpackIsomorphicAsse
 // Make express to listen on port
 const port = process.env.PORT || 8000;
 
-// Store and pass generated assests (js, css) throug request
-// let is for enabling webpack to override this after it compiles in
-// development for first time
-const manifestFile = path.join(config.output.path, 'manifest.json');
-let generatedAssets = fs.existsSync(manifestFile) ? require(manifestFile) : {}; // eslint-disable-line import/no-dynamic-require
-
 if (process.env.NODE_ENV === 'development') {
   const options = {
     key: fs.readFileSync(path.join(__dirname, '/cert/server.key')),
@@ -116,14 +110,6 @@ if (process.env.NODE_ENV === 'development') {
   });
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-
-  // Remember files generate by webpack
-  middleware.waitUntilValid((webpackCompiler) => {
-    generatedAssets = Object.keys(webpackCompiler.compilation.assets).reduce((acc, name) => {
-      acc[name.replace(/\..*\./, '.')] = name; // eslint-disable-line no-param-reassign
-      return acc;
-    }, {});
-  });
 
   spdy
     .createServer(options, app)

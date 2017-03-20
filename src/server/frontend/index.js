@@ -15,9 +15,9 @@ app.use('/assets', express.static(path.join(__dirname, '..', '..', '..', 'dist',
 app.get('*', (req, res, next) => {
   try {
     if (req.path === '/unknown') {
-      return res.status(404).send(render(<NotFound path={req.path} />, req.generatedAssets));
+      return res.status(404).send(render(<NotFound path={req.path} />));
     }
-    return res.status(200).send(render(<App />, req.generatedAssets));
+    return res.status(200).send(render(<App />));
   } catch (err) {
     return next(err);
   }
@@ -30,7 +30,7 @@ app.use((err, req, res, next) => {
 
   if (process.env.APP_ENV === 'production' || process.env.HTML_ERRORS) {
     // we need to disable JS for 500 so there will be no react rendering at all
-    res.status(500).send(render(<InternalServerError />, req.generatedAssets, { disableJS: true }));
+    res.status(500).send(render(<InternalServerError />, { disableJS: true }));
   } else {
     // In development show errors that make sense to developer
     next(err);

@@ -3,7 +3,7 @@ import React, { PropTypes as RPT } from 'react';
 import Rollbar from './scripts/Rollbar';
 import Script from './Script.react';
 
-const Html = ({ bodyHtml, generatedAssets = {}, helmet, options = { disableJS: false } }) => (
+const Html = ({ bodyHtml, javascripts = {}, helmet, options = { disableJS: false } }) => (
   <html lang="en">
     <head>
       <meta charSet="utf-8" />
@@ -21,17 +21,17 @@ const Html = ({ bodyHtml, generatedAssets = {}, helmet, options = { disableJS: f
     </head>
     <body>
       <div id="app" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
-      {!options.disableJS && <Script src={`/assets/${generatedAssets['vendor.js']}`} />}
-      {!options.disableJS && <Script src={`/assets/${generatedAssets['app.js']}`} />}
+      {!options.disableJS && <Script src={javascripts.vendor} />}
+      {!options.disableJS && <Script src={javascripts.app} />}
     </body>
   </html>
 );
 
 Html.propTypes = {
   bodyHtml: RPT.string.isRequired,
-  generatedAssets: RPT.shape({
-    'vendor.js': RPT.string,
-    'app.js': RPT.string
+  javascripts: RPT.shape({
+    app: RPT.string,
+    vendor: RPT.string
   }).isRequired,
   helmet: RPT.shape({
     title: RPT.shape({ toComponent: RPT.func }),

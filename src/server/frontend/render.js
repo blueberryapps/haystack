@@ -3,12 +3,14 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Html from './Html.react';
 
-export default function render(app, generatedAssets = {}, options = {}) {
+export default function render(app, options = {}) {
   const appHtml = ReactDOMServer.renderToString(app);
+
+  const { javascript: javascripts } = webpackIsomorphicTools.assets();
 
   const docHtml = ReactDOMServer.renderToStaticMarkup(
     <Html
-      generatedAssets={generatedAssets}
+      javascripts={javascripts}
       options={options}
       helmet={Helmet.rewind()}
       bodyHtml={`<div id="app">${appHtml}</div>`}

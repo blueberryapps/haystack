@@ -38,6 +38,7 @@
     "module": false,
     "process": false,
     "require": false,
+    "webpackIsomorphicTools": false,
     "window": false
   },
   "settings": {
