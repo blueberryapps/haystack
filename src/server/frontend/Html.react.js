@@ -1,8 +1,7 @@
 import React, { PropTypes as RPT } from 'react';
-import manifestScripts from '../../../dist/manifest.json';
 import Script from './Script.react';
 
-const Html = ({ children }) => (
+const Html = ({ children, generatedAssets = {} }) => (
   <html lang="en">
     <head>
       <meta charSet="utf-8" />
@@ -14,14 +13,18 @@ const Html = ({ children }) => (
     </head>
     <body>
       {children}
-      <Script src={manifestScripts['vendor.js']} />
-      <Script src={manifestScripts['entry.js']} />
+      <Script src={`/${generatedAssets['vendor.js']}`} />
+      <Script src={`/${generatedAssets['app.js']}`} />
     </body>
   </html>
 );
 
 Html.propTypes = {
-  children: RPT.oneOfType([RPT.node, RPT.string, RPT.element]).isRequired
+  children: RPT.oneOfType([RPT.node, RPT.string, RPT.element]).isRequired,
+  generatedAssets: RPT.shape({
+    'vendor.js': RPT.string,
+    'app.js': RPT.string
+  }).isRequired
 };
 
 export default Html;

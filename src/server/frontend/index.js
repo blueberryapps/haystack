@@ -7,14 +7,14 @@ import render from './render';
 
 const app = express();
 
+app.use(express.static('dist'));
 
-app.use(express.static('dist'))
 app.get('*', (req, res, next) => {
   try {
     if (req.path === '/unknown') {
-      return res.status(404).send(render(<NotFound path={req.path} />));
+      return res.status(404).send(render(<NotFound path={req.path} />, req.generatedAssets));
     }
-    return res.status(200).send(render(<App />));
+    return res.status(200).send(render(<App />, req.generatedAssets));
   } catch (err) {
     return next(err);
   }
@@ -26,7 +26,7 @@ app.use((err, req, res, next) => {
   console.error(err);
 
   if (process.env.NODE_ENV === 'production' || process.env.HTML_ERRORS) {
-    res.status(500).send(render(<InternalServerError />));
+    res.status(500).send(render(<InternalServerError />, req.generatedAssets));
   } else {
     // In development show errors that make sense to developer
     next(err);

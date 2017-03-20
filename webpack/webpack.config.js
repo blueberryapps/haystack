@@ -4,17 +4,20 @@ const enviroment = require('../env');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
 const environemtVariables = enviroment(process.env, { isBrowser: true });
+
 const isProduction = environemtVariables.NODE_PRODUCTION;
+
 const plugins = isProduction
   ? [new webpack.optimize.UglifyJsPlugin({ sourceMaps: true }), new webpack.optimize.OccurrenceOrderPlugin()]
   : [new webpack.HotModuleReplacementPlugin()];
-const entries = isProduction
+
+const appEntry = isProduction
     ? []
     : ['webpack-hot-middleware/client?reload=true'];
 
 module.exports = {
   entry: {
-    entry: entries.concat([
+    app: appEntry.concat([
       path.join(__dirname, '../src/browser/main.js')
     ]),
     vendor: ['react', 'react-dom'],
@@ -24,7 +27,8 @@ module.exports = {
     filename: '[name].[hash].js',
     path: path.join(__dirname, '../dist/'),
     sourceMapFilename: '[file].map',
-    chunkFilename: '[id].[chunkhash].bundle.js'
+    chunkFilename: '[id].[chunkhash].bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [

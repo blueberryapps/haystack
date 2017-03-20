@@ -23,6 +23,12 @@ const path = require('path');
 const isInteractive = process.stdout.isTTY;
 const rootDir = require('path').resolve(__dirname, '..', '..');
 
+// Store and pass generated assests (js, css) throug request
+// let is for enabling webpack to override this after it compiles in
+// development for first time
+const manifestFile = path.join(__dirname, '..', '..', 'dist', 'manifest.json');
+let generatedAssets = fs.existsSync(manifestFile) ? require(manifestFile) : {}; // eslint-disable-line import/no-dynamic-require
+
 // HOT RELOAD: preload application so it will be loaded directly after removing cache
 // and it will not wait for user interacation :D
 const preloadApplication = () => {
@@ -83,30 +89,6 @@ const watchChanges = () => {
 // Create express app
 const app = express();
 
-// HOT RELOAD: We need to require('./main') in every call to express app
-// When application is required and in cache it will not slow it down
-// But for development it is crucial for reload to perform require on every call.
-app.use((req, res, cb) => {
-  try {
-    require('./main')(req, res, cb); // eslint-disable-line global-require
-  } catch (error) {
-    // This error handling is for developer to see nice formated output
-    // of node in browser whe it was not able to load code
-    errorHandler(error, req, res);
-  }
-});
-
-// This is most simple error handler which will show error,
-// when there is some error in other error handlers
-app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
-  console.error(chalk.red('Last resort error handler catched'), err.stack);
-  res.status(500).send(`
-    Last resort error handler caught error at path: ${req.path}
-    ${err.stack.toString().replace(/\[\d+m/mg, '')}
-  `);
-});
-
-
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpack = require('webpack');
@@ -137,6 +119,15 @@ if (process.env.NODE_ENV === 'development') {
   });
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
+
+  // Remember files generate by webpack
+  middleware.waitUntilValid((webpackCompiler) => {
+    generatedAssets = Object.keys(webpackCompiler.compilation.assets).reduce((acc, name) => {
+      acc[name.replace(/\..*\./, '.')] = name; // eslint-disable-line no-param-reassign
+      return acc;
+    }, {});
+  });
+
   spdy
     .createServer(options, app)
     .listen(port, (error) => {
@@ -150,6 +141,31 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   app.listen(port);
 }
+
+
+// HOT RELOAD: We need to require('./main') in every call to express app
+// When application is required and in cache it will not slow it down
+// But for development it is crucial for reload to perform require on every call.
+app.use((req, res, cb) => {
+  req.generatedAssets = generatedAssets; // eslint-disable-line no-param-reassign
+  try {
+    require('./main')(req, res, cb); // eslint-disable-line global-require
+  } catch (error) {
+    // This error handling is for developer to see nice formated output
+    // of node in browser whe it was not able to load code
+    errorHandler(error, req, res);
+  }
+});
+
+// This is most simple error handler which will show error,
+// when there is some error in other error handlers
+app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+  console.error(chalk.red('Last resort error handler catched'), err.stack);
+  res.status(500).send(`
+    Last resort error handler caught error at path: ${req.path}
+    ${err.stack.toString().replace(/\[\d+m/mg, '')}
+  `);
+});
 
 // HOT RELOAD: enforce node to cache main.js so first request will be already from cache
 if (preloadApplication()) {
