@@ -27,7 +27,7 @@ module.exports = {
     ]),
     vendor: ['react', 'react-dom'],
   },
-  devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   output: {
     filename: '[name].[hash].js',
     path: path.join(__dirname, '../dist/public/assets'),
