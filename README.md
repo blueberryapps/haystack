@@ -28,3 +28,8 @@ You can set ENV variables from `.bash_profile`, `export NODE_ENV=production`, ru
 | ROLLBAR_CLIENT_TOKEN | string | default project in rollbar | token for browser error reporting |
 | ROLLBAR_SERVER_TOKEN | string | default project in rollbar | token for server error reporting |
 | | | | |
+
+
+## Variants
+
+* [with basic redux support](https://github.com/blueberryapps/haystack/tree/redux)
