@@ -9,13 +9,15 @@
   },
   "scripts": {
     "start": "node src/server",
-    "build": "rimraf ./dist && NODE_ENV=production webpack --config ./webpack/webpack.config.js",
+    "build": "yarn webpack",
+    "production:build": "NODE_ENV=production yarn webpack",
     "production:server": "NODE_ENV=production yarn start",
     "production": "yarn run build && yarn run production:server",
     "eslint": "eslint ./src",
     "jest": " jest",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "webpack": "rimraf ./dist && webpack --config ./webpack/webpack.config.js"
   },
   "authors": [
     "honzabrecka",
