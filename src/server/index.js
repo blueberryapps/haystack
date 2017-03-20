@@ -23,12 +23,6 @@ const path = require('path');
 const isInteractive = process.stdout.isTTY;
 const rootDir = require('path').resolve(__dirname, '..', '..');
 
-// Store and pass generated assests (js, css) throug request
-// let is for enabling webpack to override this after it compiles in
-// development for first time
-const manifestFile = path.join(__dirname, '..', '..', 'dist', 'manifest.json');
-let generatedAssets = fs.existsSync(manifestFile) ? require(manifestFile) : {}; // eslint-disable-line import/no-dynamic-require
-
 // HOT RELOAD: preload application so it will be loaded directly after removing cache
 // and it will not wait for user interacation :D
 const preloadApplication = () => {
@@ -96,6 +90,12 @@ const config = require('../../webpack/webpack.config');
 
 // Make express to listen on port
 const port = process.env.PORT || 8000;
+
+// Store and pass generated assests (js, css) throug request
+// let is for enabling webpack to override this after it compiles in
+// development for first time
+const manifestFile = path.join(config.output.path, 'manifest.json');
+let generatedAssets = fs.existsSync(manifestFile) ? require(manifestFile) : {}; // eslint-disable-line import/no-dynamic-require
 
 if (process.env.NODE_ENV === 'development') {
   const options = {
