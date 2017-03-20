@@ -71,6 +71,7 @@
     "react": "^15.4.2",
     "react-dev-utils": "^0.4.2",
     "react-dom": "^15.4.2",
+    "react-helmet": "^4.0.0",
     "rimraf": "^2.6.1",
     "rollbar": "^0.6.5",
     "source-map-support": "^0.4.9",
