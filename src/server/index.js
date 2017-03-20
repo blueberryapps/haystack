@@ -67,9 +67,7 @@ const watchChanges = () => {
       if (originalCacheSize !== Object.keys(require.cache).length) {
         if (preloadApplication()) {
           console.log(
-            chalk.green('NODE HOT RELOAD:'),
-            ' Caching new version finished in ',
-            chalk.green('%dms'), ' at %s',
+            `${chalk.green('NODE HOT RELOAD:')} Caching new version finished in ${chalk.green('%dms')} at %s`,
             timer.get(),
             new Date()
           );

@@ -1,4 +1,4 @@
-import Helmet from "react-helmet";
+import Helmet from 'react-helmet';
 import React from 'react';
 import logo from '../../assets/images/haystack_logo.png';
 
