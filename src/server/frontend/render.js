@@ -4,8 +4,12 @@ import ReactDOMServer from 'react-dom/server';
 import Html from './Html.react';
 import ServerProvider from './ServerProvider.react';
 
-export default function render(app, options = {}) {
-  const appHtml = ReactDOMServer.renderToString(<ServerProvider>{app}</ServerProvider>);
+export default function render(req, app, options = {}) {
+  const appHtml = ReactDOMServer.renderToString(
+    <ServerProvider url={req.url} context={options.staticContext || {}}>
+      {app}
+    </ServerProvider>
+  );
 
   const { javascript: javascripts } = webpackIsomorphicTools.assets();
 
