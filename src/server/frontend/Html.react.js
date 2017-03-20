@@ -15,8 +15,8 @@ const Html = ({ children, generatedAssets = {}, options = { disableJS: false } }
     </head>
     <body>
       {children}
-      {!options.disableJS && <Script src={`/${generatedAssets['vendor.js']}`} />}
-      {!options.disableJS && <Script src={`/${generatedAssets['app.js']}`} />}
+      {!options.disableJS && <Script src={`/assets/${generatedAssets['vendor.js']}`} />}
+      {!options.disableJS && <Script src={`/assets/${generatedAssets['app.js']}`} />}
     </body>
   </html>
 );

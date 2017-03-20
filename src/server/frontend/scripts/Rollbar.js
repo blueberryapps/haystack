@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+
 import React from 'react';
 
 function getRollbarScript() {
@@ -9,7 +11,23 @@ function getRollbarScript() {
       environment: "${process.env.APP_ENV}",
       client: {
         javascript: {
-         source_map_enabled: true
+          code_version: 1,
+          source_map_enabled: true
+        }
+      }
+    },
+    transform: function(payload) {
+      var trace = payload.data.body.trace;
+      var locRegex = /\\/assets\\/(.*)/;
+      if (trace && trace.frames) {
+        for (var i = 0; i < trace.frames.length; i++) {
+          if (trace.frames[i] && trace.frames[i].filename) {
+            var filename = trace.frames[i].filename;
+            var matched = filename.match(locRegex);
+            if (matched) {
+              trace.frames[i].filename = 'http://dynamichost/assets/' + matched[1];
+            }
+          }
         }
       }
     }

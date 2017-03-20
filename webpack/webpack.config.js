@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const enviroment = require('../env');
 const ManifestPlugin = require('webpack-manifest-plugin');
-
+const MD5Hash = require('webpack-md5-hash');
 const environemtVariables = enviroment(process.env, { isBrowser: true });
 
 const isProduction = environemtVariables.NODE_PRODUCTION;
@@ -25,10 +25,10 @@ module.exports = {
   devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
   output: {
     filename: '[name].[hash].js',
-    path: path.join(__dirname, '../dist/'),
+    path: path.join(__dirname, '../dist/public/assets'),
     sourceMapFilename: '[file].map',
     chunkFilename: '[id].[chunkhash].bundle.js',
-    publicPath: '/'
+    publicPath: '/assets'
   },
   module: {
     rules: [
@@ -66,6 +66,7 @@ module.exports = {
     ]
   },
   plugins: plugins.concat([
+    new MD5Hash(),
     new webpack.DefinePlugin({
       'process.env': environemtVariables
     }),

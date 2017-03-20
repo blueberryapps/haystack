@@ -12,12 +12,13 @@
     "build": "yarn webpack",
     "production:build": "NODE_ENV=production yarn webpack",
     "production:server": "NODE_ENV=production yarn start",
-    "production": "yarn run build && yarn run production:server",
+    "production": "yarn run production:build && yarn rollbar:sourcemaps:upload && yarn run production:server",
     "eslint": "eslint ./src",
     "jest": " jest",
     "test": "jest",
     "test:watch": "jest --watch",
-    "webpack": "rimraf ./dist && webpack --config ./webpack/webpack.config.js"
+    "webpack": "rimraf ./dist && webpack --config ./webpack/webpack.config.js",
+    "rollbar:sourcemaps:upload": "node scripts/rollbarSourceMaps.js"
   },
   "authors": [
     "honzabrecka",
@@ -77,7 +78,8 @@
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.17.1",
     "webpack-isomorphic-tools": "^2.6.6",
-    "webpack-manifest-plugin": "^1.1.0"
+    "webpack-manifest-plugin": "^1.1.0",
+    "webpack-md5-hash": "^0.0.5"
   },
   "jest": {
     "snapshotSerializers": [

@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import PrettyError from 'pretty-error';
 import React from 'react';
 import InternalServerError from './errors/InternalServerError.react';
@@ -9,7 +10,7 @@ import render from './render';
 const app = express();
 const prettyError = new PrettyError();
 
-app.use(express.static('dist'));
+app.use('/assets', express.static(path.join(__dirname, '..', '..', '..', 'dist', 'public', 'assets')));
 
 app.get('*', (req, res, next) => {
   try {
