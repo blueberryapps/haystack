@@ -1,3 +1,4 @@
+import { StyleRoot } from 'radium';
 import Helmet from 'react-helmet';
 import React, { PropTypes as RPT } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
@@ -14,7 +15,7 @@ SomeRedirect.propTypes = { staticContext: RPT.shape({ url: RPT.string }) };
 SomeRedirect.defaultProps = { staticContext: {} };
 
 const App = () => (
-  <div>
+  <StyleRoot>
     <Link to="/">Home</Link>
     <Link to="/about">About</Link>
     <button onClick={e => window.console.log(e)}>
@@ -27,7 +28,7 @@ const App = () => (
       <Route path="/someRedirect" component={SomeRedirect} />
       <Route component={NotFound} />
     </Switch>
-  </div>
+  </StyleRoot>
 );
 
 export default App;

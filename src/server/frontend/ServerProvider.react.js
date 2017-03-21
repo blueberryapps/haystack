@@ -1,3 +1,4 @@
+import Radium from 'radium';
 import React, { PropTypes as RPT } from 'react';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -23,4 +24,4 @@ ServerProvider.propTypes = {
   }).isRequired
 };
 
-export default ServerProvider;
+export default Radium(ServerProvider);

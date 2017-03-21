@@ -1,8 +1,10 @@
 import { applyMiddleware, createStore as createReduxStore, compose, combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
+import { reducer as onionForm } from 'onion-form';
 
 const createStore = (initialState = {}, { middlewares = [] }) => {
   const reducers = {
+    onionForm,
     router
   };
 

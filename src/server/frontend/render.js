@@ -9,9 +9,10 @@ export default function render(req, app, options = {}) {
   const store = createStore({}, {});
   const appHtml = ReactDOMServer.renderToString(
     <ServerProvider
-      url={req.url}
       context={options.staticContext || {}}
+      radiumConfig={{ userAgent: req.headers['user-agent'] }}
       store={store}
+      url={req.url}
     >
       {app}
     </ServerProvider>
