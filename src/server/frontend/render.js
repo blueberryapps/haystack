@@ -4,9 +4,10 @@ import ReactDOMServer from 'react-dom/server';
 import createStore from '../../common/createStore';
 import Html from './Html.react';
 import ServerProvider from './ServerProvider.react';
+import translate from '../../localization';
 
 export default function render(req, app, options = {}) {
-  const store = createStore({}, {});
+  const store = createStore({ translate }, {});
   const appHtml = ReactDOMServer.renderToString(
     <ServerProvider
       context={options.staticContext || {}}

@@ -23,7 +23,13 @@
     "no-use-before-define": 0, // Enable to define styles after using them in component.
     "react/jsx-no-bind": 0, // Enable arrow functions in Props definitions.
     "react/prefer-stateless-function": 0, // Enable functions with state.
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    // SOFTEN
+    "array-callback-return": 0,
+    "import/first": 0,
+    "react/require-default-props": 0,
+    "react/forbid-prop-types": 0,
+    "jsx-a11y/no-static-element-interactions": 0
   },
   "globals": {
     "test": false,

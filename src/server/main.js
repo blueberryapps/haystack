@@ -1,13 +1,24 @@
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import express from 'express';
+import forceSSL from 'express-force-ssl';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import rollbar from 'rollbar';
+import api from './api';
 import errorHandler from './middlewares/errorHandler';
 import frontend from './frontend';
 
 const app = express();
+
+// SSL
+if (process.env.FORCE_SSL) {
+  app.set('forceSSLOptions', {
+    enable301Redirects: true,
+    trustXFPHeader: true
+  });
+  app.use(forceSSL);
+}
 
 // Security
 app.disable('x-powered-by');
@@ -22,6 +33,7 @@ app.use(compression());
 app.use(cookieParser());
 
 // Apps
+app.use('/api', api);
 app.use(frontend);
 
 // Error reporter

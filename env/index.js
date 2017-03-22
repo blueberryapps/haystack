@@ -39,6 +39,14 @@ function configure(env, { isBrowser, customEnvVariables }) {
       NODE_DEVELOPMENT: env.NODE_ENV !== 'production',
       ROLLBAR_SERVER_TOKEN: env.ROLLBAR_SERVER_TOKEN || '9275dbbc016848b2ac0e31564426d1be',
       ROLLBAR_CLIENT_TOKEN: env.ROLLBAR_CLIENT_TOKEN || '606f40eba9e14fb9860f8075543ca98c',
+
+      SENDGRID_USER: env.SENDGRID_USER,
+      SENDGRID_PASSWORD: env.SENDGRID_PASSWORD,
+      BLUEBERRY_HR_EMAIL: env.BLUEBERRY_HR_EMAIL,
+      BLUEBERRY_CONTACT_EMAIL: env.BLUEBERRY_CONTACT_EMAIL,
+      CONTACT_FORM_SUBJECT: env.CONTACT_FORM_SUBJECT,
+      FORCE_SSL: env.FORCE_SSL || false,
+
       IS_BROWSER: isBrowser
     },
     customEnvVariables || {}
