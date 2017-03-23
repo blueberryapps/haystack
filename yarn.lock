@@ -4209,9 +4209,9 @@ querystringify@0.0.x:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-0.0.4.tgz#0cf7f84f9463ff0ae51c4c4b142d95be37724d9c"
 
-radium-flex@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/radium-flex/-/radium-flex-1.0.2.tgz#da0ac7b135207235b586c60cb396ada37723085a"
+radium-flex@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/radium-flex/-/radium-flex-1.0.3.tgz#38a3f98c0f0cf012c18e41657dac7b2ba773b96e"
 
 radium@^0.18.2:
   version "0.18.2"

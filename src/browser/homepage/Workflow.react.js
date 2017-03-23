@@ -6,6 +6,7 @@ import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { Element } from 'react-scroll';
 import { em, colors, media, rem } from '../globals';
+import HideBox from '../components/HideBox.react';
 
 // TODO: extract point
 const pointStyle = {
@@ -64,15 +65,14 @@ export default class Workflow extends PureComponent {
             <HeadingHighlight>{cnt('workflow.heading.text_2')}</HeadingHighlight>
           </Heading>
           <div style={styles.flow.wrapper}>
-            <div>
-              <h1>TODO: SHOW FOR LARGE</h1>
+            <HideBox col={0} lg={12}>
               <div style={styles.flow.line} />
-            </div>
+              <div style={styles.flow.line} />
+            </HideBox>
             <ol style={styles.flow.list}>
 
               <li style={styles.flow.items.right}>
-                <div>
-                  <h1>TODO: SHOW FOR LARGE</h1>
+                <HideBox col={0} lg={12}>
                   <div>
                     <div
                       style={[
@@ -85,7 +85,7 @@ export default class Workflow extends PureComponent {
                     <RadiumPoint size={10} top={120} />
                     <RadiumPoint size={20} top={150} />
                   </div>
-                </div>
+                </HideBox>
                 <div style={styles.flow.items.i1}>
                   <Heading id="howItem1Heading" kind="h3" style={styles.flow.heading1}>
                     1. {msg('workflow.brief.heading')}
@@ -96,21 +96,18 @@ export default class Workflow extends PureComponent {
 
 
               <li style={styles.flow.items.left}>
-                <div>
-                  <h1>TODO: SHOW FOR LARGE</h1>
-                  <div>
-                    <div
-                      style={[
-                        styles.flow.icons.base,
-                        styles.flow.icons.i2
-                      ]}
-                    >
-                      <Icon color={colors.primary} kind="diagram" size={128} />
-                    </div>
-                    <RadiumPoint size={20} top={230} />
-                    <RadiumPoint size={10} top={280} />
+                <HideBox col={0} lg={12}>
+                  <div
+                    style={[
+                      styles.flow.icons.base,
+                      styles.flow.icons.i2
+                    ]}
+                  >
+                    <Icon color={colors.primary} kind="diagram" size={128} />
                   </div>
-                </div>
+                  <RadiumPoint size={20} top={230} />
+                  <RadiumPoint size={10} top={280} />
+                </HideBox>
                 <div style={styles.flow.items.i2}>
                   <Heading kind="h3" style={styles.flow.heading1}>
                     2. {msg('workflow.strategy.heading')}
@@ -121,20 +118,17 @@ export default class Workflow extends PureComponent {
 
               <li>
                 <div style={styles.flow.items.right}>
-                  <div>
-                    <h1>TODO: SHOW FOR LARGE</h1>
-                    <div>
-                      <div
-                        style={[
-                          styles.flow.icons.base,
-                          styles.flow.icons.i3
-                        ]}
-                      >
-                        <Icon color={colors.primary} kind="product" size={64} />
-                      </div>
-                      <RadiumPoint size={20} top={10} circle />
+                  <HideBox col={0} lg={12}>
+                    <div
+                      style={[
+                        styles.flow.icons.base,
+                        styles.flow.icons.i3
+                      ]}
+                    >
+                      <Icon color={colors.primary} kind="product" size={64} />
                     </div>
-                  </div>
+                    <RadiumPoint size={20} top={10} circle />
+                  </HideBox>
                   <div style={styles.flow.items.i3}>
                     <Heading kind="h3" style={styles.flow.heading1}>
                       3. {msg('workflow.ux.heading')}
@@ -144,24 +138,20 @@ export default class Workflow extends PureComponent {
                 </div>
                 <ol style={styles.flow.list}>
                   <li style={styles.flow.items.left}>
-                    <div>
-                      <h1>TODO: SHOW FOR LARGE</h1>
-                      <div>
-                        <RadiumPoint size={20} top={10} circle />
-                        <RadiumPoint size={30} top={100} />
-                        <RadiumPoint size={10} top={160} />
-                      </div>
-                    </div>
+                    <HideBox col={0} lg={12}>
+                      <RadiumPoint size={20} top={10} circle />
+                      <RadiumPoint size={30} top={100} />
+                      <RadiumPoint size={10} top={160} />
+                    </HideBox>
                     <div style={styles.flow.items.i31}>
-                      <div>
-                        <h1>TODO: SHOW FOR LARGE</h1>
+                      <HideBox col={0} lg={12}>
                         <Icon
                           color={colors.primary}
                           kind="prototype"
                           size={80}
                           style={{ position: 'absolute', left: '-100px', top: '-10px' }}
                         />
-                      </div>
+                      </HideBox>
                       <Heading kind="h4" style={styles.flow.heading2}>
                         3.1 {msg('workflow.research.heading')}
                       </Heading>
@@ -170,15 +160,14 @@ export default class Workflow extends PureComponent {
                   </li>
                   <li style={styles.flow.items.right}>
                     <div style={styles.flow.items.i32}>
-                      <div>
-                        <h1>TODO: SHOW FOR LARGE</h1>
+                      <HideBox col={0} lg={12}>
                         <Icon
                           color={colors.primary}
                           kind="reactbulb"
                           size={80}
                           style={{ position: 'absolute', left: '-100px', top: '-10px' }}
                         />
-                      </div>
+                      </HideBox>
                       <Heading kind="h4" style={styles.flow.heading2}>
                         3.2 {msg('workflow.idea.heading')}
                       </Heading>
@@ -186,23 +175,21 @@ export default class Workflow extends PureComponent {
                     </div>
                   </li>
                   <li style={styles.flow.items.left}>
-                    <div>
-                      <h1>TODO: SHOW FOR LARGE</h1>
+                    <HideBox col={0} lg={12}>
                       <div>
                         <RadiumPoint size={30} top={10} />
                         <RadiumPoint size={10} top={60} />
                       </div>
-                    </div>
+                    </HideBox>
                     <div style={styles.flow.items.i33}>
-                      <div>
-                        <h1>TODO: SHOW FOR LARGE</h1>
+                      <HideBox col={0} lg={12}>
                         <Icon
                           color={colors.primary}
                           kind="prototype"
                           size={80}
                           style={{ position: 'absolute', left: '-100px', top: '-10px' }}
                         />
-                      </div>
+                      </HideBox>
                       <Heading kind="h4" style={styles.flow.heading2}>
                         3.3 {msg('workflow.prototype.heading')}
                       </Heading>
@@ -213,8 +200,7 @@ export default class Workflow extends PureComponent {
               </li>
 
               <li style={styles.flow.items.right}>
-                <div>
-                  <h1>TODO: SHOW FOR LARGE</h1>
+                <HideBox col={0} lg={12}>
                   <div>
                     <div
                       style={[
@@ -225,7 +211,7 @@ export default class Workflow extends PureComponent {
                       <Icon color={colors.primary} kind="agile" size={110} />
                     </div>
                   </div>
-                </div>
+                </HideBox>
                 <div style={styles.flow.items.i4}>
                   <Heading kind="h3" style={styles.flow.heading1}>
                     4. {msg('workflow.agile.heading')}
