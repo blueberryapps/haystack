@@ -1,4 +1,4 @@
-import Heading from './heading/Heading.react';
+import Heading from '../components/heading/Heading.react';
 import Radium from 'radium';
 import React, { PropTypes, PureComponent } from 'react';
 import { media } from '../globals';
@@ -17,7 +17,7 @@ export default class Member extends PureComponent {
       <div style={styles.wrapper}>
         <img
           alt={name}
-          src={require(`../../../assets/img/persons/${image}.jpg`)}
+          src={require(`../../../assets/images/persons/${image}.jpg`)}
           style={styles.image}
         />
         <Heading kind="h5" style={styles.heading}>

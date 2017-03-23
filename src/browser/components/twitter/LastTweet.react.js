@@ -1,23 +1,25 @@
-import fetch from '../../../common/components/fetch';
 import Icon from '../Icon.react';
 import moment from 'moment';
 import React, { PropTypes, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { colors } from '../../globals';
-import { connect } from 'react-redux';
-import { getLastTweet } from '../../../common/tweets/actions';
-import { tweetSelector } from '../../../common/tweets/selectors';
 
-@connect(
-  tweetSelector
-)
-@fetch(getLastTweet)
 @translate()
 export default class LastTweet extends PureComponent {
 
   static propTypes = {
     msg: React.PropTypes.func.isRequired,
     tweet: PropTypes.object
+  }
+
+  static defaultProps = {
+    tweet: {
+      entities: {
+        hashtags: [],
+        text: '',
+        created_at: new Date()
+      }
+    }
   }
 
   renderLoading() {

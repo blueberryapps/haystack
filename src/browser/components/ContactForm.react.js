@@ -39,7 +39,7 @@ const Submit = connectSubmit(Button);
 
 @connect(
   () => ({}),
-  (dispatch) => bindActionCreators({ sendEmail }, dispatch)
+  dispatch => bindActionCreators({ sendEmail }, dispatch)
 )
 @Radium
 @translate()
