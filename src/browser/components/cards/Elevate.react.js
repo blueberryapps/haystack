@@ -3,16 +3,17 @@ import Container from '../Container.react';
 import Heading from '../heading/Heading.react';
 import Label from './Label.react';
 import Radium from 'radium';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { colors, media } from '../../globals';
+import HideBox from '../HideBox.react';
 
 @Radium
-@translate()
+@translate('work.card.elevate')
 export default class Elevate extends PureComponent {
 
   static propTypes = {
-    msg: PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   render() {
@@ -20,27 +21,25 @@ export default class Elevate extends PureComponent {
 
     return (
       <Container style={styles.container}>
-        <div>
-          <h1>TODO: SHOULD BE OPNLY IN LARGE</h1>
-          <Label>{msg('work.card.elevate.label')}</Label>
-        </div>
+        <HideBox col={0} sm={12} >
+          <Label>{msg('label')}</Label>
+        </HideBox>
         <div style={styles.content}>
           <Heading kind="h3" style={styles.heading}>
-            {msg('work.card.elevate.heading')}
+            {msg('heading')}
           </Heading>
-          <p>{msg('work.card.elevate.intro')}</p>
+          <p>{msg('intro')}</p>
           <Button
             link="/our-work/elevate-hd"
             kind={BUTTON_KIND_GHOST_LIGHT}
             blendColor={colors.elevate}
           >
-            {msg('work.card.elevate.link')}
+            {msg('link')}
           </Button>
         </div>
-        <div>
-          <h1>TODO: SHOULD BE OPNLY IN LARGE</h1>
+        <HideBox col={0} sm={12} >
           <img src={require('./images/elevate-2.png')} style={styles.image} />
-        </div>
+        </HideBox>
       </Container>
     );
   }

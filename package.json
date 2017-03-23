@@ -78,7 +78,7 @@
     "onion-form": "^0.2.1",
     "pretty-error": "^2.0.2",
     "radium": "^0.18.2",
-    "radium-flex": "^1.0.3",
+    "radium-flex": "^1.1.0",
     "react": "^15.4.2",
     "react-dev-utils": "^0.4.2",
     "react-dom": "^15.4.2",

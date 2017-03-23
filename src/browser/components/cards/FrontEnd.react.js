@@ -4,47 +4,43 @@ import Heading from '../heading/Heading.react';
 import Image from '../Image.react';
 import Label from './Label.react';
 import Link from '../Link.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { media } from '../../globals';
+import HideBox from '../HideBox.react';
 
-@listenWindowResize
 @Radium
-@translate()
+@translate('services.weDevelop.frontend')
 export default class FrontEnd extends PureComponent {
 
   static propTypes = {
-    cnt: PropTypes.func.isRequired,
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: PropTypes.func.isRequired
+    cnt: RPT.func.isRequired,
+    msg: RPT.func.isRequired
   }
 
   render() {
-    const { device, msg, cnt } = this.props;
+    const { msg, cnt } = this.props;
 
     return (
       <div style={styles.wrapper}>
         <Container style={styles.container}>
-          {device.atLeast('l') &&
-          <Label right textColor="dark" lineColor="blue" reverseText>{msg('services.weDevelop.frontend.label')}</Label>
-            }
-          {device.atLeast('l') &&
-          <Image src={require('./images/WeDevelopImg2.png')} style={styles.image} />
-            }
+          <HideBox col={0} sm={12} >
+            <Label right textColor="dark" lineColor="blue" reverseText>{msg('label')}</Label>
+            <Image src={require('./images/WeDevelopImg2.png')} style={styles.image} />
+          </HideBox>
           <div style={styles.content}>
             <Heading
               id="weDevelopHeadingFront"
               kind="h3"
               style={styles.heading}
             >
-              {msg('services.weDevelop.frontend.heading')}
+              {msg('heading')}
             </Heading>
-            <p style={styles.text}>{cnt('services.weDevelop.frontend.text')}</p>
+            <p style={styles.text}>{cnt('text')}</p>
             <Link id="fontEnd" to="/">
               <Button kind={BUTTON_KIND_GHOST_DARK} style={styles.button}>
-                {msg('services.weDevelop.frontend.button')}
+                {msg('button')}
               </Button>
             </Link>
           </div>

@@ -3,42 +3,40 @@ import Container from '../../components/Container.react';
 import Heading from '../../components/heading/Heading.react';
 import Image from '../../components/Image.react';
 import Link from '../Link.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { media } from '../../globals';
+import HideBox from '../HideBox.react';
 
-@listenWindowResize
 @Radium
-@translate()
+@translate('services.weDesign.graphics')
 export default class GraphicsDesign extends PureComponent {
 
   static propTypes = {
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: React.PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   render() {
-    const { device, msg } = this.props;
+    const { msg } = this.props;
 
     return (
       <div style={styles.wrapper}>
         <Container style={styles.container}>
-          {device.atLeast('l') &&
+          <HideBox col={0} sm={12} >
             <Image src={require('./images/WeDesignImg2.png')} style={styles.image} />
-          }
+          </HideBox>
           <div style={styles.content}>
             <Heading
               id="weDesignHeadingGraphics"
               kind="h3"
             >
-              {msg('services.weDesign.graphics.heading')}
+              {msg('heading')}
             </Heading>
-            <p style={styles.text}>{msg('services.weDesign.graphics.text')}</p>
+            <p style={styles.text}>{msg('text')}</p>
             <Link id="graphicsDesign" to="/">
               <Button kind={BUTTON_KIND_GHOST_LIGHT} style={styles.button}>
-                {msg('services.weDesign.graphics.button')}
+                {msg('button')}
               </Button>
             </Link>
           </div>

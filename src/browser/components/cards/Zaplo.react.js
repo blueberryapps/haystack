@@ -7,6 +7,7 @@ import Radium from 'radium';
 import React, { PropTypes, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { media } from '../../globals';
+import HideBox from '../HideBox.react';
 
 @Radium
 @translate()
@@ -22,8 +23,10 @@ export default class Zaplo extends PureComponent {
     return (
       <Image src={require('./images/orangebg.jpg')} style={styles.wrapper}>
         <Container style={styles.container}>
-          <Label dark right>{msg('work.card.zaplo.label')}</Label>
-          <img src={require('./images/zaplo-2.png')} style={styles.image} />
+          <HideBox col={0} sm={12} >
+            <Label dark right>{msg('work.card.zaplo.label')}</Label>
+            <img src={require('./images/zaplo-2.png')} style={styles.image} />
+          </HideBox>
           <div style={styles.content}>
             <Heading id="cardsZaploHeading" kind="h2">
               {msg('work.card.zaplo.heading')}

@@ -6,8 +6,9 @@ import Label from './Label.react';
 import React, { PropTypes, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { media } from '../../globals';
+import HideBox from '../HideBox.react';
 
-@translate()
+@translate('work.card.ppcbee')
 export default class PPCBee extends PureComponent {
 
   static propTypes = {
@@ -20,17 +21,16 @@ export default class PPCBee extends PureComponent {
     return (
       <Image src={require('./images/yellowbg.jpg')} style={styles.wrapper}>
         <Container style={styles.container}>
-          <div>
-            <h1>TODO: SHOW FOR LARGE</h1>
-            <Label textColor="dark" lineColor="dark" right>{msg('work.card.ppcbee.label')}</Label>
+          <HideBox col={0} sm={12} >
+            <Label textColor="dark" lineColor="dark" right>{msg('label')}</Label>
             <Image src={require('./images/ppcbee.png')} style={styles.image} />
-          </div>
+          </HideBox>
           <div style={styles.content}>
-            <Heading kind="h3" id="cardsPpcBeeHeading">{msg('work.card.ppcbee.heading')}</Heading>
-            <p>{msg('work.card.ppcbee.intro')}</p>
+            <Heading kind="h3" id="cardsPpcBeeHeading">{msg('heading')}</Heading>
+            <p>{msg('intro')}</p>
             <p>
               <Button link="/our-work/ppc-bee" kind={BUTTON_KIND_GHOST_DARK} blendColor="#ffc20a">
-                {msg('work.card.ppcbee.link')}
+                {msg('link')}
               </Button>
             </p>
           </div>

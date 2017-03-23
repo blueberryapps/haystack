@@ -35,7 +35,7 @@ export default class OurTeam extends PureComponent {
         <div style={styles.wrapper}>
           <Container>
             <Helmet
-              title={msg('heading')}
+              title={msg('heading.text_1')}
             />
             <Heading kind="h2">
               {msg('heading.text_1')}

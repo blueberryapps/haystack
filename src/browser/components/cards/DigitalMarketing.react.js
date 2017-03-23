@@ -3,52 +3,50 @@ import Container from '../../components/Container.react';
 import Image from '../../components/Image.react';
 import Label from './Label.react';
 import Link from '../Link.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { Heading, HeadingSmall, HeadingHighlight } from '../heading/';
 import { em, media, colors } from '../../globals';
+import HideBox from '../HideBox.react';
 
-@listenWindowResize
 @Radium
-@translate()
+@translate('services.digitalMarketing')
 export default class DigitalMarketing extends PureComponent {
 
   static propTypes = {
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: React.PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   render() {
-    const { device, msg } = this.props;
+    const { msg } = this.props;
 
     return (
       <div style={styles.wrapper}>
         <Container style={styles.container}>
-          {device.atLeast('l') &&
-            <Label reverse textColor="dark" lineColor="blue">{msg('services.digitalMarketing.label')}</Label>
-          }
+          <HideBox col={0} sm={12} >
+            <Label reverse textColor="dark" lineColor="blue">{msg('label')}</Label>
+          </HideBox>
           <div style={styles.content}>
             <Heading kind="h3" style={styles.title}>
               <HeadingSmall style={styles.title.small}>
-                {msg('services.digitalMarketing.heading.small')}
+                {msg('heading.small')}
               </HeadingSmall>
-              <span> {msg('services.digitalMarketing.heading.text_1')} </span>
+              <span> {msg('heading.text_1')} </span>
               <HeadingHighlight>
-                {msg('services.digitalMarketing.heading.text_2')}
+                {msg('heading.text_2')}
               </HeadingHighlight>
             </Heading>
-            <p>{msg('services.digitalMarketing.text')}</p>
+            <p>{msg('text')}</p>
             <Link id="digitalMarketing" to="/">
               <Button kind={BUTTON_KIND_GHOST_DARK} style={styles.button}>
-                {msg('services.digitalMarketing.button')}
+                {msg('button')}
               </Button>
             </Link>
           </div>
-          {device.atLeast('l') &&
+          <HideBox col={0} sm={12} >
             <Image src={require('./images/marketing_2.png')} style={styles.image} />
-          }
+          </HideBox>
         </Container>
       </div>
     );

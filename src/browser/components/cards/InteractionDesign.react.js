@@ -1,32 +1,30 @@
 import Container from '../../components/Container.react';
 import Image from '../../components/Image.react';
 import Label from './Label.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { Heading, HeadingHighlight } from '../heading/';
 import { em, media, colors } from '../../globals';
+import HideBox from '../HideBox.react';
 
-@listenWindowResize
 @Radium
 @translate()
 export default class InteractionDesign extends PureComponent {
 
   static propTypes = {
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: React.PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   render() {
-    const { device, msg } = this.props;
+    const { msg } = this.props;
 
     return (
       <div style={styles.wrapper}>
         <Container style={styles.container}>
-          {device.atLeast('l') &&
+          <HideBox col={0} sm={12} >
             <Label reverse>{msg('services.weDesign.interaction.label')}</Label>
-          }
+          </HideBox>
           <Heading
             id="weDesignHeading"
             line="white"
@@ -42,9 +40,9 @@ export default class InteractionDesign extends PureComponent {
             </Heading>
             <p style={styles.text}>{msg('services.weDesign.interaction.text')}</p>
           </div>
-          {device.atLeast('l') &&
+          <HideBox col={0} sm={12} >
             <Image src={require('./images/WeDesignImg1.png')} style={styles.image} />
-          }
+          </HideBox>
         </Container>
       </div>
     );

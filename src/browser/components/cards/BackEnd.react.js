@@ -2,44 +2,42 @@ import Container from '../Container.react';
 import Heading from '../heading/Heading.react';
 import Image from '../Image.react';
 import Label from './Label.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { media, colors } from '../../globals';
+import HideBox from '../HideBox.react';
 
-@listenWindowResize
 @Radium
-@translate()
+@translate('services.weDevelop.backend')
 export default class BackEnd extends PureComponent {
 
   static propTypes = {
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: React.PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   render() {
-    const { device, msg } = this.props;
+    const { msg } = this.props;
 
     return (
       <div style={styles.wrapper}>
         <Container style={styles.container}>
-          {device.atLeast('l') &&
-            <Label textColor="dark" lineColor="blue" reverse>{msg('services.weDevelop.backend.label')}</Label>
-          }
+          <HideBox col={0} sm={12} >
+            <Label textColor="dark" lineColor="blue" reverse>{msg('label')}</Label>
+          </HideBox>
           <div style={styles.content}>
             <Heading
               id="weDevelopHeadingBack"
               kind="h3"
               style={styles.heading}
             >
-              {msg('services.weDevelop.backend.heading')}
+              {msg('heading')}
             </Heading>
-            <p style={styles.text}>{msg('services.weDevelop.backend.text')}</p>
+            <p style={styles.text}>{msg('text')}</p>
           </div>
-          {device.atLeast('l') &&
+          <HideBox col={0} sm={12} >
             <Image src={require('./images/WeDevelopImg1.png')} style={styles.image} />
-          }
+          </HideBox>
         </Container>
       </div>
     );

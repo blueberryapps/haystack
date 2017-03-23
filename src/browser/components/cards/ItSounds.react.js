@@ -4,40 +4,36 @@ import Heading from '../../components/heading/Heading.react';
 import Image from '../../components/Image.react';
 import Label from './Label.react';
 import Link from '../Link.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { media } from '../../globals';
+import HideBox from '../HideBox.react';
 
-@listenWindowResize
 @Radium
-@translate()
+@translate('work.card.itsounds')
 export default class ItSounds extends PureComponent {
 
   static propTypes = {
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: React.PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   render() {
-    const { device, msg } = this.props;
+    const { msg } = this.props;
 
     return (
       <div style={styles.wrapper}>
         <Container style={styles.container}>
-          {device.atLeast('l') &&
-            <Label right>{msg('work.card.itsounds.label')}</Label>
-          }
-          {device.atLeast('l') &&
+          <HideBox col={0} sm={12} >
+            <Label right>{msg('label')}</Label>
             <Image src={require('./images/itsounds.png')} style={styles.image} />
-          }
+          </HideBox>
           <div style={styles.content}>
-            <Heading kind="h3" id="cardsItSoundsHeading">{msg('work.card.itsounds.heading')}</Heading>
-            <p>{msg('work.card.itsounds.intro')}</p>
+            <Heading kind="h3" id="cardsItSoundsHeading">{msg('heading')}</Heading>
+            <p>{msg('intro')}</p>
             <Link id="detailItsounds" to="/our-work/it-sounds">
               <Button kind="ghost_light">
-                {msg('work.card.itsounds.link')}
+                {msg('link')}
               </Button>
             </Link>
           </div>

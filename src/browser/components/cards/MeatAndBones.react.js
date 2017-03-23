@@ -4,48 +4,46 @@ import Heading from '../heading/Heading.react';
 import Image from '../Image.react';
 import Label from './Label.react';
 import Link from '../Link.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { media } from '../../globals';
+import HideBox from '../HideBox.react';
 
-@listenWindowResize
 @Radium
-@translate()
+@translate('work.card.meatandbones')
 export default class MeatAndBones extends PureComponent {
 
   static propTypes = {
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: React.PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   render() {
-    const { device, msg } = this.props;
+    const { msg } = this.props;
 
     return (
       <div style={styles.wrapper}>
         <Container style={styles.container}>
-          {device.atLeast('l') &&
-            <Label>{msg('work.card.meatandbones.label')}</Label>
-          }
+          <HideBox col={0} sm={12} >
+            <Label>{msg('label')}</Label>
+          </HideBox>
           <div style={styles.content}>
             <Heading
               id="cardsMeatandbonesHeading"
               kind="h3"
             >
-              {msg('work.card.meatandbones.heading')}
+              {msg('heading')}
             </Heading>
-            <p>{msg('work.card.meatandbones.intro')}</p>
+            <p>{msg('intro')}</p>
             <Link id="detailMeatAndBones" to="/our-work/meat-and-bones">
               <Button kind={BUTTON_KIND_GHOST_LIGHT} blendColor="#6eb01e">
-                {msg('work.card.meatandbones.link')}
+                {msg('link')}
               </Button>
             </Link>
           </div>
-          {device.atLeast('l') &&
+          <HideBox col={0} sm={12} >
             <Image src={require('./images/meatandbones.jpg')} style={styles.image} />
-          }
+          </HideBox>
         </Container>
       </div>
     );

@@ -1,5 +1,6 @@
 import Radium from 'radium';
 import React, { PropTypes, PureComponent } from 'react';
+import HideBox from '../HideBox.react';
 
 @Radium
 export default class Label extends PureComponent {
@@ -25,11 +26,12 @@ export default class Label extends PureComponent {
 
     return (
       <div style={[styles.wrapper, styles[align], reverse && styles.reverse]}>
-        <h1>TODO: smaller than M should be not shown</h1>
-        <div style={[styles.line.base, lineColor && styles.line[lineColor], reverse && styles.line.reverse, reverseText && styles.line.reverse]} />
-        <div style={[styles.text.base, textColor && styles.text[textColor], reverse && styles.text.reverse, reverseText && styles.text.reverse]}>
-          {children}
-        </div>
+        <HideBox col={0} sm={12} >
+          <div style={[styles.line.base, lineColor && styles.line[lineColor], reverse && styles.line.reverse, reverseText && styles.line.reverse]} />
+          <div style={[styles.text.base, textColor && styles.text[textColor], reverse && styles.text.reverse, reverseText && styles.text.reverse]}>
+            {children}
+          </div>
+        </HideBox>
       </div>
     );
   }

@@ -2,15 +2,16 @@ import Container from '../../components/Container.react';
 import Heading from '../../components/heading/Heading.react';
 import Image from '../../components/Image.react';
 import Label from './Label.react';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { media } from '../../globals';
+import HideBox from '../HideBox.react';
 
-@translate()
+@translate('work.card.bluekit')
 export default class Bluekit extends PureComponent {
 
   static propTypes = {
-    msg: PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   render() {
@@ -19,18 +20,16 @@ export default class Bluekit extends PureComponent {
     return (
       <Image src={require('./images/bluebg.jpg')} style={styles.wrapper}>
         <Container style={styles.container}>
-          <div>
-            <h1>TODO: SHOULD BE OPNLY IN LARGE</h1>
-            <Label>{msg('work.card.bluekit.label')}</Label>
-          </div>
+          <HideBox col={0} sm={12} >
+            <Label>{msg('label')}</Label>
+          </HideBox>
           <div style={styles.content}>
-            <Heading kind="h3">{msg('work.card.bluekit.heading')}</Heading>
-            <p>{msg('work.card.bluekit.intro')}</p>
+            <Heading kind="h3">{msg('heading')}</Heading>
+            <p>{msg('intro')}</p>
           </div>
-          <div>
-            <h1>TODO: SHOULD BE OPNLY IN LARGE</h1>
+          <HideBox col={0} sm={12} >
             <Image src={require('./images/bluekit.png')} style={styles.image} />
-          </div>
+          </HideBox>
         </Container>
       </Image>
     );
