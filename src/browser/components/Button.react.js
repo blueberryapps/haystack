@@ -73,7 +73,6 @@ export default class Button extends PureComponent {
       style
     ];
 
-    console.log(rest)
     if (link || scrollLink) {
       if (link) {
         return (
