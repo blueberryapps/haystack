@@ -45,7 +45,7 @@ export default class DigitalMarketing extends PureComponent {
             </Link>
           </div>
           <HideBox col={0} sm={12} >
-            <Image src={require('./images/marketing_2.png')} style={styles.image} />
+            <Image alt={msg('heading.small')} src={require('./images/marketing_2.png')} style={styles.image} />
           </HideBox>
         </Container>
       </div>

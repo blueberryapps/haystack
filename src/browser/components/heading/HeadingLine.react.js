@@ -1,5 +1,5 @@
 import Radium from 'radium';
-import React from 'react';
+import React, { PropTypes as RPT } from 'react';
 import { colors } from '../../globals';
 
 const HeadingLine = ({ style }) => (
@@ -8,6 +8,10 @@ const HeadingLine = ({ style }) => (
     <span style={[styles.circle, styles.circle.bottom]} />
   </span>
 );
+
+HeadingLine.propTypes = {
+  style: RPT.object
+};
 
 const styles = {
   main: {

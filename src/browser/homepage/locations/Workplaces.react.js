@@ -21,3 +21,5 @@ export const workplaces = [
     src: 'https://goo.gl/maps/kZF9q9SbGem'
   }
 ];
+
+export default workplaces;

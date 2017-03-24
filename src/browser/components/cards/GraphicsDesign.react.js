@@ -24,7 +24,7 @@ export default class GraphicsDesign extends PureComponent {
       <div style={styles.wrapper}>
         <Container style={styles.container}>
           <HideBox col={0} sm={12} >
-            <Image src={require('./images/WeDesignImg2.png')} style={styles.image} />
+            <Image alt={msg('heading')} src={require('./images/WeDesignImg2.png')} style={styles.image} />
           </HideBox>
           <div style={styles.content}>
             <Heading

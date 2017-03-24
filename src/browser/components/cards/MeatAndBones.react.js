@@ -42,7 +42,7 @@ export default class MeatAndBones extends PureComponent {
             </Link>
           </div>
           <HideBox col={0} sm={12} >
-            <Image src={require('./images/meatandbones.jpg')} style={styles.image} />
+            <Image alt={msg('heading')} src={require('./images/meatandbones.jpg')} style={styles.image} />
           </HideBox>
         </Container>
       </div>

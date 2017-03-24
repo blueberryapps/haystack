@@ -41,7 +41,7 @@ export default class InteractionDesign extends PureComponent {
             <p style={styles.text}>{msg('services.weDesign.interaction.text')}</p>
           </div>
           <HideBox col={0} sm={12} >
-            <Image src={require('./images/WeDesignImg1.png')} style={styles.image} />
+            <Image alt={msg('heading')} src={require('./images/WeDesignImg1.png')} style={styles.image} />
           </HideBox>
         </Container>
       </div>

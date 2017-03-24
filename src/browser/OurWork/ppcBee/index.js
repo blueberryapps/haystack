@@ -1,10 +1,8 @@
 import Button, { BUTTON_KIND_GHOST_DARK, BUTTON_SIZE_LARGE } from '../../components/Button.react';
-import Component from 'react-pure-render/component';
 import Layout from '../../layouts/General.react';
 import Link from '../../components/Link.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import {
   ContactForm,
@@ -18,62 +16,62 @@ import {
   colors,
   media
 } from '../../globals';
-import { Map } from 'immutable';
 
-const partners = Map({
-  czc: 'czc.cz',
-  heureka: 'Heureka',
-  alza: 'alza.cz',
-  fragile: 'FRAGILE MEDIA',
-  srovname: 'srovname.cz',
-  b2bgroup: 'B2B GROUP',
-  kofeinon: 'KOFEIN ON',
-  kytarycz: 'kytary.cz',
-});
+const UntranslatedCircle = ({ msg, name, icon, iconPlaceholder }) => (
+  <li style={styles.circles.item.base}>
+    <div style={styles.circles.item.icon}>
+      {icon && <Icon color={colors.primary} kind={icon} size={80} />}
+      {iconPlaceholder &&
+        <div style={styles.circles.item.string}>{iconPlaceholder}</div>
+      }
+    </div>
+    <Heading kind="h4" style={styles.circles.item.heading}>
+      {msg(name)}
+    </Heading>
+  </li>
+);
 
-@listenWindowResize
-@translate()
+UntranslatedCircle.propTypes = {
+  name: RPT.string.isRequired,
+  icon: RPT.string.isRequired,
+  iconPlaceholder: RPT.string,
+  msg: RPT.func.isRequired
+};
+
+const Circle = translate('circles')(UntranslatedCircle);
+
+const Partner = ({ name, image }) => (
+  <li style={styles.logos.item}>
+    <img src={require(`./images/logo-${image}.png`)} style={styles.logos.img} alt={name} />
+  </li>
+);
+
+Partner.propTypes = {
+  name: RPT.string,
+  image: RPT.string
+};
+
+@translate('work.detail.ppcbee')
 @Radium
-export default class PPCBee extends Component {
+export default class PPCBee extends PureComponent {
 
   static propTypes = {
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: React.PropTypes.func.isRequired
-  }
-
-  renderCircle(key, icon, iconPlaceholder) {
-    const { msg } = this.props;
-
-    return (
-      <li key={key} style={styles.circles.item.base}>
-        <div style={styles.circles.item.icon}>
-          {icon && <Icon color={colors.primary} kind={icon} size={80} />}
-          {iconPlaceholder &&
-            <div style={styles.circles.item.string}>{iconPlaceholder}</div>
-          }
-        </div>
-        <Heading kind="h4" style={styles.circles.item.heading}>
-          {msg(`work.detail.ppcbee.circles.${key}`)}
-        </Heading>
-      </li>
-    );
+    msg: RPT.func.isRequired
   }
 
   renderAboutClient() {
     const { msg } = this.props;
-    const clients = partners.map(
-      (value, key) => <li key={key} style={styles.logos.item}><img src={require(`./images/logo-${key}.png`)} style={styles.logos.img} alt={value} /></li>
-    );
 
     return (
       <div style={styles.aboutClient.wrapper}>
         <Container>
           <div style={styles.aboutClient.topWrapper}>
             <div style={styles.aboutClient.content}>
-              <Heading kind="h2">{msg('work.detail.ppcbee.client.head')}</Heading>
-              <p style={styles.paragraph}>{msg('work.detail.ppcbee.client.text')}</p>
+              <Heading kind="h2">{msg('client.head')}</Heading>
+              <p style={styles.paragraph}>{msg('client.text')}</p>
             </div>
             <Image
+              alt={msg('PPC Bee')}
               style={styles.aboutClient.image}
               src={require('./images/ppc-bee.svg')}
             />
@@ -81,10 +79,17 @@ export default class PPCBee extends Component {
 
           <div style={styles.logos.wrapper}>
             <Heading kind="h3" style={styles.circles.heading}>
-              {msg('work.detail.ppcbee.client.subheading')}
+              {msg('client.subheading')}
             </Heading>
             <ul style={styles.logos.base}>
-              {clients}
+              <Partner image="czc" name="czc.cz" />
+              <Partner image="heureka" name="Heureka" />
+              <Partner image="alza" name="alza.cz" />
+              <Partner image="fragile" name="FRAGILE MEDIA" />
+              <Partner image="srovname" name="srovname.cz" />
+              <Partner image="b2bgroup" name="B2B GROUP" />
+              <Partner image="kofeinon" name="KOFEIN ON" />
+              <Partner image="kytarycz" name="kytary.cz" />
             </ul>
           </div>
         </Container>
@@ -100,12 +105,13 @@ export default class PPCBee extends Component {
         <Container>
           <div style={styles.aboutProject.projectA.wrapper}>
             <Heading kind="h2" style={styles.aboutProject.projectA.heading}>
-              {msg('work.detail.ppcbee.project.heading')}
+              {msg('project.heading')}
             </Heading>
-            <p style={styles.paragraph}>{msg('work.detail.ppcbee.project.text1')}</p>
-            <p style={styles.paragraph}>{msg('work.detail.ppcbee.project.text2')}</p>
+            <p style={styles.paragraph}>{msg('project.text1')}</p>
+            <p style={styles.paragraph}>{msg('project.text2')}</p>
           </div>
           <img
+            alt={msg('Solution')}
             src={require('./images/solution.jpg')}
             style={styles.aboutProject.projectA.image}
           />
@@ -121,17 +127,16 @@ export default class PPCBee extends Component {
       <Layout headerColor={colors.black}>
         <div id="ppcbee" style={styles.wrapper}>
           <ProjectIntro
-            style={{ wrapper: { color: colors.black } }}
             buttonBlendColor="#ffc20a"
             buttonKind={BUTTON_KIND_GHOST_DARK}
             color="#ffd200"
             image={require('./images/intro.png')}
-            link={msg('work.detail.ppcbee.url')}
-            linkTitle={msg('work.detail.ppcbee.link')}
+            link={msg('url')}
+            linkTitle={msg('link')}
             style={styles.intro}
-            title={msg('work.detail.ppcbee.heading')}
+            title={msg('heading')}
           >
-            {msg('work.detail.ppcbee.perex')}
+            {msg('perex')}
           </ProjectIntro>
 
           {this.renderAboutClient()}
@@ -140,30 +145,30 @@ export default class PPCBee extends Component {
           <Container>
             <div style={styles.circles.wrapper}>
               <Heading kind="h3" style={styles.circles.heading}>
-                {msg('work.detail.ppcbee.technology')}
+                {msg('technology')}
               </Heading>
               <ul style={styles.circles.base}>
-                {this.renderCircle('ruby', 'ruby')}
-                {this.renderCircle('rails', 'rails')}
-                {this.renderCircle('redis', 'redis')}
-                {this.renderCircle('elasticsearch', 'elasticsearch')}
-                {this.renderCircle('postgresql', 'postgresql')}
+                <Circle name="ruby" icon="ruby" />
+                <Circle name="rails" icon="rails" />
+                <Circle name="redis" icon="redis" />
+                <Circle name="elasticsearch" icon="elasticsearch" />
+                <Circle name="postgresql" icon="postgresql" />
               </ul>
             </div>
           </Container>
 
           <div style={styles.banner.wrapper}>
             <div style={styles.banner.text}>
-              {msg('work.detail.ppcbee.live.text')}
+              {msg('live.text')}
             </div>
-            <Link to={msg('work.detail.ppcbee.url')} target="_blank">
-              <Button kind={BUTTON_KIND_GHOST_DARK} size={BUTTON_SIZE_LARGE} style={styles.banner.button}>{msg('work.detail.ppcbee.live.link')}</Button>
+            <Link to={msg('url')} target="_blank">
+              <Button kind={BUTTON_KIND_GHOST_DARK} size={BUTTON_SIZE_LARGE} style={styles.banner.button}>{msg('live.link')}</Button>
             </Link>
           </div>
 
           <Container style={styles.container}>
             <Heading>
-              {msg('work.detail.ppcbee.hire')}
+              {msg('hire')}
             </Heading>
           </Container>
 

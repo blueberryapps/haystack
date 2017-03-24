@@ -36,7 +36,7 @@ export default class BackEnd extends PureComponent {
             <p style={styles.text}>{msg('text')}</p>
           </div>
           <HideBox col={0} sm={12} >
-            <Image src={require('./images/WeDevelopImg1.png')} style={styles.image} />
+            <Image alt={msg('heading')} src={require('./images/WeDevelopImg1.png')} style={styles.image} />
           </HideBox>
         </Container>
       </div>

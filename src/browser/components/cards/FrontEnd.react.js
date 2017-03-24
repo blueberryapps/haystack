@@ -27,7 +27,7 @@ export default class FrontEnd extends PureComponent {
         <Container style={styles.container}>
           <HideBox col={0} sm={12} >
             <Label right textColor="dark" lineColor="blue" reverseText>{msg('label')}</Label>
-            <Image src={require('./images/WeDevelopImg2.png')} style={styles.image} />
+            <Image alt={msg('heading')} src={require('./images/WeDevelopImg2.png')} style={styles.image} />
           </HideBox>
           <div style={styles.content}>
             <Heading

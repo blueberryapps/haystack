@@ -25,7 +25,7 @@ export default class Zaplo extends PureComponent {
         <Container style={styles.container}>
           <HideBox col={0} sm={12} >
             <Label dark right>{msg('work.card.zaplo.label')}</Label>
-            <img src={require('./images/zaplo-2.png')} style={styles.image} />
+            <img alt={msg('heading')} src={require('./images/zaplo-2.png')} style={styles.image} />
           </HideBox>
           <div style={styles.content}>
             <Heading id="cardsZaploHeading" kind="h2">

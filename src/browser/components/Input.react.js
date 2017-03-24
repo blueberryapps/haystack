@@ -1,4 +1,4 @@
-import Radium, { Style } from 'radium';
+import Radium from 'radium';
 import React, { PropTypes as RPT, PureComponent } from 'react';
 import { colors } from '../globals';
 

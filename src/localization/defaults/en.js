@@ -146,7 +146,7 @@ export default {
   errors: {
     back: 'Go back to homepage',
     page404: {
-      blueTitle: 'doesn\'t exist',
+      blueTitle: "doesn't exist",
       blackTitle: 'Page',
       subtitle: 'Sorry for that'
     },
@@ -676,7 +676,7 @@ export default {
       frontend: {
         label: 'Developing with love',
         heading: 'Front-ends',
-        text: 'If you just need a different UI, we can make a <b>website or a native mobile app</b> on top of your existing back-end. React and <a style=\"color: #00A7D7\; text-decoration: underline">React Native</a> are our bread-and-butter, but we\'ll use whatever is most suitable for your project.',
+        text: 'If you just need a different UI, we can make a <b>website or a native mobile app</b> on top of your existing back-end. React and <a style="color: #00A7D7; text-decoration: underline">React Native</a> are our bread-and-butter, but we\'ll use whatever is most suitable for your project.',
         button: 'Read more about our front-ends'
       }
     },

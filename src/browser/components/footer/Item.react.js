@@ -17,14 +17,12 @@ export default class Item extends PureComponent {
     const { cnt, content: { key, src, target, to }, sectionKey } = this.props;
 
     const title = cnt(`footer.section.${sectionKey}.items.${key}.heading`);
-    const text = to ?
-      <Link to={to} target={target}>{title}</Link> : src ?
-        <a href={src} target={target}>{title}</a> :
-        <div>{title}</div>;
 
     return (
       <li style={styles}>
-        {text}
+        {to && <Link to={to} target={target}>{title}</Link>}
+        {!to && src && <a href={src} target={target}>{title}</a>}
+        {!to && !src && <div>{title}</div>}
       </li>
     );
   }

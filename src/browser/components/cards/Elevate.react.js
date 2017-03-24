@@ -38,7 +38,7 @@ export default class Elevate extends PureComponent {
           </Button>
         </div>
         <HideBox col={0} sm={12} >
-          <img src={require('./images/elevate-2.png')} style={styles.image} />
+          <img alt={msg('heading')} src={require('./images/elevate-2.png')} style={styles.image} />
         </HideBox>
       </Container>
     );

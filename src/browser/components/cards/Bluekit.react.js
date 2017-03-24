@@ -28,7 +28,7 @@ export default class Bluekit extends PureComponent {
             <p>{msg('intro')}</p>
           </div>
           <HideBox col={0} sm={12} >
-            <Image src={require('./images/bluekit.png')} style={styles.image} />
+            <Image alt={msg('heading')} src={require('./images/bluekit.png')} style={styles.image} />
           </HideBox>
         </Container>
       </Image>

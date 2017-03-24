@@ -22,14 +22,14 @@ export default class Curve extends PureComponent {
   static propTypes = {
     height: RPT.number.isRequired,
     itemTops: RPT.array.isRequired,
-    scaleX: RPT.number,
-    scaleY: RPT.number
   }
 
   state = {}
 
-  renderCurve(scaleX = 1, scaleY = 1, repeat = 1, offset = 0) {
-    return Range(offset, repeat - offset).toArray().map((index) => {
+  getSineXForY = y => Math.sin(y / SCALE_Y) * SCALE_X;
+
+  renderCurve = (scaleX = 1, scaleY = 1, repeat = 1, offset = 0) => (
+    Range(offset, repeat - offset).toArray().map((index) => {
       const inverse = index < 0;
       const repeatBasis = Math.abs(index) % 4;
       const origin = [0, CURVE_LENGTH * scaleY * (Math.abs(index) - repeatBasis)];
@@ -79,11 +79,12 @@ export default class Curve extends PureComponent {
             inverse
           );
         }
+        default: return null;
       }
-    });
-  }
+    })
+  )
 
-  renderPath(c0, c1, c2, c3, scaleX = 1, scaleY = 1, inverse = false) {
+  renderPath = (c0, c1, c2, c3, scaleX = 1, scaleY = 1, inverse = false) => {
     if (inverse) {
       return (
         <path
@@ -103,32 +104,26 @@ export default class Curve extends PureComponent {
     );
   }
 
-  getSineXForY(y) {
-    const { scaleX, scaleY } = this.props;
-
-    return Math.sin(y / scaleY) * scaleX;
-  }
-
-  renderPoint(x, y, index) {
+  renderPoint = (x, y, index) => {
     const pointId = index !== undefined && `${CURVE_POINT_ID}${index}`;
-    console.log('XXX', x)
+
     return (
       <circle cx={x} cy={y} id={pointId} r={POINT_RADIUS} style={styles.point} />
     );
   }
 
   render() {
-    const { height, itemTops, scaleX, scaleY } = this.props;
-    const curveOffsetY = CURVE_OFFSET * CURVE_LENGTH * scaleY;
-    const curveSegments = Math.ceil(height / (CURVE_CONTROL_POINTS[3][1] * scaleY));
+    const { height, itemTops } = this.props;
+    const curveOffsetY = CURVE_OFFSET * CURVE_LENGTH * SCALE_Y;
+    const curveSegments = Math.ceil(height / (CURVE_CONTROL_POINTS[3][1] * SCALE_Y));
     const renderHeight = height + (POINT_RADIUS * 2);
-    const renderWidth = (scaleX * 2) + (POINT_RADIUS * 2);
+    const renderWidth = (SCALE_X * 2) + (POINT_RADIUS * 2);
     const pointPositions = itemTops && itemTops.map(y => [this.getSineXForY(y - curveOffsetY - POINT_RADIUS), y - curveOffsetY - POINT_RADIUS]);
 
     return (
       <svg width={renderWidth} height={renderHeight}>
-        <g transform={`translate(${scaleX + POINT_RADIUS}, ${curveOffsetY + POINT_RADIUS})`}>
-          {this.renderCurve(scaleX, scaleY, curveSegments, CURVE_OFFSET)}
+        <g transform={`translate(${SCALE_X + POINT_RADIUS}, ${curveOffsetY + POINT_RADIUS})`}>
+          {this.renderCurve(SCALE_X, SCALE_Y, curveSegments, CURVE_OFFSET)}
           {this.renderPoint(this.getSineXForY(-curveOffsetY), -curveOffsetY)}
           {pointPositions.map((point, index) => this.renderPoint(point[0], point[1], index))}
           {this.renderPoint(this.getSineXForY(height - curveOffsetY), height - curveOffsetY)}

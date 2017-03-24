@@ -1,11 +1,11 @@
 import Button, { BUTTON_KIND_GHOST_LIGHT } from '../../components/Button.react';
-import Component from 'react-pure-render/component';
 import Layout from '../../layouts/General.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { HEADING_CONTAINER_KIND_HIRE_US } from '../../components/HeadingContainer.react';
+import HideBox from '../../components/HideBox.react';
+
 import {
   ContactForm,
   Container,
@@ -19,14 +19,12 @@ import {
   media
 } from '../../globals';
 
-@listenWindowResize
-@translate()
+@translate('work.detail.tcox')
 @Radium
-export default class Tcox extends Component {
+export default class Tcox extends PureComponent {
 
   static propTypes = {
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: React.PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   renderAboutClient() {
@@ -36,8 +34,8 @@ export default class Tcox extends Component {
       <div style={styles.aboutClient.wrapper}>
         <Container>
           <div style={styles.aboutClient.content}>
-            <Heading kind="h2">{msg('work.detail.tcox.client.heading')}</Heading>
-            <p>{msg('work.detail.tcox.client.text')}</p>
+            <Heading kind="h2">{msg('client.heading')}</Heading>
+            <p>{msg('client.text')}</p>
           </div>
           <Image
             style={styles.aboutClient.image}
@@ -46,7 +44,7 @@ export default class Tcox extends Component {
 
           <div style={styles.aboutClient.list.wrapper}>
             <Heading kind="h3" style={styles.aboutClient.list.heading}>
-              {msg('work.detail.tcox.client.subheading')}
+              {msg('client.subheading')}
             </Heading>
             <ul style={styles.aboutClient.list.base}>
               <li style={styles.aboutClient.list.item.base}>
@@ -54,27 +52,27 @@ export default class Tcox extends Component {
                   <Icon color={colors.primary} kind="boost" size={80} />
                 </div>
                 <Heading kind="h4" style={styles.aboutClient.list.item.heading}>
-                  {msg('work.detail.tcox.client.going')}
+                  {msg('client.going')}
                 </Heading>
-                <p>{msg('work.detail.tcox.client.goingText')}</p>
+                <p>{msg('client.goingText')}</p>
               </li>
               <li style={styles.aboutClient.list.item.base}>
                 <div style={styles.aboutClient.list.item.icon}>
                   <Icon color={colors.primary} kind="agile" size={80} />
                 </div>
                 <Heading kind="h4" style={styles.aboutClient.list.item.heading}>
-                  {msg('work.detail.tcox.client.agile')}
+                  {msg('client.agile')}
                 </Heading>
-                <p>{msg('work.detail.tcox.client.agileText')}</p>
+                <p>{msg('client.agileText')}</p>
               </li>
               <li style={styles.aboutClient.list.item.base}>
                 <div style={styles.aboutClient.list.item.icon}>
                   <Icon color={colors.primary} kind="reactbulb" size={80} />
                 </div>
                 <Heading kind="h4" style={styles.aboutClient.list.item.heading}>
-                  {msg('work.detail.tcox.client.development')}
+                  {msg('client.development')}
                 </Heading>
-                <p>{msg('work.detail.tcox.client.developmentText')}</p>
+                <p>{msg('client.developmentText')}</p>
               </li>
             </ul>
           </div>
@@ -84,35 +82,37 @@ export default class Tcox extends Component {
   }
 
   renderAboutProject() {
-    const { device, msg } = this.props;
+    const { msg } = this.props;
 
     return (
       <div style={styles.aboutProject.wrapper}>
         <Container>
-          {device.atLeast('l') &&
-          <Image
-            style={styles.aboutProject.projectA.image}
-            src={require('./images/taylorcox_a.png')}
-          />}
+          <HideBox col={0} sm={12}>
+            <Image
+              style={styles.aboutProject.projectA.image}
+              src={require('./images/taylorcox_a.png')}
+            />
+          </HideBox>
           <div style={styles.aboutProject.projectA.wrapper}>
-            <Heading kind="h2">{msg('work.detail.tcox.project.heading')}</Heading>
-            <p>{msg('work.detail.tcox.project.text')}</p>
+            <Heading kind="h2">{msg('project.heading')}</Heading>
+            <p>{msg('project.text')}</p>
           </div>
         </Container>
 
         <Container>
           <div style={styles.aboutProject.projectB.wrapper}>
             <Heading kind="h2">
-              {msg('work.detail.tcox.project.subheading')}
+              {msg('project.subheading')}
             </Heading>
-            <p>{msg('work.detail.tcox.project.subtext1')}</p>
-            <p>{msg('work.detail.tcox.project.subtext2')}</p>
+            <p>{msg('project.subtext1')}</p>
+            <p>{msg('project.subtext2')}</p>
           </div>
-          {device.atLeast('l') &&
-          <Image
-            style={styles.aboutProject.projectB.image}
-            src={require('./images/taylorcox_b.png')}
-          />}
+          <HideBox col={0} sm={12}>
+            <Image
+              style={styles.aboutProject.projectB.image}
+              src={require('./images/taylorcox_b.png')}
+            />
+          </HideBox>
         </Container>
       </div>
     );
@@ -127,11 +127,11 @@ export default class Tcox extends Component {
           <ProjectIntro
             color="#bc2632"
             image={require('../../components/cards/images/tayllorcox.png')}
-            linkTitle={msg('work.detail.tcox.link')}
+            linkTitle={msg('link')}
             style={styles.intro}
-            title={msg('work.detail.tcox.heading')}
+            title={msg('heading')}
           >
-            {msg('work.detail.tcox.perex')}
+            {msg('perex')}
           </ProjectIntro>
 
           {this.renderAboutClient()}
@@ -140,10 +140,10 @@ export default class Tcox extends Component {
 
           <Image src={require('./images/banner.jpg')} style={styles.banner.wrapper}>
             <div style={styles.banner.text}>
-              {msg('work.detail.tcox.live.text')}
+              {msg('live.text')}
             </div>
             <Button kind={BUTTON_KIND_GHOST_LIGHT}>
-              {msg('work.detail.tcox.live.link')}
+              {msg('live.link')}
             </Button>
           </Image>
           <Container style={styles.contactForm}>

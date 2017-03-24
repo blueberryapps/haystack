@@ -13,7 +13,7 @@ export default class ContactBar extends PureComponent {
     msg: React.PropTypes.func
   }
 
-  handleClick(item) {
+  handleClick = (item) => {
     window.location = item.to;
   }
 

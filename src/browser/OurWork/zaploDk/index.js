@@ -1,12 +1,11 @@
 import Button, { BUTTON_KIND_GHOST_LIGHT, BUTTON_SIZE_LARGE } from '../../components/Button.react';
-import Component from 'react-pure-render/component';
 import Layout from '../../layouts/General.react';
 import Link from '../../components/Link.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { HEADING_CONTAINER_KIND_HIRE_US } from '../../components/HeadingContainer.react';
+
 import {
   ContactForm,
   Container,
@@ -21,14 +20,12 @@ import {
 } from '../../globals';
 import { Range } from 'immutable';
 
-@listenWindowResize
-@translate()
+@translate('work.detail.zaplo')
 @Radium
-export default class ZaploDk extends Component {
+export default class ZaploDk extends PureComponent {
 
   static propTypes = {
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: React.PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   renderCircle(key, icon, iconPlaceholder, fixedWidth) {
@@ -43,7 +40,7 @@ export default class ZaploDk extends Component {
           }
         </div>
         <Heading kind="h4" style={styles.circles.item.heading}>
-          {msg(`work.detail.zaplo.client.${key}`)}
+          {msg(`client.${key}`)}
         </Heading>
       </li>
     );
@@ -57,8 +54,8 @@ export default class ZaploDk extends Component {
         <Container>
           <div style={styles.aboutClient.topWrapper}>
             <div style={styles.aboutClient.content}>
-              <Heading kind="h2">{msg('work.detail.zaplo.client.head')}</Heading>
-              <p style={styles.paragraph}>{msg('work.detail.zaplo.client.text')}</p>
+              <Heading kind="h2">{msg('client.head')}</Heading>
+              <p style={styles.paragraph}>{msg('client.text')}</p>
             </div>
             <Image
               style={styles.aboutClient.image}
@@ -68,7 +65,7 @@ export default class ZaploDk extends Component {
 
           <div style={styles.circles.wrapper}>
             <Heading kind="h3" style={styles.circles.heading}>
-              {msg('work.detail.zaplo.client.subheading')}
+              {msg('client.subheading')}
             </Heading>
             <ul style={styles.circles.base}>
               {this.renderCircle('going', null, '4', true)}
@@ -89,10 +86,10 @@ export default class ZaploDk extends Component {
         <Container>
           <div style={styles.aboutProject.projectA.wrapper}>
             <Heading kind="h2" style={styles.aboutProject.projectA.heading}>
-              {msg('work.detail.zaplo.project.heading')}
+              {msg('project.heading')}
             </Heading>
-            <p style={styles.paragraph}>{msg('work.detail.zaplo.project.text1_1')}</p>
-            <p style={styles.paragraph}>{msg('work.detail.zaplo.project.text1_2')}</p>
+            <p style={styles.paragraph}>{msg('project.text1_1')}</p>
+            <p style={styles.paragraph}>{msg('project.text1_2')}</p>
           </div>
           <Image
             src={require('./images/challenge.jpg')}
@@ -105,11 +102,11 @@ export default class ZaploDk extends Component {
         <Container>
           <div style={styles.aboutProject.projectB.wrapper}>
             <Heading kind="h2" style={styles.aboutProject.projectA.heading}>
-              {msg('work.detail.zaplo.project.subheading')}
+              {msg('project.subheading')}
             </Heading>
-            <p style={styles.paragraph}>{msg('work.detail.zaplo.project.text2_1')}</p>
-            <p style={styles.paragraph}>{msg('work.detail.zaplo.project.text2_2')}</p>
-            <p style={styles.paragraph}>{msg('work.detail.zaplo.project.text2_3')}</p>
+            <p style={styles.paragraph}>{msg('project.text2_1')}</p>
+            <p style={styles.paragraph}>{msg('project.text2_2')}</p>
+            <p style={styles.paragraph}>{msg('project.text2_3')}</p>
           </div>
           <Image
             src={require('./images/solution.jpg')}
@@ -121,11 +118,12 @@ export default class ZaploDk extends Component {
   }
 
   renderPhotos() {
+    const { msg } = this.props;
     const photosArray = Range(1, 17).map(i => this.renderPhoto(i));
 
     return (
       <Container style={styles.photos.wrapper}>
-        <img src={require('./images/cooperation.png')} style={styles.photos.cooperation} />
+        <img alt={msg('Coopertion')} src={require('./images/cooperation.png')} style={styles.photos.cooperation} />
         <div style={styles.photos.innerWrapper}>
           {photosArray}
         </div>
@@ -134,9 +132,11 @@ export default class ZaploDk extends Component {
   }
 
   renderPhoto(i) {
+    const { msg } = this.props;
+
     return (
       <div style={styles.photos.photo}>
-        <img src={require(`./images/zaplo-${i}.jpg`)} style={styles.photos.img} />
+        <img alt={msg(`Zaplo DK #${i}`)} src={require(`./images/zaplo-${i}.jpg`)} style={styles.photos.img} />
       </div>
     );
   }
@@ -152,12 +152,12 @@ export default class ZaploDk extends Component {
             buttonKind={BUTTON_KIND_GHOST_LIGHT}
             color="linear-gradient(214deg, #3f51b5 0%, #0068a5 100%)"
             image={require('./images/intro.png')}
-            link={msg('work.detail.zaplo.url')}
-            linkTitle={msg('work.detail.zaplo.link')}
+            link={msg('url')}
+            linkTitle={msg('link')}
             style={styles.intro}
-            title={msg('work.detail.zaplo.heading')}
+            title={msg('heading')}
           >
-            {msg('work.detail.zaplo.perex')}
+            {msg('perex')}
           </ProjectIntro>
 
           {this.renderAboutClient()}
@@ -166,7 +166,7 @@ export default class ZaploDk extends Component {
 
           <div style={styles.circles.wrapper}>
             <Heading kind="h3" style={styles.circles.heading}>
-              {msg('work.detail.zaplo.technology')}
+              {msg('technology')}
             </Heading>
             <ul style={styles.circles.base}>
               {this.renderCircle('react', 'react')}
@@ -180,10 +180,10 @@ export default class ZaploDk extends Component {
 
           <div style={styles.banner.wrapper}>
             <div style={styles.banner.text}>
-              {msg('work.detail.zaplo.live.text')}
+              {msg('live.text')}
             </div>
-            <Link to={msg('work.detail.zaplo.url')} target="_blank">
-              <Button kind={BUTTON_KIND_GHOST_LIGHT} size={BUTTON_SIZE_LARGE} style={styles.banner.button}>{msg('work.detail.zaplo.live.link')}</Button>
+            <Link to={msg('url')} target="_blank">
+              <Button kind={BUTTON_KIND_GHOST_LIGHT} size={BUTTON_SIZE_LARGE} style={styles.banner.button}>{msg('live.link')}</Button>
             </Link>
           </div>
 

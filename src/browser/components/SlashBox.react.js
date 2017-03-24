@@ -1,6 +1,6 @@
 import Icon from './Icon.react';
 import Radium from 'radium';
-import React from 'react';
+import React, { PropTypes as RPT } from 'react';
 import { colors, media } from '../globals';
 
 const SlashBox = ({ children, place, style }) => (
@@ -17,6 +17,12 @@ const SlashBox = ({ children, place, style }) => (
     </div>
   </div>
 );
+
+SlashBox.propTypes = {
+  children: RPT.node,
+  place: RPT.string,
+  style: RPT.object
+};
 
 const styles = {
   main: {

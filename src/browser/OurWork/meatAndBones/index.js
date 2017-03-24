@@ -1,12 +1,11 @@
 import Button, { BUTTON_KIND_GHOST_LIGHT } from '../../components/Button.react';
-import Component from 'react-pure-render/component';
 import Layout from '../../layouts/General.react';
 import Link from '../../components/Link.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { HEADING_CONTAINER_KIND_HIRE_US } from '../../components/HeadingContainer.react';
+import HideBox from '../../components/HideBox.react';
 import {
   ContactForm,
   Container,
@@ -20,14 +19,12 @@ import {
   media
 } from '../../globals';
 
-@listenWindowResize
-@translate()
+@translate('work.detail.meatandbones')
 @Radium
-export default class MeatAndBones extends Component {
+export default class MeatAndBones extends PureComponent {
 
   static propTypes = {
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: React.PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   renderCircle(key, icon, iconPlaceholder) {
@@ -42,7 +39,7 @@ export default class MeatAndBones extends Component {
           }
         </div>
         <Heading kind="h4" style={styles.circles.item.heading}>
-          {msg(`work.detail.meatandbones.client.${key}`)}
+          {msg(`client.${key}`)}
         </Heading>
       </li>
     );
@@ -56,9 +53,9 @@ export default class MeatAndBones extends Component {
         <Container>
           <div style={styles.aboutClient.content}>
             <Heading kind="h2">
-              {msg('work.detail.meatandbones.client.heading')}
+              {msg('client.heading')}
             </Heading>
-            <p>{msg('work.detail.meatandbones.client.text')}</p>
+            <p>{msg('client.text')}</p>
           </div>
           <Image
             style={styles.aboutClient.image}
@@ -66,7 +63,7 @@ export default class MeatAndBones extends Component {
           />
           <div style={[styles.circles.wrapper, styles.aboutClient.circles]}>
             <Heading kind="h3" style={styles.circles.heading}>
-              {msg('work.detail.meatandbones.client.subheading')}
+              {msg('client.subheading')}
             </Heading>
             <ul style={styles.circles.base}>
               {this.renderCircle('going', null, '1')}
@@ -84,7 +81,7 @@ export default class MeatAndBones extends Component {
   }
 
   renderAboutProject() {
-    const { device, msg } = this.props;
+    const { msg } = this.props;
 
     return (
       <div style={styles.aboutProject.wrapper}>
@@ -93,31 +90,33 @@ export default class MeatAndBones extends Component {
         </Container>
 
         <Container>
-          {device.atLeast('l') &&
-          <Image
-            style={styles.aboutProject.projectA.image}
-            src={require('./images/form.jpg')}
-          />}
+          <HideBox col={0} sm={12}>
+            <Image
+              style={styles.aboutProject.projectA.image}
+              src={require('./images/form.jpg')}
+            />
+          </HideBox>
           <div style={styles.aboutProject.projectA.wrapper}>
             <Heading kind="h2">
-              {msg('work.detail.meatandbones.project.heading')}
+              {msg('project.heading')}
             </Heading>
-            <p>{msg('work.detail.meatandbones.project.text')}</p>
+            <p>{msg('project.text')}</p>
           </div>
         </Container>
 
         <Container>
           <div style={styles.aboutProject.projectB.wrapper}>
-            <Heading kind="h2">{msg('work.detail.meatandbones.project.subheading')}</Heading>
-            <p>{msg('work.detail.meatandbones.project.subtext1')}</p>
-            <p>{msg('work.detail.meatandbones.project.subtext2')}</p>
-            <p>{msg('work.detail.meatandbones.project.subtext3')}</p>
+            <Heading kind="h2">{msg('project.subheading')}</Heading>
+            <p>{msg('project.subtext1')}</p>
+            <p>{msg('project.subtext2')}</p>
+            <p>{msg('project.subtext3')}</p>
           </div>
-          {device.atLeast('l') &&
-          <Image
-            style={styles.aboutProject.projectB.image}
-            src={require('./images/web.jpg')}
-          />}
+          <HideBox col={0} sm={12}>
+            <Image
+              style={styles.aboutProject.projectB.image}
+              src={require('./images/web.jpg')}
+            />
+          </HideBox>
         </Container>
       </div>
     );
@@ -134,12 +133,12 @@ export default class MeatAndBones extends Component {
             buttonKind={BUTTON_KIND_GHOST_LIGHT}
             color="#57a322"
             image={require('../../components/cards/images/meatandbones.jpg')}
-            link={msg('work.detail.meatandbones.url')}
-            linkTitle={msg('work.detail.meatandbones.link')}
+            link={msg('url')}
+            linkTitle={msg('link')}
             style={styles.intro}
-            title={msg('work.detail.meatandbones.heading')}
+            title={msg('heading')}
           >
-            {msg('work.detail.meatandbones.perex')}
+            {msg('perex')}
           </ProjectIntro>
 
           {this.renderAboutClient()}
@@ -148,7 +147,7 @@ export default class MeatAndBones extends Component {
 
           <div style={styles.circles.wrapper}>
             <Heading kind="h3" style={styles.circles.heading}>
-              {msg('work.detail.meatandbones.technology')}
+              {msg('technology')}
             </Heading>
             <ul style={styles.circles.base}>
               {this.renderCircle('react', 'react')}
@@ -158,10 +157,10 @@ export default class MeatAndBones extends Component {
           </div>
           <Image src={require('./images/separator.jpg')} style={styles.banner.wrapper}>
             <div style={styles.banner.text}>
-              {msg('work.detail.meatandbones.live.text')}
+              {msg('live.text')}
             </div>
-            <Link to={msg('work.detail.meatandbones.url')} target="_blank">
-              <Button kind={BUTTON_KIND_GHOST_LIGHT}>{msg('work.detail.meatandbones.live.link')}</Button>
+            <Link to={msg('url')} target="_blank">
+              <Button kind={BUTTON_KIND_GHOST_LIGHT}>{msg('live.link')}</Button>
             </Link>
           </Image>
           <Container style={styles.contactForm}>

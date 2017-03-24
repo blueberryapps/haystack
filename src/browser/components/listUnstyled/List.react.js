@@ -1,11 +1,16 @@
 import Radium from 'radium';
-import React from 'react';
+import React, { PropTypes as RPT } from 'react';
 
 const ListUnstyled = ({ children, style }) => (
   <ul style={[styles.main, style]}>
     {children}
   </ul>
 );
+
+ListUnstyled.propTypes = {
+  children: RPT.node,
+  style: RPT.object
+};
 
 const styles = {
   main: {

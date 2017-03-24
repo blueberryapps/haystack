@@ -12,7 +12,7 @@ export default class Team extends PureComponent {
 
     return (
       <div style={styles.wrapper}>
-        {members.map((person, i) => <Member detail={person} key={i} />)}
+        {members.map(person => <Member detail={person} key={person.image} />)}
       </div>
     );
   }

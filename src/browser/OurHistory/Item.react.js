@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import Date from './Date.react';
 import Radium from 'radium';
 import React, { PropTypes as RPT, PureComponent } from 'react';

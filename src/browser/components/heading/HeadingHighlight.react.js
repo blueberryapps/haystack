@@ -1,5 +1,5 @@
 import Radium from 'radium';
-import React from 'react';
+import React, { PropTypes as RPT } from 'react';
 import { colors, em } from '../../globals';
 
 const HeadingHighlight = ({ children, style }) => (
@@ -8,6 +8,11 @@ const HeadingHighlight = ({ children, style }) => (
     <span style={[styles.line, style && style.line]} />
   </strong>
 );
+
+HeadingHighlight.propTypes = {
+  children: RPT.node,
+  style: RPT.object
+};
 
 const styles = {
   main: {

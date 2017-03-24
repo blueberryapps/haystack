@@ -1,4 +1,3 @@
-import PrefixAll from 'inline-style-prefixer/static';
 import Radium from 'radium';
 import React, { PropTypes, PureComponent } from 'react';
 
@@ -58,7 +57,7 @@ export default class Hamburger extends PureComponent {
 
 }
 
-const styles = PrefixAll({
+const styles = {
   wrapper: {
     height: '32px',
     position: 'relative',
@@ -97,4 +96,4 @@ const styles = PrefixAll({
       }
     }
   }
-});
+};

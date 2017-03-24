@@ -1,10 +1,8 @@
 import Button, { BUTTON_KIND_GHOST_LIGHT, BUTTON_SIZE_LARGE } from '../../components/Button.react';
-import Component from 'react-pure-render/component';
 import Layout from '../../layouts/General.react';
 import Link from '../../components/Link.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import {
   ContactForm,
@@ -18,14 +16,12 @@ import {
   media
 } from '../../globals';
 
-@listenWindowResize
-@translate()
+@translate('work.detail.itsounds')
 @Radium
-export default class Itsounds extends Component {
+export default class Itsounds extends PureComponent {
 
   static propTypes = {
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: React.PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   renderCircle(key, icon, iconPlaceholder, fixedWidth) {
@@ -40,7 +36,7 @@ export default class Itsounds extends Component {
           }
         </div>
         <Heading kind="h4" style={styles.circles.item.heading}>
-          {msg(`work.detail.itsounds.client.${key}`)}
+          {msg(`client.${key}`)}
         </Heading>
       </li>
     );
@@ -54,19 +50,19 @@ export default class Itsounds extends Component {
         <Container>
           <div style={styles.aboutClient.topWrapper}>
             <div style={styles.aboutClient.content}>
-              <Heading kind="h2" style={styles.aboutClient.heading}>{msg('work.detail.itsounds.client.head')}</Heading>
-              <p style={styles.paragraph}>{msg('work.detail.itsounds.client.text')}</p>
+              <Heading kind="h2" style={styles.aboutClient.heading}>{msg('client.head')}</Heading>
+              <p style={styles.paragraph}>{msg('client.text')}</p>
             </div>
             <img
               style={styles.aboutClient.image}
               src={require('./images/itsounds.png')}
-              alt={msg('work.detail.itsounds.heading')}
+              alt={msg('heading')}
             />
           </div>
 
           <div style={styles.circles.wrapper}>
             <Heading kind="h3" style={styles.circles.heading}>
-              {msg('work.detail.itsounds.client.subheading')}
+              {msg('client.subheading')}
             </Heading>
             <ul style={styles.circles.base}>
               {this.renderCircle('sandglass', 'sandglass')}
@@ -88,26 +84,26 @@ export default class Itsounds extends Component {
         <Container>
           <div style={styles.aboutProject.projectA.wrapper}>
             <Heading kind="h2" style={styles.aboutProject.projectA.heading}>
-              {msg('work.detail.itsounds.project.heading')}
+              {msg('project.heading')}
             </Heading>
-            <p style={styles.paragraph}>{msg('work.detail.itsounds.project.text1')}</p>
+            <p style={styles.paragraph}>{msg('project.text1')}</p>
           </div>
-          <img src={require('./images/challenge-1.jpg')} style={styles.aboutProject.projectA.image} />
+          <img alt={msg('It Sounds Challenge')} src={require('./images/challenge-1.jpg')} style={styles.aboutProject.projectA.image} />
           <p style={styles.aboutProject.projectA.image2Wrapper}>
-            <img src={require('./images/challenge-2.jpg')} style={styles.aboutProject.projectA.image2} />
+            <img alt={msg('It Sounds Challenge #2')} src={require('./images/challenge-2.jpg')} style={styles.aboutProject.projectA.image2} />
           </p>
         </Container>
 
         <Container>
           <div style={styles.aboutProject.projectB.wrapper}>
             <Heading kind="h2" style={styles.aboutProject.projectA.heading}>
-              {msg('work.detail.itsounds.project.subheading')}
+              {msg('project.subheading')}
             </Heading>
-            <p style={styles.paragraph}>{msg('work.detail.itsounds.project.text2')}</p>
+            <p style={styles.paragraph}>{msg('project.text2')}</p>
           </div>
           <p style={styles.aboutProject.projectB.imageWrapper}>
-            <img src={require('./images/solution-1.jpg')} style={styles.aboutProject.projectB.image1} />
-            <img src={require('./images/solution-2.jpg')} style={styles.aboutProject.projectB.image2} />
+            <img alt={msg('It Sounds Solution #1')} src={require('./images/solution-1.jpg')} style={styles.aboutProject.projectB.image1} />
+            <img alt={msg('It Sounds Solution #2')} src={require('./images/solution-2.jpg')} style={styles.aboutProject.projectB.image2} />
           </p>
         </Container>
       </div>
@@ -125,12 +121,12 @@ export default class Itsounds extends Component {
             buttonKind={BUTTON_KIND_GHOST_LIGHT}
             color="linear-gradient(309deg, #313232 0%, #222222 100%)"
             image={require('./images/intro.png')}
-            link={msg('work.detail.itsounds.url')}
-            linkTitle={msg('work.detail.itsounds.link')}
+            link={msg('url')}
+            linkTitle={msg('link')}
             style={styles.intro}
-            title={msg('work.detail.itsounds.heading')}
+            title={msg('heading')}
           >
-            {msg('work.detail.itsounds.perex')}
+            {msg('perex')}
           </ProjectIntro>
 
           {this.renderAboutClient()}
@@ -138,7 +134,7 @@ export default class Itsounds extends Component {
 
           <div style={styles.circles.wrapper}>
             <Heading kind="h3" style={styles.circles.heading}>
-              {msg('work.detail.itsounds.technology')}
+              {msg('technology')}
             </Heading>
             <ul style={styles.circles.base}>
               {this.renderCircle('saas', 'saas')}
@@ -149,16 +145,16 @@ export default class Itsounds extends Component {
 
           <div style={styles.banner.wrapper}>
             <div style={styles.banner.text}>
-              {msg('work.detail.itsounds.live.text')}
+              {msg('live.text')}
             </div>
-            <Link to={msg('work.detail.itsounds.url')} target="_blank">
-              <Button kind={BUTTON_KIND_GHOST_LIGHT} size={BUTTON_SIZE_LARGE} style={styles.banner.button}>{msg('work.detail.itsounds.live.link')}</Button>
+            <Link to={msg('url')} target="_blank">
+              <Button kind={BUTTON_KIND_GHOST_LIGHT} size={BUTTON_SIZE_LARGE} style={styles.banner.button}>{msg('live.link')}</Button>
             </Link>
           </div>
 
           <Container style={styles.container}>
             <Heading>
-              {msg('work.detail.itsounds.hire')}
+              {msg('hire')}
             </Heading>
           </Container>
 

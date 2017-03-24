@@ -14,7 +14,6 @@ export default class Heading extends PureComponent {
       PropTypes.arrayOf(PropTypes.object),
       PropTypes.object
     ]),
-    src: PropTypes.string
   }
 
   static defaultProps = {
@@ -23,10 +22,10 @@ export default class Heading extends PureComponent {
 
   render() {
     const { bolder, id, children, kind: Element, style } = this.props;
-    const Heading = Element === 'super' ? 'h3' : Element;
+    const HeadingComponent = Element === 'super' ? 'h3' : Element;
 
     return (
-      <Heading
+      <HeadingComponent
         id={id}
         style={[
           styles.base,
@@ -38,7 +37,7 @@ export default class Heading extends PureComponent {
         <span style={styles.span}>
           {children}
         </span>
-      </Heading>
+      </HeadingComponent>
     );
   }
 }

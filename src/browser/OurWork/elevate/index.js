@@ -1,11 +1,10 @@
 import Button, { BUTTON_KIND_GHOST_LIGHT } from '../../components/Button.react';
-import Component from 'react-pure-render/component';
 import Layout from '../../layouts/General.react';
 import Link from '../../components/Link.react';
-import listenWindowResize, { Device } from '../../../server/frontend/listenWindowResize.react';
 import Radium from 'radium';
-import React, { PropTypes } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
+import HideBox from '../../components/HideBox.react';
 import {
   ContactForm,
   Container,
@@ -19,14 +18,12 @@ import {
   media
 } from '../../globals';
 
-@listenWindowResize
-@translate()
+@translate('work.detail.elevate')
 @Radium
-export default class Elevate extends Component {
+export default class Elevate extends PureComponent {
 
   static propTypes = {
-    device: PropTypes.instanceOf(Device).isRequired,
-    msg: React.PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   renderCircle(key, icon, iconPlaceholder) {
@@ -41,7 +38,7 @@ export default class Elevate extends Component {
           }
         </div>
         <Heading kind="h4" style={styles.circles.item.heading}>
-          {msg(`work.detail.elevate.client.${key}`)}
+          {msg(`client.${key}`)}
         </Heading>
       </li>
     );
@@ -54,8 +51,8 @@ export default class Elevate extends Component {
       <div style={styles.aboutClient.wrapper}>
         <Container>
           <div style={styles.aboutClient.content}>
-            <Heading kind="h2">{msg('work.detail.elevate.client.heading')}</Heading>
-            <p style={styles.default.textGray}>{msg('work.detail.elevate.client.text')}</p>
+            <Heading kind="h2">{msg('client.heading')}</Heading>
+            <p style={styles.default.textGray}>{msg('client.text')}</p>
           </div>
           <Image
             style={styles.aboutClient.image}
@@ -64,7 +61,7 @@ export default class Elevate extends Component {
 
           <div style={styles.circles.wrapper}>
             <Heading kind="h3" style={styles.circles.heading}>
-              {msg('work.detail.elevate.client.subheading')}
+              {msg('client.subheading')}
             </Heading>
             <ul style={styles.circles.base}>
               {this.renderCircle('going', null, '2')}
@@ -82,7 +79,7 @@ export default class Elevate extends Component {
   }
 
   renderAboutProject() {
-    const { device, msg } = this.props;
+    const { msg } = this.props;
 
     return (
       <div style={styles.aboutProject.wrapper}>
@@ -91,32 +88,34 @@ export default class Elevate extends Component {
         </Container>
 
         <Container>
-          {device.atLeast('l') &&
-          <Image
-            style={styles.aboutProject.projectA.image}
-            src={require('./images/challenge.png')}
-          />}
+          <HideBox col={0} sm={12}>
+            <Image
+              style={styles.aboutProject.projectA.image}
+              src={require('./images/challenge.png')}
+            />
+          </HideBox>
           <div style={styles.aboutProject.projectA.wrapper}>
             <Heading kind="h2">
-              {msg('work.detail.elevate.project.heading')}
+              {msg('project.heading')}
             </Heading>
-            <p style={styles.default.textGray}>{msg('work.detail.elevate.project.text')}</p>
+            <p style={styles.default.textGray}>{msg('project.text')}</p>
           </div>
         </Container>
 
         <Container>
           <div style={styles.aboutProject.projectB.wrapper}>
             <Heading kind="h2">
-              {msg('work.detail.elevate.project.subheading')}
+              {msg('project.subheading')}
             </Heading>
-            <p style={styles.default.textGray}>{msg('work.detail.elevate.project.subtext1')}</p>
-            <p style={styles.default.textGray}>{msg('work.detail.elevate.project.subtext2')}</p>
+            <p style={styles.default.textGray}>{msg('project.subtext1')}</p>
+            <p style={styles.default.textGray}>{msg('project.subtext2')}</p>
           </div>
-          {device.atLeast('l') &&
-          <Image
-            style={styles.aboutProject.projectB.image}
-            src={require('./images/mobile.jpg')}
-          />}
+          <HideBox col={0} sm={12}>
+            <Image
+              style={styles.aboutProject.projectB.image}
+              src={require('./images/mobile.jpg')}
+            />
+          </HideBox>
         </Container>
       </div>
     );
@@ -133,12 +132,12 @@ export default class Elevate extends Component {
             buttonKind={BUTTON_KIND_GHOST_LIGHT}
             color="#00b79a"
             image={require('./images/intro.png')}
-            link={msg('work.detail.elevate.url')}
-            linkTitle={msg('work.detail.elevate.link')}
+            link={msg('url')}
+            linkTitle={msg('link')}
             style={styles.intro}
-            title={msg('work.detail.elevate.heading')}
+            title={msg('heading')}
           >
-            {msg('work.detail.elevate.perex')}
+            {msg('perex')}
           </ProjectIntro>
 
           {this.renderAboutClient()}
@@ -147,7 +146,7 @@ export default class Elevate extends Component {
 
           <div style={styles.circles.wrapper}>
             <Heading kind="h3" style={styles.circles.heading}>
-              {msg('work.detail.elevate.technology')}
+              {msg('technology')}
             </Heading>
             <ul style={[styles.circles.base, styles.circles.slim]}>
               {this.renderCircle('react', 'react')}
@@ -159,18 +158,18 @@ export default class Elevate extends Component {
 
           <Image src={require('./images/separator.jpg')} style={styles.banner.wrapper}>
             <div style={styles.banner.text}>
-              {msg('work.detail.elevate.live.text')}
+              {msg('live.text')}
             </div>
-            <Link to={msg('work.detail.elevate.url')} target="_blank">
+            <Link to={msg('url')} target="_blank">
               <Button kind={BUTTON_KIND_GHOST_LIGHT} size="large">
-                {msg('work.detail.elevate.live.link')}
+                {msg('live.link')}
               </Button>
             </Link>
           </Image>
 
           <Container style={styles.container}>
             <Heading>
-              {msg('work.detail.elevate.hire')}
+              {msg('hire')}
             </Heading>
           </Container>
 

@@ -26,7 +26,7 @@ export default class ItSounds extends PureComponent {
         <Container style={styles.container}>
           <HideBox col={0} sm={12} >
             <Label right>{msg('label')}</Label>
-            <Image src={require('./images/itsounds.png')} style={styles.image} />
+            <Image alt={msg('heading')} src={require('./images/itsounds.png')} style={styles.image} />
           </HideBox>
           <div style={styles.content}>
             <Heading kind="h3" id="cardsItSoundsHeading">{msg('heading')}</Heading>

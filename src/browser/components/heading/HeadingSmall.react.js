@@ -1,9 +1,8 @@
 import Radium from 'radium';
-import React from 'react';
+import React, { PropTypes as RPT } from 'react';
 import { colors, em } from '../../globals';
 
-
-const HeadingHighlight = ({ children, style }) => (
+const HeadingSmall = ({ children, style }) => (
   <small style={[styles.main, style && style.small]}>
     <span style={styles.inner}>
       {children}
@@ -11,6 +10,11 @@ const HeadingHighlight = ({ children, style }) => (
     </span>
   </small>
 );
+
+HeadingSmall.propTypes = {
+  children: RPT.node,
+  style: RPT.object
+};
 
 const styles = {
   main: {
@@ -34,4 +38,4 @@ const styles = {
   }
 };
 
-export default Radium(HeadingHighlight);
+export default Radium(HeadingSmall);

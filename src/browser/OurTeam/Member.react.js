@@ -1,3 +1,5 @@
+/* eslint-disable react/no-danger */
+
 import Heading from '../components/heading/Heading.react';
 import Radium from 'radium';
 import React, { PropTypes, PureComponent } from 'react';

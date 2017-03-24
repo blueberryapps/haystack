@@ -1,49 +1,36 @@
 import Radium from 'radium';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 
 @Radium
 export default class Image extends PureComponent {
 
   static propTypes = {
-    children: PropTypes.any,
-    key: PropTypes.string,
-    src: PropTypes.string,
-    style: PropTypes.oneOf([
-      PropTypes.arrayOf(PropTypes.object),
-      PropTypes.object
+    children: RPT.any,
+    alt: RPT.string,
+    src: RPT.string,
+    style: RPT.oneOf([
+      RPT.arrayOf(RPT.object),
+      RPT.object
     ])
   }
 
-  renderImage() {
-    const { key, src, style } = this.props;
-
-    return <img key={key} src={src} style={style} {...this.props} />;
-  }
-
-  renderImageWithChildren() {
-    const { children, key, src, style } = this.props;
-
-    return (
-      <div
-        key={key}
-        style={[
-          styles.background,
-          { backgroundImage: `url(${src})` },
-          style
-        ]}
-      >
-        {children}
-      </div>
-    );
-  }
-
   render() {
-    const { children } = this.props;
-    const image = children
-      ? this.renderImageWithChildren()
-      : this.renderImage();
+    const { alt, src, style, children } = this.props;
+    if (children) {
+      return (
+        <div
+          style={[
+            styles.background,
+            { backgroundImage: `url(${src})` },
+            style
+          ]}
+        >
+          {children}
+        </div>
+      );
+    }
 
-    return image;
+    return <img alt={alt} src={src} style={style} {...this.props} />;
   }
 
 }
