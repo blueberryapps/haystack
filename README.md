@@ -10,6 +10,13 @@
 - build app: `yarn build`
 - test app: `yarn test`
 
+## Development
+
+```
+yarn start
+open https://localhost:8000
+```
+
 ## Production Build
 - production build: `yarn production:build`
 - production server: `yarn production:server`
