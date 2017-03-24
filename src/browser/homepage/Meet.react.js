@@ -39,7 +39,7 @@ export default class Meet extends PureComponent {
           </div>
           <Circles list={list} translationPath="meet" />
           <p style={styles.more}>
-            <More to="/our-team">
+            <More link="/our-team">
               {msg('meet.seeTeam')}
             </More>
           </p>

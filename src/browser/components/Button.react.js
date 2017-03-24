@@ -1,6 +1,6 @@
 import Link from '../components/Link.react';
 import Radium from 'radium';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import color from 'color';
 import { colors, em, media } from '../globals';
 import { Link as ScrollLink } from 'react-scroll';
@@ -18,23 +18,26 @@ export const BUTTON_SIZE_LARGE = 'large';
 export default class Button extends PureComponent {
 
   static propTypes = {
-    blendColor: PropTypes.string,
-    children: PropTypes.node,
-    disabled: PropTypes.bool,
-    kind: PropTypes.oneOf([
+    blendColor: RPT.string,
+    children: RPT.node,
+    disabled: RPT.bool,
+    kind: RPT.oneOf([
       BUTTON_KIND_PRIMARY,
       BUTTON_KIND_SECONDARY,
       BUTTON_KIND_GHOST_LIGHT,
       BUTTON_KIND_GHOST_DARK
     ]).isRequired,
-    link: PropTypes.string,
-    scrollLink: PropTypes.string,
-    size: PropTypes.oneOf([
+    id: RPT.string,
+    link: RPT.string,
+    onClick: RPT.func,
+    onionOnSubmit: RPT.func,
+    scrollLink: RPT.string,
+    size: RPT.oneOf([
       BUTTON_SIZE_NORMAL,
       BUTTON_SIZE_LARGE
     ]).isRequired,
-    style: PropTypes.object,
-    type: PropTypes.string
+    style: RPT.object,
+    type: RPT.string
   };
 
   static defaultProps = {
@@ -50,8 +53,11 @@ export default class Button extends PureComponent {
       disabled,
       kind,
       link,
+      id,
       scrollLink,
       size,
+      onClick,
+      onionOnSubmit,
       style,
       type,
       ...rest
@@ -67,24 +73,25 @@ export default class Button extends PureComponent {
       style
     ];
 
+    console.log(rest)
     if (link || scrollLink) {
       if (link) {
         return (
-          <Link to={link} key="button" style={btnStyles} {...rest}>
+          <Link id={id} to={link} key="button" style={btnStyles} {...rest}>
             {children}
           </Link>
         );
       }
 
       return (
-        <RadiumScrollLink to={scrollLink} key="button" duration={1800} smooth style={btnStyles} {...rest}>
+        <RadiumScrollLink id={id} to={scrollLink} key="button" duration={1800} smooth style={btnStyles}>
           {children}
         </RadiumScrollLink>
       );
     }
 
     return (
-      <button disabled={disabled} key="button" style={btnStyles} type={type} {...rest}>
+      <button id={id} disabled={disabled} key="button" style={btnStyles} type={type} onClick={onClick} onSubmit={onionOnSubmit}>
         {children}
       </button>
     );

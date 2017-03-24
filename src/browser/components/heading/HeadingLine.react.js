@@ -2,7 +2,6 @@ import Radium from 'radium';
 import React from 'react';
 import { colors } from '../../globals';
 
-
 const HeadingLine = ({ style }) => (
   <span style={[styles.main, style && style]}>
     <span style={[styles.circle, styles.circle.top]} />
@@ -17,7 +16,7 @@ const styles = {
     marginBottom: '65px',
     marginLeft: 'auto',
     width: '1px',
-    height: '315',
+    height: '315px',
     display: 'block',
     position: 'relative',
     background: colors.grayLighter

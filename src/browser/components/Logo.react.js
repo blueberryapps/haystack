@@ -14,21 +14,8 @@ export default class Logo extends PureComponent {
     trademark: true
   }
 
-  renderTradeMark() {
-    const { color, trademark } = this.props;
-
-    if (!trademark) return null;
-
-    return (
-      <g fill={color} style={styles.svgGroup}>
-        <path d="M309.5-0.7v5.4H308v-5.4h-2.1V-2h5.6v1.3H309.5z" />
-        <path d="M318.5,4.7V0.2L316.8,4h-1L314,0.2v4.5h-1.4V-2h1.7l2,4l2-4h1.7v6.7C320,4.7,318.5,4.7,318.5,4.7z" />
-      </g>
-    );
-  }
-
   render() {
-    const { color } = this.props;
+    const { color, trademark, ...rest } = this.props;
     const viewBox = '0 -2.1 320 68.1';
 
     return (
@@ -37,7 +24,7 @@ export default class Logo extends PureComponent {
         style={styles.logo}
         version="1.1"
         viewBox={viewBox}
-        {...this.props}
+        {...rest}
       >
         <g fill={color} style={styles.svgGroup}>
           <path d="M9.8-2.1h5.5v14.7c4.3-4,9-5.9,14.4-5.9c5.3,0,10.2,2.1,14,5.9c3.8,3.9,5.9,9,5.9,14.4s-2.1,10.6-5.9,14.4s-8.7,6-14,6 c-11.4,0-19.9-8.6-19.9-22.3c0-0.8,0-1.7,0.1-2.6L9.8-2.1L9.8-2.1L9.8-2.1z M29.6,41.7c8.1,0,14.5-6.6,14.5-14.7 s-6.4-14.8-14.5-14.8c-8.1,0-14.5,6.7-14.5,14.8C15.1,35.3,21.5,41.7,29.6,41.7z" />
@@ -51,7 +38,12 @@ export default class Logo extends PureComponent {
           <path d="M297.2,7.7v20.4c0,4.1-0.1,7.2-2,9.5c-2.3,3-5.3,4.4-8.6,4.4c-6.9,0-11.3-4.8-11.3-14V7.8h-5.1v20.4 c0,6.1,0.3,10.6,5.2,15.1c2.8,2.5,7.2,4.3,10.9,4.3s7.2-1.6,10.8-4.7c0,0.5,0,0.8,0,1.3c0,9.4-3.7,15.1-10.8,16.7V66 c11.1-2.1,16.6-10.2,16.6-24.9V7.8L297.2,7.7L297.2,7.7L297.2,7.7z" />
           <path d="M9.7,46.2c-5.4,0-9.7,4.4-9.7,9.7c0,5.4,4.4,9.7,9.7,9.7c5.4,0,9.7-4.4,9.7-9.7S15.1,46.2,9.7,46.2z M9.7,61.2 c-2.9,0-5.3-2.3-5.3-5.3c0-2.9,2.3-5.3,5.3-5.3c2.9,0,5.3,2.3,5.3,5.3C15,58.8,12.7,61.2,9.7,61.2z" />
         </g>
-        {this.renderTradeMark()}
+        {trademark &&
+          <g fill={color} style={styles.svgGroup}>
+            <path d="M309.5-0.7v5.4H308v-5.4h-2.1V-2h5.6v1.3H309.5z" />
+            <path d="M318.5,4.7V0.2L316.8,4h-1L314,0.2v4.5h-1.4V-2h1.7l2,4l2-4h1.7v6.7C320,4.7,318.5,4.7,318.5,4.7z" />
+          </g>
+        }
       </svg>
     );
   }

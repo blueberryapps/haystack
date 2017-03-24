@@ -38,7 +38,7 @@ const Point = ({ size, top, circle = false }) => (
 Point.propTypes = {
   size: RPT.number,
   top: RPT.number,
-  circle: RPT.boolean
+  circle: RPT.bool
 };
 const RadiumPoint = Radium(Point);
 

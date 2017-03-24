@@ -39,7 +39,7 @@ module.exports = {
     rules: [
       {
         loader: 'url-loader',
-        test: /\.(gif|jpe?g|png|svg)$/,
+        test: /\.(gif|jpe?g|png|svg|eot|woff|woff2|ttf)$/,
         options: { limit: 10000 }
       },
       {

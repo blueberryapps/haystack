@@ -55,7 +55,7 @@ export default class AppStyle extends PureComponent {
             '@font-face': {
               fontFamily: 'Gibson',
               fontWeight: 300,
-              src: 'url("/assets/fonts/310E0B_7_0.eot?#iefix") format("embedded-opentype"),url("/assets/fonts/310E0B_7_0.woff2") format("woff2"),url("/assets/fonts/310E0B_7_0.woff") format("woff"),url("/assets/fonts/310E0B_7_0.ttf") format("truetype")'
+              src: `url("${require('../../../../assets/fonts/310E0B_7_0.eot')}?#iefix") format("embedded-opentype"),url("${require('../../../../assets/fonts/310E0B_7_0.woff2')}") format("woff2"),url("${require('../../../../assets/fonts/310E0B_7_0.woff')}") format("woff"),url("${require('../../../../assets/fonts/310E0B_7_0.ttf')}") format("truetype")`
             }
           }}
         />
@@ -64,7 +64,7 @@ export default class AppStyle extends PureComponent {
             '@font-face': {
               fontFamily: 'Gibson',
               fontWeight: 400,
-              src: 'url("/assets/fonts/310E0B_4_0.eot?#iefix") format("embedded-opentype"),url("/assets/fonts/310E0B_4_0.woff2") format("woff2"),url("/assets/fonts/310E0B_4_0.woff") format("woff"),url("/assets/fonts/310E0B_4_0.ttf") format("truetype")'
+              src: `url("${require('../../../../assets/fonts/310E0B_4_0.eot')}?#iefix") format("embedded-opentype"),url("${require('../../../../assets/fonts/310E0B_4_0.woff2')}") format("woff2"),url("${require('../../../../assets/fonts/310E0B_4_0.woff')}") format("woff"),url("${require('../../../../assets/fonts/310E0B_4_0.ttf')}") format("truetype")`
             }
           }}
         />
@@ -73,7 +73,7 @@ export default class AppStyle extends PureComponent {
             '@font-face': {
               fontFamily: 'Gibson',
               fontWeight: 600,
-              src: 'url("/assets/fonts/310E0B_5_0.eot?#iefix") format("embedded-opentype"),url("/assets/fonts/310E0B_5_0.woff2") format("woff2"),url("/assets/fonts/310E0B_5_0.woff") format("woff"),url("/assets/fonts/310E0B_5_0.ttf") format("truetype")'
+              src: `url("${require('../../../../assets/fonts/310E0B_5_0.eot')}?#iefix") format("embedded-opentype"),url("${require('../../../../assets/fonts/310E0B_5_0.woff2')}") format("woff2"),url("${require('../../../../assets/fonts/310E0B_5_0.woff')}") format("woff"),url("${require('../../../../assets/fonts/310E0B_5_0.ttf')}") format("truetype")`
 
             }
           }}
@@ -83,7 +83,7 @@ export default class AppStyle extends PureComponent {
             '@font-face': {
               fontFamily: 'Gibson',
               fontWeight: 700,
-              src: 'url("/assets/fonts/310E0B_3_0.eot?#iefix") format("embedded-opentype"),url("/assets/fonts/310E0B_3_0.woff2") format("woff2"),url("/assets/fonts/310E0B_3_0.woff") format("woff"),url("/assets/fonts/310E0B_3_0.ttf") format("truetype")'
+              src: `url("${require('../../../../assets/fonts/310E0B_3_0.eot')}?#iefix") format("embedded-opentype"),url("${require('../../../../assets/fonts/310E0B_3_0.woff2')}") format("woff2"),url("${require('../../../../assets/fonts/310E0B_3_0.woff')}") format("woff"),url("${require('../../../../assets/fonts/310E0B_3_0.ttf')}") format("truetype")`
             }
           }}
         />
