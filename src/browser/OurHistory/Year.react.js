@@ -1,6 +1,6 @@
 import Radium from 'radium';
 import React, { PropTypes as RPT, PureComponent } from 'react';
-import { breakpoints, colors, media } from '../globals';
+import { colors, media } from '../globals';
 import Item from './Item.react';
 
 @Radium
@@ -47,29 +47,41 @@ const style = {
       marginBottom: 0,
       marginLeft: '14px',
       top: '60px',
+      [media.maxM]: {
+        color: colors.primary,
+        marginLeft: 0,
+        marginBottom: '20px',
+        position: 'static',
+      }
     },
     first: {
       top: '-20px'
     },
     left: {
-      left: 0,
-      alignSelf: 'flex-end',
-      transform: 'translate(-50%, 0) rotate(270deg)'
+      [media.m]: {
+        left: '-90px',
+        alignSelf: 'flex-end',
+        transform: 'translate(-50%, 0) rotate(270deg)'
+      }
     },
     right: {
-      alignSelf: 'flex-end',
-      transform: 'translate(50%, 0) rotate(90deg)',
-      right: 0
+      [media.m]: {
+        alignSelf: 'flex-end',
+        transform: 'translate(50%, 0) rotate(90deg)',
+        right: '-90px'
+      }
     }
   },
   graphic: {
-    background: colors.primary,
-    width: '139px',
-    height: '2px',
-    display: 'inline-block',
-    verticalAlign: 'baseline',
-    position: 'relative',
-    bottom: '4px',
-    marginLeft: '9px'
+    [media.m]: {
+      background: colors.primary,
+      width: '139px',
+      height: '2px',
+      display: 'inline-block',
+      verticalAlign: 'baseline',
+      position: 'relative',
+      bottom: '4px',
+      marginLeft: '9px'
+    }
   }
 };

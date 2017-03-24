@@ -17,7 +17,6 @@ export default class History extends PureComponent {
   render() {
     return (
       <div style={[style.container.base]}>
-        <div style={[style.curveCircle.base, style.curveCircle.top]} />
         <div style={[style.curve]} >
           <Curve
             height={historiesHeight + 100}
@@ -26,8 +25,8 @@ export default class History extends PureComponent {
             scaleY={SCALE_Y}
           />
         </div>
-        <div style={[style.curveCircle.base, style.curveCircle.bottom]} />
-        <div style={{ paddingTop: '200px' }}>
+        <div style={[style.histories]}>
+          <div style={[style.curveCircle.base, style.curveCircle.top]} />
           {
             Object.keys(histories).map((year, index) => (
               <Year
@@ -39,6 +38,7 @@ export default class History extends PureComponent {
               />
             ))
           }
+          <div style={[style.curveCircle.base, style.curveCircle.bottom]} />
         </div>
       </div>
     );
@@ -46,19 +46,31 @@ export default class History extends PureComponent {
 }
 
 const style = {
+  histories: {
+    paddingTop: '50px',
+    [media.m]: {
+      paddingTop: '200px'
+    }
+  },
   container: {
     base: {
       marginTop: '48px',
       paddingLeft: '25px',
       marginBottom: '200px',
-      position: 'relative'
+      position: 'relative',
+      [media.maxM]: {
+        borderLeft: `1px solid ${colors.light}`,
+      }
     }
   },
   curve: {
     position: 'absolute',
     left: '50%',
     transform: 'translateX(-50%)',
-    top: 0
+    top: 0,
+    [media.maxM]: {
+      display: 'none'
+    }
   },
   curveCircle: {
     base: {
@@ -69,7 +81,7 @@ const style = {
     },
     top: {
       position: 'absolute',
-      top: '41px',
+      top: '-5px',
       left: '-5px',
       [media.m]: {
         display: 'none'

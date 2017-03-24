@@ -30,6 +30,16 @@ export const media = {
   m: `@media screen and (min-width: ${breakpoints.m}px)`,
   s: `@media screen and (min-width: ${breakpoints.s}px)`,
   xs: `@media screen and (min-width: ${breakpoints.xs}px)`,
+  exactXl: `@media screen and (min-width: ${breakpoints.xl}px)`,
+  exactL: `@media screen and (min-width: ${breakpoints.l}px) and (max-width: ${breakpoints.xl - 1}px)`,
+  exactM: `@media screen and (min-width: ${breakpoints.m}px) and (max-width: ${breakpoints.l - 1}px)`,
+  exactS: `@media screen and (min-width: ${breakpoints.s}px) and (max-width: ${breakpoints.m - 1}px)`,
+  exactXs: `@media screen and (min-width: ${breakpoints.xs}px) and (max-width: ${breakpoints.s - 1}px)`,
+  maxXl: `@media screen and (max-width: ${breakpoints.xl - 1}px)`,
+  maxL: `@media screen and (max-width: ${breakpoints.l - 1}px)`,
+  maxM: `@media screen and (max-width: ${breakpoints.m - 1}px)`,
+  maxS: `@media screen and (max-width: ${breakpoints.s - 1}px)`,
+  maxXs: `@media screen and (max-width: ${breakpoints.xs - 1}px)`,
   retina: '@media (-webkit-min-device-pixel-ratio: 2)'
 };
 

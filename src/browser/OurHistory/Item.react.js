@@ -41,19 +41,21 @@ export default class Item extends PureComponent {
       <article
         className={ITEM_CLASS_NAME}
         style={[
-          styles.container,
+          style.container,
           {
-            height: `${calucateItemHeight({ customDate, lines, titleLines })}px`,
-            left: `${moveToCurve}px`
+            [media.m]: {
+              height: `${calucateItemHeight({ customDate, lines, titleLines })}px`,
+              left: `${moveToCurve}px`
+            }
           },
-          position === 'right' ? styles.containerLeft : styles.containerRight
+          position === 'right' ? style.containerLeft : style.containerRight
         ]}
       >
         <header>
-          <h3 style={styles.heading}>{title}</h3>
+          <h3 style={style.heading}>{title}</h3>
           {
             !hideDate &&
-              <div style={styles.date}>
+              <div style={style.date}>
                 {
                   customDate || <Date value={date} />
                 }
@@ -62,7 +64,7 @@ export default class Item extends PureComponent {
         </header>
         <div
           dangerouslySetInnerHTML={{ __html: text }}
-          style={styles.content}
+          style={style.content}
         />
         {
           picture &&
@@ -70,18 +72,19 @@ export default class Item extends PureComponent {
               alt={title}
               src={require(`${picture}`)}
               style={[
-                styles.picture.base,
-                position === 'left' ? styles.picture.left : styles.picture.right
+                style.picture.base,
+                position === 'left' ? style.picture.left : style.picture.right
               ]}
             />
         }
+        <div style={style.circle} />
       </article>
     );
   }
 
 }
 
-const styles = {
+const style = {
   container: {
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -89,12 +92,21 @@ const styles = {
     paddingBottom: '48px',
     position: 'relative',
     width: `${ITEM_WIDTH}px`,
+    [media.maxM]: {
+      width: 'auto'
+    }
   },
   containerLeft: {
-    transform: 'translateX(-75%)'
+    transform: 'translateX(-75%)',
+    [media.maxM]: {
+      transform: 'none'
+    }
   },
   containerRight: {
-    transform: 'translateX(75%)'
+    transform: 'translateX(75%)',
+    [media.maxM]: {
+      transform: 'none'
+    }
   },
   heading: {
     fontWeight: 600,
@@ -110,17 +122,50 @@ const styles = {
     fontSize: '15px',
     color: colors.neutral
   },
+
+  circle: {
+    [media.maxM]: {
+      background: colors.light,
+      width: '10px',
+      height: '10px',
+      borderRadius: '50%',
+      transform: 'translate(-50%, -50%)',
+      position: 'absolute',
+      top: '8px',
+      left: '-25px',
+    }
+  },
+
   picture: {
     base: {
       maxWidth: '130px',
       position: 'absolute',
-      top: 0
+      top: 0,
+      [media.maxM]: {
+        paddingTop: '20px',
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        position: 'static'
+      }
     },
     left: {
-      right: '-150px'
+      [media.l]: {
+        right: '-150px',
+      },
+      [media.exactM]: {
+        left: 0,
+        top: '-150px'
+      }
     },
     right: {
-      left: '-150px'
+      [media.l]: {
+        left: '-150px',
+      },
+      [media.exactM]: {
+        right: 0,
+        top: '-150px'
+      }
     }
   }
 };
