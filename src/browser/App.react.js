@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import NotFound from './NotFound';
 import { Provider as TranslateProvider } from 'ts-translate';
 import HomePage from './homepage';
+import OurHistory from './OurHistory';
 import OurTeam from './OurTeam';
 import OurWork from './OurWork';
 import Services from './Services';
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/our-team" component={OurTeam} />
           <Route path="/our-work" component={OurWork} />
           <Route path="/services" component={Services} />
+          <Route path="/history" component={OurHistory} />
           <Route component={NotFound} />
         </Switch>
       </StyleRoot>

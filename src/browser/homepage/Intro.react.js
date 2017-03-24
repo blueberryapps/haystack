@@ -30,6 +30,7 @@ export default class Intro extends PureComponent {
           </Heading>
           <Button link="/contacts" id="introGetInTouch" kind={BUTTON_KIND_GHOST_LIGHT} style={styles.get}>
             {msg('intro.button')}
+            {msg('Ahoj tohle je super stránka')}
           </Button>
           <SocialLinks style={styles.socials} />
           <Expand />
