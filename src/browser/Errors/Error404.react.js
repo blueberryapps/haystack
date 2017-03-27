@@ -3,7 +3,7 @@ import ErrorPage from './Page.react';
 import React, { PropTypes as RPT } from 'react';
 import translate from 'ts-translate';
 
-const NotFound = ({ location: { pathname }, msg, staticContext }) => {
+const NotFound = ({ msg, staticContext }) => {
   staticContext.status = 404; // eslint-disable-line no-param-reassign
 
   return (
@@ -19,9 +19,6 @@ const NotFound = ({ location: { pathname }, msg, staticContext }) => {
 };
 
 NotFound.propTypes = {
-  location: RPT.shape({
-    pathname: RPT.string.isRequired
-  }),
   msg: RPT.func.isRequired,
   staticContext: RPT.shape({
     status: RPT.number
@@ -29,7 +26,6 @@ NotFound.propTypes = {
 };
 
 NotFound.defaultProps = {
-  location: { pathname: '' },
   staticContext: {}
 };
 

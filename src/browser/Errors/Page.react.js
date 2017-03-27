@@ -3,9 +3,9 @@ import Layout from '../layouts/General.react';
 import Icon from '../components/Icon.react';
 import Link from '../components/Link.react';
 import Radium from 'radium';
-import React, {PropTypes as RPT, PureComponent } from 'react';
+import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
-import {colors, media} from '../globals';
+import { colors, media } from '../globals';
 
 @translate('errors')
 @Radium
@@ -18,7 +18,7 @@ export default class ErrorPage extends PureComponent {
   }
 
   render() {
-    const {children, msg, type} = this.props;
+    const { children, msg, type } = this.props;
 
     return (
       <Layout headerColor={colors.primary}>
@@ -28,9 +28,9 @@ export default class ErrorPage extends PureComponent {
             <div style={styles.grapicsWrapper}>
               <Icon kind="globe" size={100} color={colors.primary} style={styles.icon} wrapperStyle={styles.iconWrapper} />
               <div style={styles.image.wrapper}>
-                <img src={require('../../../assets/images/ekg.jpg')} style={styles.image.base} />
+                <img alt="ekg" src={require('../../../assets/images/ekg.jpg')} style={styles.image.base} />
                 <div style={styles.image.animation}>
-                  <img src={require('../../../assets/images/ekg-blue.jpg')} style={styles.image.blue} />
+                  <img alt="blue ekg" src={require('../../../assets/images/ekg-blue.jpg')} style={styles.image.blue} />
                 </div>
               </div>
               <Icon kind={`monitor_${type}`} size={100} color="#D7D7D7" style={styles.icon} wrapperStyle={styles.iconWrapper} />
@@ -46,9 +46,9 @@ export default class ErrorPage extends PureComponent {
 }
 
 const fillKeyframes = Radium.keyframes({
-  '0%': {width: '0%'},
-  '40%': {width: '65%'},
-  '100%': {width: '100%'},
+  '0%': { width: '0%' },
+  '40%': { width: '65%' },
+  '100%': { width: '100%' },
 }, 'fill');
 
 const styles = {

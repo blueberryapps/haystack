@@ -1,6 +1,6 @@
 import Radium from 'radium';
-import React, {PropTypes as RPT, PureComponent } from 'react';
-import {colors, media} from '../globals';
+import React, { PropTypes as RPT, PureComponent } from 'react';
+import { colors, media } from '../globals';
 
 @Radium
 export default class Heading extends PureComponent {
@@ -13,11 +13,11 @@ export default class Heading extends PureComponent {
   }
 
   render() {
-    const {blackTitle, blueTitle, subtitle, subtitleOffset} = this.props;
+    const { blackTitle, blueTitle, subtitle, subtitleOffset } = this.props;
 
     return (
       <h1 style={styles.base}>
-        {blackTitle} <span style={styles.blue}>{blueTitle}</span> <span style={[styles.subtitle, subtitleOffset && {paddingLeft: `${subtitleOffset}px`}]}>{subtitle}</span>
+        {blackTitle} <span style={styles.blue}>{blueTitle}</span> <span style={[styles.subtitle, subtitleOffset && { paddingLeft: `${subtitleOffset}px` }]}>{subtitle}</span>
       </h1>
     );
   }
