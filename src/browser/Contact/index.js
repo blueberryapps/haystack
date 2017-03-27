@@ -3,7 +3,7 @@ import ContactForm from '../components/ContactForm.react';
 import Container from '../components/Container.react';
 import Helmet from 'react-helmet';
 import Layout from '../layouts/General.react';
-import Location from '../homepage/Locations.react';
+import Location from '../HomePage/Locations.react';
 import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
 import { em, media, colors } from '../globals';

@@ -1,5 +1,5 @@
 import Bluekit from '../components/cards/Bluekit.react';
-import ContactWrapper from '../homepage/Form.react';
+import ContactWrapper from '../HomePage/Form.react';
 import Container from '../components/Container.react';
 import Elevate from '../components/cards/Elevate.react';
 import { Heading, HeadingSmall, HeadingHighlight } from '../components/heading';

@@ -1,5 +1,5 @@
 import Container from '../components/Container.react';
-import ContactForm from '../homepage/Form.react';
+import ContactForm from '../HomePage/Form.react';
 import { Heading, HeadingSmall, HeadingHighlight } from '../components/heading/';
 import Helmet from 'react-helmet';
 import History from './History.react';

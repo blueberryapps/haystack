@@ -3,7 +3,7 @@ import Copyright from './footer/Copyright.react';
 import React, { PureComponent } from 'react';
 import Section from './footer/Section.react';
 import translate from 'ts-translate';
-import { workplaces } from '../homepage/locations/Workplaces.react';
+import { workplaces } from '../HomePage/locations/Workplaces.react';
 
 const menu = [
   {
