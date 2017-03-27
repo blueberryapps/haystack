@@ -7,6 +7,7 @@ import { Provider as TranslateProvider } from 'ts-translate';
 import HomePage from './homepage';
 import Career from './Career';
 import CareerDetail from './Career/Detail.react';
+import Contact from './Contact';
 import OurHistory from './OurHistory';
 import OurTeam from './OurTeam';
 import OurWork from './OurWork';
@@ -26,6 +27,7 @@ const App = () => (
           <Route exact path="/" component={HomePage} />
           <Route path="/career/:positionId" component={CareerDetail}/>
           <Route path="/career" component={Career} />
+          <Route path="/contacts" component={Contact} />
           <Route path="/our-team" component={OurTeam} />
           <Route path="/our-work" component={OurWork} />
           <Route path="/services" component={Services} />
