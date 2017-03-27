@@ -1,31 +1,30 @@
 import Container from '../../components/Container.react';
-import {Heading, HeadingSmall, HeadingHighlight} from '../../components/heading';
+import { Heading, HeadingSmall, HeadingHighlight } from '../../components/heading';
 import Radium from 'radium';
 import React, { PropTypes as RPT, PureComponent } from 'react';
 import Team from '../../OurTeam/Team.react';
 import translate from 'ts-translate';
-import {colors, em} from '../../globals';
-import {members} from '../../OurTeam/members';
+import { colors, em } from '../../globals';
+import { members } from '../../OurTeam/members';
 
 @translate('career.detail.team')
 @Radium
 export default class TeamOverview extends PureComponent {
 
   static propTypes = {
-    lang: RPT.string.isRequired,
     msg: RPT.func.isRequired,
     position: RPT.object.isRequired,
   }
 
   render() {
-    const {msg, lang, position} = this.props;
+    const { msg, position } = this.props;
 
     const team = [];
     position.team_members.forEach((id) => {
       if (team.length === 0) {
-        team[0] = members.find((member) => (member.image === id));
+        team[0] = members.find(member => (member.image === id));
       } else {
-        team.push(members.find((member) => (member.image === id)));
+        team.push(members.find(member => (member.image === id)));
       }
     });
 

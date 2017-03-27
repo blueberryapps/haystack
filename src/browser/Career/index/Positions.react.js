@@ -1,15 +1,15 @@
 import Container from '../../components/Container.react';
-import {Heading, HeadingHighlight} from '../../components/heading';
+import { Heading, HeadingHighlight } from '../../components/heading';
 import Link from '../../components/Link.react';
 import Radium from 'radium';
 import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
-import {colors} from '../../globals';
-import {Flex, Box} from 'radium-flex'; // eslint-disable-line import/named
-import {ListUnstyled, ListUnstyledItem} from '../../components/listUnstyled/index';
-import {connect} from 'react-redux';
+import { colors } from '../../globals';
+import { Flex, Box } from 'radium-flex'; // eslint-disable-line import/named
+import { ListUnstyled, ListUnstyledItem } from '../../components/listUnstyled/index';
+import { connect } from 'react-redux';
 
-@connect((state) => ({positions: state.career}))
+@connect(state => ({ positions: state.career }))
 @translate('career.positions')
 @Radium
 export default class Positions extends PureComponent {
@@ -21,7 +21,7 @@ export default class Positions extends PureComponent {
   }
 
   renderPositions(group, positions, key) {
-    const {cnt, msg} = this.props;
+    const { cnt, msg } = this.props;
 
     return (
       <Box xs={12} sm={4} key={key}>
@@ -29,11 +29,11 @@ export default class Positions extends PureComponent {
           {msg(positions.get(group[0]).category)}
         </Heading>
         <ListUnstyled style={styles.positions.list}>
-          {group.map((key) => (
-            <ListUnstyledItem key={key}>
-              <Link to={`career/${positions.get(key).url}`}>
-                {positions.get(key).name}
-                {positions.get(key).place !== 'Anywhere' && ' ' &&
+          {group.map(name => (
+            <ListUnstyledItem key={name}>
+              <Link to={`career/${positions.get(name).url}`}>
+                {positions.get(name).name}
+                {positions.get(name).place !== 'Anywhere' && ' ' &&
                   cnt('czechOnly')
                 }
               </Link>
@@ -45,7 +45,7 @@ export default class Positions extends PureComponent {
   }
 
   render() {
-    const {msg, positions} = this.props;
+    const { msg, positions } = this.props;
 
     const groups = {};
     positions.forEach((position, index) => {

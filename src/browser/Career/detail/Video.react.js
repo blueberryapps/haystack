@@ -1,9 +1,9 @@
 import Container from '../../components/Container.react';
-import {Heading, HeadingSmall, HeadingHighlight} from '../../components/heading';
+import { Heading, HeadingSmall, HeadingHighlight } from '../../components/heading';
 import Radium from 'radium';
 import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
-import {colors, media, em} from '../../globals';
+import { media, em } from '../../globals';
 
 @translate('career.detail.video')
 @Radium
@@ -12,11 +12,10 @@ export default class Video extends PureComponent {
   static propTypes = {
     lang: RPT.string.isRequired,
     msg: RPT.func.isRequired,
-    position: RPT.object.isRequired,
   }
 
   render() {
-    const {msg, lang} = this.props;
+    const { msg, lang } = this.props;
 
     return (
       <Container kind="slim" style={styles.video.container}>
@@ -32,7 +31,7 @@ export default class Video extends PureComponent {
 
         <div style={styles.video.row}>
           <div style={styles.video.col}>
-            <span style={styles.video.colAfter}></span>
+            <span style={styles.video.colAfter} />
             <iframe
               style={styles.video.iframe}
               width="854"
@@ -40,10 +39,10 @@ export default class Video extends PureComponent {
               src="https://www.youtube.com/embed/z76P24dYr98?list=PL0GtonJCoIhVqpD8xQravRr3xX6fFc7MV"
               frameBorder="0"
               allowFullScreen
-            ></iframe>
+            />
           </div>
           <div style={styles.video.col}>
-            <span style={styles.video.colAfter}></span>
+            <span style={styles.video.colAfter} />
             <iframe
               style={styles.video.iframe}
               width="854"
@@ -51,7 +50,7 @@ export default class Video extends PureComponent {
               src="https://www.youtube.com/embed/SsGpaWFaWjc?list=PL0GtonJCoIhVqpD8xQravRr3xX6fFc7MV"
               frameBorder="0"
               allowFullScreen
-            ></iframe>
+            />
           </div>
         </div>
         <p>{msg(`text.${lang}`, { disableDefault: true })}</p>

@@ -1,11 +1,11 @@
 import Container from '../../components/Container.react';
-import {Heading, HeadingHighlight} from '../../components/heading';
+import { Heading, HeadingHighlight } from '../../components/heading';
 import IconBox from '../../components/IconBox.react';
 import IconBoxWrapper from '../../components/IconBoxWrapper.react';
 import Radium from 'radium';
 import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
-import {em} from '../../globals';
+import { em } from '../../globals';
 
 @translate('career.culture')
 @Radium
@@ -16,7 +16,7 @@ export default class Culture extends PureComponent {
   }
 
   render() {
-    const {msg} = this.props;
+    const { msg } = this.props;
 
     return (
       <Container kind="slim" style={styles.culture.container}>

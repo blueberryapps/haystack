@@ -1,10 +1,10 @@
 import ContactForm from '../../components/ContactForm.react';
 import Container from '../../components/Container.react';
-import { Heading, HeadingSmall, HeadingHighlight } from '../../components/heading';
+import { Heading } from '../../components/heading';
 import Radium from 'radium';
 import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
-import {colors, media, rem, em} from '../../globals';
+import { colors, media, rem, em } from '../../globals';
 
 
 @translate('career.form')
@@ -12,11 +12,11 @@ import {colors, media, rem, em} from '../../globals';
 export default class Form extends PureComponent {
 
   static propTypes = {
-    cnt: React.PropTypes.func.isRequired
+    cnt: RPT.func.isRequired
   }
 
   render() {
-    const {cnt} = this.props;
+    const { cnt } = this.props;
 
     return (
       <Container kind="normal" style={styles.form.container}>

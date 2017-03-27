@@ -6,19 +6,18 @@ import Layout from '../layouts/General.react';
 import Location from '../homepage/Locations.react';
 import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
-import {colors} from '../globals';
-import {Heading, HeadingSmall, HeadingHighlight} from '../components/heading/';
-import {em, media} from '../globals';
+import { em, media, colors } from '../globals';
+import { Heading, HeadingSmall, HeadingHighlight } from '../components/heading/';
 
 @translate('contact')
 export default class Contacts extends PureComponent {
 
   static propTypes = {
-    msg: React.PropTypes.func.isRequired
+    msg: RPT.func.isRequired
   }
 
   render() {
-    const {msg} = this.props;
+    const { msg } = this.props;
 
     return (
       <Layout headerColor={colors.primary}>

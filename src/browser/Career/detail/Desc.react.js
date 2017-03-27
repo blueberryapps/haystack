@@ -1,23 +1,22 @@
 import Container from '../../components/Container.react';
-import {Heading, HeadingSmall, HeadingHighlight} from '../../components/heading';
+import { Heading, HeadingSmall, HeadingHighlight } from '../../components/heading';
 import Radium from 'radium';
 import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
-import {colors, media, em} from '../../globals';
-import {Flex, Box} from 'radium-flex'; // eslint-disable-line import/named
+import { colors, media, em } from '../../globals';
+import { Flex, Box } from 'radium-flex'; // eslint-disable-line import/named
 
 @translate('career.detail')
 @Radium
 export default class Desc extends PureComponent {
 
   static propTypes = {
-    lang: RPT.string.isRequired,
     msg: RPT.func.isRequired,
     position: RPT.object.isRequired,
   }
 
   render() {
-    const {msg, lang, position} = this.props;
+    const { msg, position } = this.props;
 
     return (
       <Container kind="slim" style={styles.desc.container}>

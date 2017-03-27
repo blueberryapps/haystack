@@ -3,7 +3,7 @@ import Container from '../components/Container.react';
 import Culture from './index/Culture.react';
 import Form from './index/Form.react';
 import Helmet from 'react-helmet';
-import { Heading, HeadingSmall, HeadingHighlight } from '../components/heading/';
+import { Heading, HeadingHighlight } from '../components/heading/';
 import Image from '../components/Image.react';
 import Intro from './index/Intro.react';
 import Layout from '../layouts/General.react';
@@ -11,19 +11,18 @@ import Positions from './index/Positions.react';
 import Radium from 'radium';
 import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
-import {colors, media, em} from '../globals';
+import { colors, media, em } from '../globals';
 
 @Radium
 @translate('career')
 export default class Index extends PureComponent {
 
   static propTypes = {
-    cnt: RPT.func.isRequired,
     msg: RPT.func.isRequired
   }
 
   render() {
-    const {msg} = this.props;
+    const { msg } = this.props;
 
     return (
       <Layout>

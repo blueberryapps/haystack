@@ -25,7 +25,7 @@ const App = () => (
         <Helmet titleTemplate="%s | Blueberry.io" />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/career/:positionId" component={CareerDetail}/>
+          <Route path="/career/:positionId" component={CareerDetail} />
           <Route path="/career" component={Career} />
           <Route path="/contacts" component={Contact} />
           <Route path="/our-team" component={OurTeam} />

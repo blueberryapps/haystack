@@ -1,10 +1,9 @@
 import Container from '../../components/Container.react';
-import {Heading, HeadingSmall, HeadingHighlight} from '../../components/heading';
+import { Heading, HeadingSmall, HeadingHighlight } from '../../components/heading';
 import Image from '../../components/Image.react';
 import Radium from 'radium';
 import React, { PropTypes as RPT, PureComponent } from 'react';
 import translate from 'ts-translate';
-import {colors} from '../../globals';
 
 @translate('career')
 @Radium
@@ -15,7 +14,7 @@ export default class Intro extends PureComponent {
   }
 
   render() {
-    const {msg} = this.props;
+    const { msg } = this.props;
 
     return (
       <Image
