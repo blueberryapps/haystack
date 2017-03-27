@@ -165,6 +165,15 @@ exports[`test shallowly renders App 1`] = `
           path="/" />
         <Route
           component={[Function]}
+          path="/career/:positionId" />
+        <Route
+          component={[Function]}
+          path="/career" />
+        <Route
+          component={[Function]}
+          path="/contacts" />
+        <Route
+          component={[Function]}
           path="/our-team" />
         <Route
           component={[Function]}
