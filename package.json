@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node src/server",
     "build": "yarn webpack",
+    "heroku-postbuild": "yarn build",
     "production:build": "NODE_ENV=production yarn webpack",
     "production:server": "NODE_ENV=production yarn start",
     "production": "yarn run production:build && yarn rollbar:sourcemaps:upload && yarn run production:server",
