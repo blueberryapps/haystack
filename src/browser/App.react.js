@@ -4,7 +4,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NotFound from './NotFound';
 import { Provider as TranslateProvider } from 'ts-translate';
-import HomePage from './homepage';
+import HomePage from './HomePage';
 import Career from './Career';
 import CareerDetail from './Career/Detail.react';
 import Contact from './Contact';
