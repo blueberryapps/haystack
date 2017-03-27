@@ -5,6 +5,8 @@ import { Route, Switch } from 'react-router-dom';
 import NotFound from './NotFound';
 import { Provider as TranslateProvider } from 'ts-translate';
 import HomePage from './homepage';
+import Career from './Career';
+import CareerDetail from './Career/Detail.react';
 import OurHistory from './OurHistory';
 import OurTeam from './OurTeam';
 import OurWork from './OurWork';
@@ -22,6 +24,8 @@ const App = () => (
         <Helmet titleTemplate="%s | Blueberry.io" />
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route path="/career/:positionId" component={CareerDetail}/>
+          <Route path="/career" component={Career} />
           <Route path="/our-team" component={OurTeam} />
           <Route path="/our-work" component={OurWork} />
           <Route path="/services" component={Services} />
