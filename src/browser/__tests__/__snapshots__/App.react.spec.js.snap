@@ -1,193 +1,33 @@
 exports[`test shallowly renders App 1`] = `
-<Provider
-  config={Object {}}>
-  <withRouter(ScrollToTop)>
-    <StyleRoot>
-      <Style
-        rules={
-          Object {
-            "*": Object {
-              "WebkitTapHighlightColor": "transparent",
-            },
-            "*, ::after, ::before": Object {
-              "boxSizing": "border-box",
-            },
-            "[type=\"checkbox\"], [type=\"radio\"]": Object {
-              "boxSizing": "border-box",
-              "padding": 0,
-            },
-            "[type=\"number\"]::Webkit-inner-spin-button, [type=\"number\"]::Webkit-outer-spin-button": Object {
-              "height": "auto",
-            },
-            "[type=\"search\"]": Object {
-              "WebkitAppearance": "textfield",
-            },
-            "[type=\"search\"]::Webkit-search-cancel-button, [type=\"search\"]::Webkit-search-decoration": Object {
-              "WebkitAppearance": "none",
-            },
-            "a": Object {
-              "backgroundColor": "transparent",
-            },
-            "a:active, a:hover": Object {
-              "outlineWidth": 0,
-            },
-            "abbr[title]": Object {
-              "borderBottom": "none",
-              "textDecoration": "underline",
-            },
-            "article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary": Object {
-              "display": "block",
-            },
-            "audio, canvas, progress, video": Object {
-              "display": "inline-block",
-            },
-            "audio:not([controls])": Object {
-              "display": "none",
-              "height": 0,
-            },
-            "b, strong": Object {
-              "fontWeight": "bolder",
-            },
-            "body": Object {
-              "margin": 0,
-            },
-            "button, html [type=\"button\"], [type=\"reset\"], [type=\"submit\"]": Object {
-              "WebkitAppearance": "button",
-            },
-            "button, input, select": Object {
-              "overflow": "visible",
-            },
-            "button, input, select, textarea": Object {
-              "font": "inherit",
-              "margin": 0,
-            },
-            "button, select": Object {
-              "textTransform": "none",
-            },
-            "button:-moz-focusring, input:-moz-focusring": Object {
-              "outline": "1px dotted ButtonText",
-            },
-            "button::-moz-focus-inner, input::-moz-focus-inner": Object {
-              "border": 0,
-              "padding": 0,
-            },
-            "code, kbd, pre, samp": Object {
-              "fontFamily": "monospace, monospace",
-              "fontSize": "1em",
-            },
-            "dfn": Object {
-              "fontStyle": "italic",
-            },
-            "fieldset": Object {
-              "border": "1px solid #c0c0c0",
-              "margin": "0 2px",
-              "padding": "0.35em 0.625em 0.75em",
-            },
-            "figure": Object {
-              "margin": "1em 40px",
-            },
-            "h1": Object {
-              "fontSize": "2em",
-              "margin": "0.67em 0",
-            },
-            "hr": Object {
-              "boxSizing": "content-box",
-              "height": 0,
-              "overflow": "visible",
-            },
-            "html": Object {
-              "MsTextSizeAdjust": "100%",
-              "WebkitTextSizeAdjust": "100%",
-              "color": "blue",
-              "fontFamily": "sans-serif",
-            },
-            "img": Object {
-              "borderStyle": "none",
-            },
-            "input[type=number]": Object {
-              "MozAppearance": "textfield",
-            },
-            "legend": Object {
-              "boxSizing": "border-box",
-              "color": "inherit",
-              "display": "table",
-              "maxWidth": "100%",
-              "padding": 0,
-              "whiteSpace": "normal",
-            },
-            "mark": Object {
-              "backgroundColor": "#ff0",
-              "color": "#000",
-            },
-            "optgroup": Object {
-              "fontWeight": "bold",
-            },
-            "progress": Object {
-              "verticalAlign": "baseline",
-            },
-            "select": Object {
-              "MozAppearance": "none",
-            },
-            "small": Object {
-              "fontSize": "80%",
-            },
-            "sub": Object {
-              "bottom": "-0.25em",
-            },
-            "sub, sup": Object {
-              "fontSize": "75%",
-              "lineHeight": 0,
-              "position": "relative",
-              "verticalAlign": "baseline",
-            },
-            "sup": Object {
-              "top": "-0.5em",
-            },
-            "svg:not(:root)": Object {
-              "overflow": "hidden",
-            },
-            "template, [hidden]": Object {
-              "display": "none",
-            },
-            "textarea": Object {
-              "overflow": "auto",
-            },
-          }
-        }
-        scopeSelector="" />
-      <AppStyle />
-      <HelmetWrapper
-        titleTemplate="%s | Blueberry.io" />
-      <Switch>
-        <Route
-          component={[Function]}
-          exact={true}
-          path="/" />
-        <Route
-          component={[Function]}
-          path="/career/:positionId" />
-        <Route
-          component={[Function]}
-          path="/career" />
-        <Route
-          component={[Function]}
-          path="/contacts" />
-        <Route
-          component={[Function]}
-          path="/our-team" />
-        <Route
-          component={[Function]}
-          path="/our-work" />
-        <Route
-          component={[Function]}
-          path="/services" />
-        <Route
-          component={[Function]}
-          path="/history" />
-        <Route
-          component={[Function]} />
-      </Switch>
-    </StyleRoot>
-  </withRouter(ScrollToTop)>
-</Provider>
+<withRouter(ScrollToTop)>
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/" />
+    <Route
+      component={[Function]}
+      path="/career/:positionId" />
+    <Route
+      component={[Function]}
+      path="/career" />
+    <Route
+      component={[Function]}
+      path="/contacts" />
+    <Route
+      component={[Function]}
+      path="/our-team" />
+    <Route
+      component={[Function]}
+      path="/our-work" />
+    <Route
+      component={[Function]}
+      path="/services" />
+    <Route
+      component={[Function]}
+      path="/history" />
+    <Route
+      component={[Function]} />
+  </Switch>
+</withRouter(ScrollToTop)>
 `;

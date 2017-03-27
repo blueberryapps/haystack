@@ -1,6 +1,10 @@
+import Helmet from 'react-helmet';
 import Footer from '../components/Footer.react';
 import Header from '../components/Header.react';
 import React, { PropTypes, PureComponent } from 'react';
+import { StyleRoot, Style } from 'radium';
+import AppStyle from '../components/style/AppStyle.react';
+import reset from '../components/style/reset';
 
 export default class General extends PureComponent {
 
@@ -13,13 +17,16 @@ export default class General extends PureComponent {
     const { children, headerColor } = this.props;
 
     return (
-      <div>
+      <StyleRoot>
+        <Helmet titleTemplate="%s | Blueberry.io" />
+        <Style rules={reset} />
+        <AppStyle />
         <Header color={headerColor} />
         <div style={{ overflow: 'hidden' }}>
           {children}
         </div>
         <Footer />
-      </div>
+      </StyleRoot>
     );
   }
 

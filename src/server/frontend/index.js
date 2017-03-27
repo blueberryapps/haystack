@@ -2,8 +2,7 @@ import express from 'express';
 import path from 'path';
 import PrettyError from 'pretty-error';
 import React from 'react';
-import InternalServerError from './errors/InternalServerError.react';
-import { NotFound } from './errors/NotFound.react';
+import { Error404, Error500 } from './errors';
 import App from '../../browser/App.react';
 import render from './render';
 
@@ -15,7 +14,7 @@ app.use('/assets', express.static(path.join(__dirname, '..', '..', '..', 'dist',
 app.get('*', (req, res, next) => {
   try {
     if (req.path === '/unknown') {
-      return res.status(404).send(render(req, <NotFound location={{ pathname: req.path }} />));
+      return res.status(404).send(render(req, <Error404 location={{ pathname: req.path }} />));
     }
 
     const staticContext = {};
@@ -40,7 +39,7 @@ app.use((err, req, res, next) => {
 
   if (process.env.APP_ENV === 'production' || process.env.HTML_ERRORS) {
     // we need to disable JS for 500 so there will be no react rendering at all
-    res.status(500).send(render(req, <InternalServerError />, { disableJS: true }));
+    res.status(500).send(render(req, <Error500 />, { disableJS: true }));
   } else {
     // In development show errors that make sense to developer
     next(err);

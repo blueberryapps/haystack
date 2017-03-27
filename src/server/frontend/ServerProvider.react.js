@@ -2,13 +2,16 @@ import Radium from 'radium';
 import React, { PropTypes as RPT } from 'react';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { Provider as TranslateProvider } from 'ts-translate';
 
 const ServerProvider = ({ context, url, children, store }) => (
-  <StaticRouter location={url} context={context} >
-    <Provider store={store}>
-      {children}
-    </Provider>
-  </StaticRouter>
+  <Provider store={store}>
+    <TranslateProvider>
+      <StaticRouter location={url} context={context} >
+        {children}
+      </StaticRouter>
+    </TranslateProvider>
+  </Provider>
 );
 
 ServerProvider.propTypes = {

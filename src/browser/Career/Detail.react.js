@@ -11,7 +11,7 @@ import Team from './detail/Team.react';
 import Video from './detail/Video.react';
 import { colors } from '../globals';
 import { connect } from 'react-redux';
-import NotFound from '../NotFound';
+import Error404 from '../Errors/Error404.react';
 
 @connect(state => ({ positions: state.career }))
 export default class Detail extends PureComponent {
@@ -26,7 +26,7 @@ export default class Detail extends PureComponent {
     const position = positions.find(obj => (obj.url === positionId));
 
     if (!position) {
-      return <NotFound />;
+      return <Error404 />;
     }
 
     const lang = position.place !== 'Anywhere' ? 'cs' : 'en';

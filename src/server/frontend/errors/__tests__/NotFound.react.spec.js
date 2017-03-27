@@ -1,7 +1,11 @@
-import { shallow } from 'enzyme';
+import createStore from '../../../../common/createStore';
 import React from 'react';
-import { NotFound } from '../NotFound.react';
+import translate from '../../../../localization';
+import { Error404 } from '../index';
+import { Provider } from 'react-redux';
+import { shallow } from 'enzyme';
+const store = createStore({ translate }, {});
 
-test('shallowly renders NotFound', () => {
-  expect(shallow(<NotFound path="whatever" />)).toMatchSnapshot();
+test('shallowly renders Not Found', () => {
+  expect(shallow(<Provider store={store}><Error404 /></Provider>)).toMatchSnapshot();
 });
