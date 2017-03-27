@@ -1,0 +1,39 @@
+{
+  "name": "blueberry.io-haystack",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+    "BLUEBERRY_CONTACT_EMAIL": {
+      "required": true
+    },
+    "BLUEBERRY_HR_EMAIL": {
+      "required": true
+    },
+    "CONTACT_FORM_SUBJECT": {
+      "required": true
+    },
+    "FORCE_SSL": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    },
+    "SENDGRID_PASSWORD": {
+      "required": true
+    },
+    "SENDGRID_USERNAME": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "sendgrid"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
