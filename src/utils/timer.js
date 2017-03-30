@@ -1,3 +1,5 @@
+// @flow
+
 let startTime;
 
 export function start() {

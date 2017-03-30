@@ -6,3 +6,5 @@
 declare module 'react-helmet' {
   declare module.exports: any;
 }
+
+declare var webpackIsomorphicTools: Object;

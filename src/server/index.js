@@ -1,3 +1,5 @@
+//@flow
+
 // Bootstrap environment
 require('../../env');
 
@@ -19,8 +21,27 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 
-const isInteractive = process.stdout.isTTY;
-const rootDir = require('path').resolve(__dirname, '..', '..');
+type Process = {
+  stdout: Object
+}
+
+type Watcher = {
+  watch: Function
+}
+
+type IsomorphicTools = {
+  refresh: Function,
+  assets: Function
+}
+
+type Config = {
+  output: {
+    publicPath: string
+  }
+}
+
+const isInteractive : boolean = (process :Process).stdout.isTTY;
+const rootDir : string = require('path').resolve(__dirname, '..', '..');
 
 // HOT RELOAD: preload application so it will be loaded directly after removing cache
 // and it will not wait for user interacation :D
@@ -41,9 +62,9 @@ const preloadApplication = () => {
 // HOT RELOAD: Reloading code in running node application without need of restart
 // https://medium.com/@kevinsimper/dont-use-nodemon-there-are-better-ways-fc016b50b45e#.gn0pnlbnb
 const watchChanges = () => {
-  const watcher = require('chokidar'); // eslint-disable-line import/no-extraneous-dependencies, global-require
-  const ignoreRegexp = /([/\\]\.)|(\.json$)/;
-  const sourceFilesRegexp = new RegExp(path.resolve(__dirname, '..'));
+  const watcher : Watcher = require('chokidar'); // eslint-disable-line import/no-extraneous-dependencies, global-require
+  const ignoreRegexp : RegExp = /([/\\]\.)|(\.json$)/;
+  const sourceFilesRegexp : RegExp = new RegExp(path.resolve(__dirname, '..'));
 
   // Chokidar is watching for file changes in src directory and ignoring dotfiles and *.json
   watcher.watch(path.join(__dirname, '..'), { ignored: ignoreRegexp }).on('all', (event, file) => {
@@ -53,7 +74,7 @@ const watchChanges = () => {
       timer.start();
 
       // remember cache size
-      const originalCacheSize = Object.keys(require.cache).length;
+      const originalCacheSize : number = Object.keys(require.cache).length;
 
       // remove all files from require cache which are in ./src/ directory
       // this will force next call of require to load files again
@@ -85,13 +106,13 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackIsomorphicAssets = require('../../webpack/assets');
 const WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 const webpack = require('webpack');
-const config = require('../../webpack/webpack.config');
+const config : Config = require('../../webpack/webpack.config');
 
-global.webpackIsomorphicTools = new WebpackIsomorphicTools(webpackIsomorphicAssets)
+const webpackIsomorphicTools : IsomorphicTools = new WebpackIsomorphicTools(webpackIsomorphicAssets)
   .server(rootDir, () => console.log('Webpack isomorphic tools started.'));
-
+global.webpackIsomorphicTools = webpackIsomorphicTools;
 // Make express to listen on port
-const port = process.env.PORT || 8000;
+const port : string = process.env.PORT || '8000';
 
 if (process.env.NODE_ENV === 'development') {
   const options = {

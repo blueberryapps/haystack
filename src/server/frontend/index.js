@@ -1,3 +1,5 @@
+// @flow
+
 import express from 'express';
 import path from 'path';
 import PrettyError from 'pretty-error';
