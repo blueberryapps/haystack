@@ -116,16 +116,22 @@ if (process.env.NODE_ENV === 'development') {
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
 
-  spdy
+  const onListen = (error) => {
+    if (error) {
+      console.error(error);
+      return process.exit(1);
+    }
+    watchChanges();
+    return undefined;
+  };
+
+  if (process.env.HTTP) {
+    app.listen(port, onListen);
+  } else {
+    spdy
     .createServer(options, app)
-    .listen(port, (error) => {
-      if (error) {
-        console.error(error);
-        return process.exit(1);
-      }
-      watchChanges();
-      return undefined;
-    });
+    .listen(port, onListen);
+  }
 } else {
   app.listen(port);
 }
