@@ -5,7 +5,7 @@ import App from './App.react';
 import BrowserProvider from './BrowserProvider.react';
 
 type Module = {
-      hot: { accept: (Component: Function, callback: (updatedComponent: Function) => void) => void    }
+      hot: { accept: (Component: Function, callback: (updatedComponent: Function) => void) => void }
   } | Object;
 
 const renderApp = () => {

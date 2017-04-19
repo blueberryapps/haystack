@@ -1,6 +1,6 @@
 // @flow
-
 import express from 'express';
+import type { Express, $Request, $Response } from 'express';
 import path from 'path';
 import PrettyError from 'pretty-error';
 import React from 'react';
@@ -9,12 +9,12 @@ import NotFound from './errors/NotFound.react';
 import App from '../../browser/App.react';
 import render from './render';
 
-const app = express();
+const app: Express = express();
 const prettyError = new PrettyError();
 
 app.use('/assets', express.static(path.join(__dirname, '..', '..', '..', 'dist', 'public', 'assets')));
 
-app.get('*', (req, res, next) => {
+app.get('*', (req: $Request, res: $Response, next: Function) => {
   try {
     if (req.path === '/unknown') {
       return res.status(404).send(render(<NotFound path={req.path} />));
@@ -26,7 +26,7 @@ app.get('*', (req, res, next) => {
 });
 
 // Internal server error handled by nice formatted HTML
-app.use((err, req, res, next) => {
+app.use((err: Error, req: $Request, res: $Response, next: Function) => {
   console.error('Internal server error at %s', req.path);
   console.error(prettyError.render(err));
 

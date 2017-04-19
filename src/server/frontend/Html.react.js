@@ -1,9 +1,28 @@
-/* eslint-disable react/no-danger */
+// @flow
+/* eslint-disable react/no-danger  */
+/* eslint-disable react/no-unused-prop-types */
 import React, { PropTypes as RPT } from 'react';
+import type { Helmet } from 'react-helmet';
 import Rollbar from './scripts/Rollbar';
 import Script from './Script.react';
 
-const Html = ({ bodyHtml, javascripts = {}, helmet, options }) => (
+export type Options = {
+  disableJS?: boolean
+}
+
+type Javascripts = {
+  vendor?: string,
+  app?: string
+}
+
+type HtmlProps = {
+  bodyHtml: string,
+  javascripts: Javascripts,
+  helmet: Helmet,
+  options: Options
+}
+
+const Html = ({ bodyHtml, javascripts = {}, helmet, options }: HtmlProps) => (
   <html lang="en">
     <head>
       <meta charSet="utf-8" />

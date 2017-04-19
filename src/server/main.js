@@ -1,13 +1,15 @@
+// @flow
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import express from 'express';
+import type { Express } from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import rollbar from 'rollbar';
 import errorHandler from './middlewares/errorHandler';
 import frontend from './frontend';
 
-const app = express();
+const app : Express = express();
 
 // Security
 app.disable('x-powered-by');
