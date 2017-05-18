@@ -23,14 +23,14 @@ const appEntry = isProduction
 module.exports = {
   entry: {
     app: appEntry.concat([
-      path.join(__dirname, '../src/browser/main.js')
+      path.join(__dirname, '..', 'src', 'browser', 'main.js')
     ]),
     vendor: ['react', 'react-dom'],
   },
   devtool: 'source-map',
   output: {
     filename: '[name].[hash].js',
-    path: path.join(__dirname, '../dist/public/assets'),
+    path: path.join(__dirname, '..', 'dist', 'public', 'assets'),
     sourceMapFilename: '[file].map',
     chunkFilename: '[id].[chunkhash].bundle.js',
     publicPath: '/assets/'
@@ -45,7 +45,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: [
-          path.join(__dirname, '../src/'),
+          path.join(__dirname, '..', 'src'),
         ],
         use: [{
           loader: 'babel-loader',
