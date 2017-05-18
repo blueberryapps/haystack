@@ -11,6 +11,7 @@ const app = express();
 const prettyError = new PrettyError();
 
 app.use('/assets', express.static(path.join(__dirname, '..', '..', '..', 'dist', 'public', 'assets')));
+app.use('/', express.static(path.join(__dirname, '..', '..', '..', 'public')));
 
 app.get('*', (req, res, next) => {
   try {
