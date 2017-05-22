@@ -22,6 +22,12 @@ open https://localhost:8000
 - production server: `yarn production:server`
 - production build and server: `yarn run production`
 
+## Polyfills
+
+We are using polyfills from www.polyfill.io and to add new polyfill go to
+`src/server/frontend/Html.react.js` and update this line
+`<Script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Symbol" />`.
+
 ## Configuration
 
 You can set ENV variables from `.bash_profile`, `export NODE_ENV=production`, running them inline `NODE_ENV=production yarn start` or use `.env` file in project root.
