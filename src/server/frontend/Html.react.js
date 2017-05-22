@@ -23,6 +23,7 @@ const Html = ({ bodyHtml, javascripts = {}, helmet, options, reduxState }) => (
     <body>
       <div id="app" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
       <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `window.REDUX_STATE=${serialize(reduxState)}` }} />
+      <Script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Symbol" />
       {!options.disableJS && javascripts.vendor && <Script src={javascripts.vendor} />}
       {!options.disableJS && javascripts.app && <Script src={javascripts.app} />}
     </body>

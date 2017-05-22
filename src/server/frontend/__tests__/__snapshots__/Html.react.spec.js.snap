@@ -28,6 +28,8 @@ exports[`test shallowly renders Html 1`] = `
       }
       type="text/javascript" />
     <Script
+      src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Symbol" />
+    <Script
       src="app.xxxx.js" />
   </body>
 </html>
