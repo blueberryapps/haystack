@@ -21,6 +21,7 @@ const Html = ({ bodyHtml, javascripts = {}, helmet, options }) => (
     </head>
     <body>
       <div id="app" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
+      <Script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Symbol" />
       {!options.disableJS && javascripts.vendor && <Script src={javascripts.vendor} />}
       {!options.disableJS && javascripts.app && <Script src={javascripts.app} />}
     </body>
