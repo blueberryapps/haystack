@@ -2,7 +2,7 @@
 import React, { PropTypes as RPT } from 'react';
 import Rollbar from './scripts/Rollbar';
 import Script from './Script.react';
-import { googleTagManagerScript, googleTagManagerNoScript } from './scripts/GoogleTagManager';
+import { googleTagManagerNoScript, googleTagManagerScript } from './scripts/GoogleTagManager';
 
 const Html = ({ bodyHtml, javascripts = {}, helmet, options }) => (
   <html lang="en">
