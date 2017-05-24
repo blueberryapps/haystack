@@ -21,7 +21,7 @@ export function googleTagManagerNoScript() {
   if (!process.env.GTM_ID) return null;
 
   return (
-    <script
+    <div
       dangerouslySetInnerHTML={{ __html: `
         <!-- Google Tag Manager (noscript) -->
         <script>
