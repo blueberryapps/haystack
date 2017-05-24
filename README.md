@@ -40,8 +40,8 @@ You can set ENV variables from `.bash_profile`, `export NODE_ENV=production`, ru
 | HTML_ERRORS | true | enabled by default in production | Show nicely formatted html errors for 404 and 500 |
 | ROLLBAR_CLIENT_TOKEN | string | default project in rollbar | token for browser error reporting |
 | ROLLBAR_SERVER_TOKEN | string | default project in rollbar | token for server error reporting |
+| GTM_ID | string | null | add this to enable Google Tag Manager |
 | | | | |
-
 
 ## Variants
 
