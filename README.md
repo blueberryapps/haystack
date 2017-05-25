@@ -41,6 +41,7 @@ You can set ENV variables from `.bash_profile`, `export NODE_ENV=production`, ru
 | ROLLBAR_CLIENT_TOKEN | string | default project in rollbar | token for browser error reporting |
 | ROLLBAR_SERVER_TOKEN | string | default project in rollbar | token for server error reporting |
 | GTM_ID | string | null | add this to enable Google Tag Manager |
+| ENABLE_SEARCH_BOTS | boolean | false | for production enable this so your page will be indexed by search bots |
 | | | | |
 
 ## Variants

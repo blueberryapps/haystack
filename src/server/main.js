@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import rollbar from 'rollbar';
 import errorHandler from './middlewares/errorHandler';
 import frontend from './frontend';
+import robots from './apps/robots';
 import sitemap from './apps/sitemap';
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(cookieParser());
 
 // Apps
 app.use(sitemap);
+app.use(robots);
 app.use(frontend);
 
 // Error reporter
