@@ -42,6 +42,7 @@ You can set ENV variables from `.bash_profile`, `export NODE_ENV=production`, ru
 | ROLLBAR_SERVER_TOKEN | string | default project in rollbar | token for server error reporting |
 | GTM_ID | string | null | add this to enable Google Tag Manager |
 | ENABLE_SEARCH_BOTS | boolean | false | for production enable this so your page will be indexed by search bots |
+| FEATURES | string | '' | add comma separated values with names of features |
 | | | | |
 
 ## Variants
@@ -49,6 +50,24 @@ You can set ENV variables from `.bash_profile`, `export NODE_ENV=production`, ru
 * [with basic redux](https://github.com/blueberryapps/haystack/tree/redux)
 * [with basic router](https://github.com/blueberryapps/haystack/tree/router)
 * [with redux + router](https://github.com/blueberryapps/haystack/tree/redux-router)
+
+## Future toggles
+
+When you need to use feature toggles you can use them like this:
+
+```javascript
+import isFeatureOn from '../common/featureToggl';
+
+isFeatureOn('nameOfFeature'); // returns true/false based on FEATURES enabled
+```
+
+Naming of features `snakeCase`.
+
+How to enable feature:
+
+`FEATURES=featureA,featureB yarn start`
+
+Or add feature to cookie named `FEATURES` with value: `featureA,featureB`
 
 ## Made with love by
 [![](https://camo.githubusercontent.com/d88ee6842f3ff2be96d11488aa0d878793aa67cd/68747470733a2f2f7777772e676f6f676c652e636f6d2f612f626c75656265727279617070732e636f6d2f696d616765732f6c6f676f2e676966)](https://www.blueberry.io)

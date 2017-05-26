@@ -40,6 +40,7 @@ function configure(env, { isBrowser, customEnvVariables }) {
       ROLLBAR_SERVER_TOKEN: env.ROLLBAR_SERVER_TOKEN || '9275dbbc016848b2ac0e31564426d1be',
       ROLLBAR_CLIENT_TOKEN: env.ROLLBAR_CLIENT_TOKEN || '606f40eba9e14fb9860f8075543ca98c',
       IS_BROWSER: isBrowser,
+      FEATURES: env.FEATURES || '',
       GTM_ID: env.GTM_ID || null,
       ENABLE_SEARCH_BOTS: process.env.ENABLE_SEARCH_BOTS,
     },

@@ -23,6 +23,7 @@ const Html = ({ bodyHtml, javascripts = {}, helmet, options }) => (
     </head>
     <body>
       {googleTagManagerNoScript()}
+      <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `window.__FEATURES=${JSON.stringify(options.features)}` }} />
       <div id="app" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
       <Script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Symbol" />
       {!options.disableJS && javascripts.vendor && <Script src={javascripts.vendor} />}
@@ -50,8 +51,9 @@ Html.propTypes = {
 };
 
 Html.defaultProps = {
+  features: [],
   helmet: {},
-  options: { disableJS: false }
+  options: { disableJS: false, features: [] }
 };
 
 export default Html;

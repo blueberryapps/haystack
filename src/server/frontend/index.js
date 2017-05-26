@@ -6,6 +6,7 @@ import InternalServerError from './errors/InternalServerError.react';
 import NotFound from './errors/NotFound.react';
 import App from '../../browser/App.react';
 import render from './render';
+import { getFeatures } from '../../common/featureToggl';
 
 const app = express();
 const prettyError = new PrettyError();
@@ -18,7 +19,7 @@ app.get('*', (req, res, next) => {
     if (req.path === '/unknown') {
       return res.status(404).send(render(<NotFound path={req.path} />));
     }
-    return res.status(200).send(render(<App />));
+    return res.status(200).send(render(<App />, { features: getFeatures(req) }));
   } catch (err) {
     return next(err);
   }

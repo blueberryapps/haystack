@@ -13,6 +13,13 @@ exports[`test shallowly renders Html 1`] = `
     <Rollbar />
   </head>
   <body>
+    <script
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "window.__FEATURES=[]",
+        }
+      }
+      type="text/javascript" />
     <div
       dangerouslySetInnerHTML={
         Object {
