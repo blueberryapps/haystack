@@ -51,7 +51,6 @@ Html.propTypes = {
 };
 
 Html.defaultProps = {
-  features: [],
   helmet: {},
   options: { disableJS: false, features: [] }
 };
