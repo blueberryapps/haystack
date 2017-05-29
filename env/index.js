@@ -42,7 +42,7 @@ function configure(env, { isBrowser, customEnvVariables }) {
       IS_BROWSER: isBrowser,
       FEATURES: env.FEATURES || '',
       GTM_ID: env.GTM_ID || null,
-      ENABLE_SEARCH_BOTS: process.env.ENABLE_SEARCH_BOTS,
+      ENABLE_SEARCH_BOTS: env.ENABLE_SEARCH_BOTS,
     },
     customEnvVariables || {}
   ), isBrowser);
