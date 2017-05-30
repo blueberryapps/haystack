@@ -1,7 +1,8 @@
 {
   "parser"  : "babel-eslint",
   "plugins": [
-    "import"
+    "import",
+    "prettier"
   ],
   "extends" : ["airbnb"],
   "rules": {
@@ -12,6 +13,8 @@
     "no-floating-decimal": 0, // .5 is just fine.
     "no-shadow": 2, // Shadowing is a nice language feature, but it can kick
     // eslint-plugin-import
+    "arrow-parens": ["error", "as-needed"], // Conflicts prettier.
+    "space-before-function-paren": ["error", "never"], // Conflicts prettier.
     "import/no-unresolved": [2, {"commonjs": true}],
     "import/named": 2,
     "import/default": 2,
@@ -23,7 +26,10 @@
     "no-use-before-define": 0, // Enable to define styles after using them in component.
     "react/jsx-no-bind": 0, // Enable arrow functions in Props definitions.
     "react/prefer-stateless-function": 0, // Enable functions with state.
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "prettier/prettier": ["error", {
+        "singleQuote":  true // Still, it's more common to use single quotes.
+    }]
   },
   "globals": {
     "test": false,
