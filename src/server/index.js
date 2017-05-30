@@ -3,7 +3,7 @@ require('../../env');
 
 // Enabling Source maps for node
 require('source-map-support/register');
-require('babel-register');// eslint-disable-line import/no-extraneous-dependencies
+require('babel-register'); // eslint-disable-line import/no-extraneous-dependencies
 
 // Start timer
 const timer = require('../utils/timer');
@@ -31,7 +31,9 @@ const preloadApplication = () => {
     console.log(chalk.green('♥ Application preload finished'));
     return true;
   } catch (error) {
-    console.error(chalk.red('❌  Unable to preload application because of syntax error'));
+    console.error(
+      chalk.red('❌  Unable to preload application because of syntax error')
+    );
     console.log();
     console.error(error);
     return false;
@@ -46,35 +48,43 @@ const watchChanges = () => {
   const sourceFilesRegexp = new RegExp(path.resolve(__dirname, '..'));
 
   // Chokidar is watching for file changes in src directory and ignoring dotfiles and *.json
-  watcher.watch(path.join(__dirname, '..'), { ignored: ignoreRegexp }).on('all', (event, file) => {
-    if (event === 'change') {
-      if (isInteractive) { clearConsole(); }
-      console.log(chalk.red('NODE HOT RELOAD:'), ' Changes detected in ', chalk.yellow(path.relative(rootDir, file)));
-      timer.start();
+  watcher
+    .watch(path.join(__dirname, '..'), { ignored: ignoreRegexp })
+    .on('all', (event, file) => {
+      if (event === 'change') {
+        if (isInteractive) {
+          clearConsole();
+        }
+        console.log(
+          chalk.red('NODE HOT RELOAD:'),
+          ' Changes detected in ',
+          chalk.yellow(path.relative(rootDir, file))
+        );
+        timer.start();
 
-      // remember cache size
-      const originalCacheSize = Object.keys(require.cache).length;
+        // remember cache size
+        const originalCacheSize = Object.keys(require.cache).length;
 
-      // remove all files from require cache which are in ./src/ directory
-      // this will force next call of require to load files again
-      Object.keys(require.cache).forEach((id) => {
-        if (sourceFilesRegexp.test(id)) delete require.cache[id];
-      });
+        // remove all files from require cache which are in ./src/ directory
+        // this will force next call of require to load files again
+        Object.keys(require.cache).forEach(id => {
+          if (sourceFilesRegexp.test(id)) delete require.cache[id];
+        });
 
-      // enforce node to cache main.js directly after removing cache
-      // This speeds up development process - after change node is caching new changed content
-      // and user will get faster response
-      if (originalCacheSize !== Object.keys(require.cache).length) {
-        if (preloadApplication()) {
-          console.log(
-            `${chalk.green('NODE HOT RELOAD:')} Caching new version finished in ${chalk.green('%dms')} at %s`,
-            timer.get(),
-            new Date()
-          );
+        // enforce node to cache main.js directly after removing cache
+        // This speeds up development process - after change node is caching new changed content
+        // and user will get faster response
+        if (originalCacheSize !== Object.keys(require.cache).length) {
+          if (preloadApplication()) {
+            console.log(
+              `${chalk.green('NODE HOT RELOAD:')} Caching new version finished in ${chalk.green('%dms')} at %s`,
+              timer.get(),
+              new Date()
+            );
+          }
         }
       }
-    }
-  });
+    });
 };
 
 // Create express app
@@ -87,8 +97,9 @@ const WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 const webpack = require('webpack');
 const config = require('../../webpack/webpack.config');
 
-global.webpackIsomorphicTools = new WebpackIsomorphicTools(webpackIsomorphicAssets)
-  .server(rootDir, () => console.log('Webpack isomorphic tools started.'));
+global.webpackIsomorphicTools = new WebpackIsomorphicTools(
+  webpackIsomorphicAssets
+).server(rootDir, () => console.log('Webpack isomorphic tools started.'));
 
 // Make express to listen on port
 const port = process.env.PORT || 8000;
@@ -116,20 +127,17 @@ if (process.env.NODE_ENV === 'development') {
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
 
-  spdy
-    .createServer(options, app)
-    .listen(port, (error) => {
-      if (error) {
-        console.error(error);
-        return process.exit(1);
-      }
-      watchChanges();
-      return undefined;
-    });
+  spdy.createServer(options, app).listen(port, error => {
+    if (error) {
+      console.error(error);
+      return process.exit(1);
+    }
+    watchChanges();
+    return undefined;
+  });
 } else {
   app.listen(port);
 }
-
 
 // HOT RELOAD: We need to require('./main') in every call to express app
 // When application is required and in cache it will not slow it down
@@ -146,11 +154,12 @@ app.use((req, res, cb) => {
 
 // This is most simple error handler which will show error,
 // when there is some error in other error handlers
-app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
   console.error(chalk.red('Last resort error handler catched'), err.stack);
   res.status(500).send(`
     Last resort error handler caught error at path: ${req.path}
-    ${err.stack.toString().replace(/\[\d+m/mg, '')}
+    ${err.stack.toString().replace(/\[\d+m/gm, '')}
   `);
 });
 

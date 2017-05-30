@@ -32,8 +32,16 @@ app.use(frontend);
 
 // Error reporter
 if (process.env.ROLLBAR_SERVER_TOKEN && process.env.APP_ENV !== 'development') {
-  console.log('Error reporting to rollbar with TOKEN %s and ENV %s', process.env.ROLLBAR_SERVER_TOKEN, process.env.APP_ENV);
-  app.use(rollbar.errorHandler(process.env.ROLLBAR_SERVER_TOKEN, { environment: process.env.APP_ENV }));
+  console.log(
+    'Error reporting to rollbar with TOKEN %s and ENV %s',
+    process.env.ROLLBAR_SERVER_TOKEN,
+    process.env.APP_ENV
+  );
+  app.use(
+    rollbar.errorHandler(process.env.ROLLBAR_SERVER_TOKEN, {
+      environment: process.env.APP_ENV
+    })
+  );
 }
 
 // Error handler

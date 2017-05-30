@@ -11,7 +11,12 @@ import { getFeatures } from '../../common/featureToggl';
 const app = express();
 const prettyError = new PrettyError();
 
-app.use('/assets', express.static(path.join(__dirname, '..', '..', '..', 'dist', 'public', 'assets')));
+app.use(
+  '/assets',
+  express.static(
+    path.join(__dirname, '..', '..', '..', 'dist', 'public', 'assets')
+  )
+);
 app.use('/', express.static(path.join(__dirname, '..', '..', '..', 'public')));
 
 app.get('*', (req, res, next) => {
@@ -19,7 +24,9 @@ app.get('*', (req, res, next) => {
     if (req.path === '/unknown') {
       return res.status(404).send(render(<NotFound path={req.path} />));
     }
-    return res.status(200).send(render(<App />, { features: getFeatures(req) }));
+    return res
+      .status(200)
+      .send(render(<App />, { features: getFeatures(req) }));
   } catch (err) {
     return next(err);
   }

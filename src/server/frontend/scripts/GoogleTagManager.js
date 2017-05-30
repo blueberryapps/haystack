@@ -6,7 +6,8 @@ export function googleTagManagerScript() {
 
   return (
     <script
-      dangerouslySetInnerHTML={{ __html: `
+      dangerouslySetInnerHTML={{
+        __html: `
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -22,7 +23,8 @@ export function googleTagManagerNoScript() {
 
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: `
+      dangerouslySetInnerHTML={{
+        __html: `
         <!-- Google Tag Manager (noscript) -->
         <script>
           dataLayer= window.dataLayer === 'undefined' ? [] : window.dataLayer;

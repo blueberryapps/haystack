@@ -1,4 +1,4 @@
-export default function () {
+export default function() {
   console.log('');
   console.log('  _    _                 _             _');
   console.log(' | |  | |               | |           | |');

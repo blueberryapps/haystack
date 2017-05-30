@@ -2,9 +2,7 @@ import express from 'express';
 
 const app = express();
 
-const pages = [
-  '/',
-];
+const pages = ['/'];
 
 app.use('/sitemap.xml', (req, res) => {
   res.send(`

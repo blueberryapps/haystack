@@ -2,7 +2,10 @@
 import React, { PropTypes as RPT } from 'react';
 import Rollbar from './scripts/Rollbar';
 import Script from './Script.react';
-import { googleTagManagerNoScript, googleTagManagerScript } from './scripts/GoogleTagManager';
+import {
+  googleTagManagerNoScript,
+  googleTagManagerScript
+} from './scripts/GoogleTagManager';
 
 const Html = ({ bodyHtml, javascripts = {}, helmet, options }) => (
   <html lang="en">
@@ -23,11 +26,20 @@ const Html = ({ bodyHtml, javascripts = {}, helmet, options }) => (
     </head>
     <body>
       {googleTagManagerNoScript()}
-      <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `window.__FEATURES=${JSON.stringify(options.features)}` }} />
+      <script
+        type="text/javascript"
+        dangerouslySetInnerHTML={{
+          __html: `window.__FEATURES=${JSON.stringify(options.features)}`
+        }}
+      />
       <div id="app" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
       <Script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Symbol" />
-      {!options.disableJS && javascripts.vendor && <Script src={javascripts.vendor} />}
-      {!options.disableJS && javascripts.app && <Script src={javascripts.app} />}
+      {!options.disableJS &&
+        javascripts.vendor &&
+        <Script src={javascripts.vendor} />}
+      {!options.disableJS &&
+        javascripts.app &&
+        <Script src={javascripts.app} />}
     </body>
   </html>
 );

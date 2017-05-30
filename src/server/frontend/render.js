@@ -5,7 +5,9 @@ import Html from './Html.react';
 import ServerProvider from './ServerProvider.react';
 
 export default function render(app, options = {}) {
-  const appHtml = ReactDOMServer.renderToString(<ServerProvider>{app}</ServerProvider>);
+  const appHtml = ReactDOMServer.renderToString(
+    <ServerProvider>{app}</ServerProvider>
+  );
 
   const { javascript: javascripts } = webpackIsomorphicTools.assets();
 

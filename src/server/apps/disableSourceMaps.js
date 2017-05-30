@@ -11,7 +11,11 @@ app.use('/*.map', (req, res, next) => {
 });
 
 app.on('mount', () => {
-  console.log('Disable Source Maps %s*.map %s', app.mountpath, process.env.APP_ENV === 'production' ? 'enabled' : 'disabled');
+  console.log(
+    'Disable Source Maps %s*.map %s',
+    app.mountpath,
+    process.env.APP_ENV === 'production' ? 'enabled' : 'disabled'
+  );
 });
 
 export default app;
