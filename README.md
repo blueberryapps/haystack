@@ -3,6 +3,11 @@
 
 > Blueberry JS Stack
 
+## Create brand new app by:
+```
+bash <(curl https://raw.githubusercontent.com/blueberryapps/haystack/master/create-haystack-app) NEW_PROJECT_NAME
+```
+
 ## Scripts
 
 - install dependencies: `yarn`
