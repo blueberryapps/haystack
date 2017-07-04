@@ -4,7 +4,8 @@ import Html from '../Html.react';
 
 const props = {
   bodyHtml: '<div />',
-  javascripts: { app: 'app.xxxx.js' }
+  javascripts: { app: 'app.xxxx.js' },
+  mobxState: { sample: { count: 0 } }
 };
 
 test('shallowly renders Html', () => {

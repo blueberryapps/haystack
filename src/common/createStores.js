@@ -1,43 +1,42 @@
 import { toJS, extendObservable } from 'mobx';
 import SampleStore from '../browser/store';
 
-const createAndHydrateStore = (Store, initialData) => {
-  let store = new Store();
-  if (initialData) {
-    store = extendObservable(store, initialData);
-  }
-  return store;
+const createAndHydrateStore = (store, initialData) => {
+  const maybeHydratedStore = initialData ? extendObservable(store, initialData) : store;
+  return maybeHydratedStore;
 };
 
-const createNewStores = (stores, initialData) =>
+export const createNewStores = (stores, initialData = {}) =>
   Object.keys(stores).reduce(
     (finalStores, storeKey) => ({
       ...finalStores,
       [storeKey]: createAndHydrateStore(stores[storeKey], initialData[storeKey]),
     }),
-    stores
+    {}
+  );
+
+export const getState = stores =>
+  Object.keys(stores).reduce(
+    (data, storeKey) => ({
+      ...data,
+      [storeKey]: toJS(stores[storeKey]),
+    }),
+    {}
   );
 
 const createStores = (initialData = {}) => {
   /**
    * Define the stores
    * e.g {
-   *   todos: Todos,
-   *   user: User
+   *   todos: new Todos(),
+   *   user
    * }
    */
   const stores = {
-    sample: SampleStore
+    sample: new SampleStore(),
   };
 
   return createNewStores(stores, initialData);
 };
-
-export const getState = stores =>
-  Object.keys(stores).reduce((data, storeKey) => ({
-    ...data,
-    [storeKey]: toJS(stores[storeKey])
-  }), {});
-
 
 export default createStores;
