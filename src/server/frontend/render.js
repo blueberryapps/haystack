@@ -1,10 +1,12 @@
+// @flow
 import Helmet from 'react-helmet';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Html from './Html.react';
 import ServerProvider from './ServerProvider.react';
+import type { Options } from './Html.react';
 
-export default function render(app, options = {}) {
+export default function render(app : Object, options : Options = {}) {
   const appHtml = ReactDOMServer.renderToString(<ServerProvider>{app}</ServerProvider>);
 
   const { javascript: javascripts } = webpackIsomorphicTools.assets();

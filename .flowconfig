@@ -1,0 +1,16 @@
+[ignore]
+.*/node_modules/fbjs/*
+
+
+[include]
+./src/browser/App.react.js
+
+[libs]
+
+[options]
+module.ignore_non_literal_requires=true
+esproposal.class_instance_fields=enable
+esproposal.class_static_fields=enable
+esproposal.decorators=ignore
+esproposal.export_star_as=enable
+strip_root=true

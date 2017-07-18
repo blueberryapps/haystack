@@ -1,7 +1,7 @@
 {
   "name": "Haystack",
   "description": "Blueberry JS stack",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "engines": {
     "node": ">=6.9",
@@ -16,7 +16,7 @@
     "production": "yarn run production:build && yarn rollbar:sourcemaps:upload && yarn run production:server",
     "eslint": "eslint ./src",
     "jest": " jest",
-    "test": "jest",
+    "test": "flow && jest",
     "test:watch": "jest --watch",
     "webpack": "rimraf ./dist && webpack --config ./webpack/webpack.config.js",
     "rollbar:sourcemaps:upload": "node scripts/rollbarSourceMaps.js"
@@ -29,7 +29,9 @@
     "TondaHack"
   ],
   "devDependencies": {
+    "babel-cli": "^6.24.0",
     "babel-eslint": "^7.1.1",
+    "babel-preset-flow": "^6.23.0",
     "chokidar": "^1.6.1",
     "enzyme": "^2.7.0",
     "enzyme-to-json": "^1.4.5",
@@ -38,6 +40,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
+    "flow-bin": "^0.42.0",
     "jest": "^18.1.0",
     "react-addons-test-utils": "^15.4.2"
   },
