@@ -20,8 +20,8 @@ const App = () => (
       <img alt="logo" src={logo} />
     </button>
     <Switch>
-      <Route exact path="/" component={asyncComponent(() => import('./Feature/Home.react'))} />
-      <Route path="/about" component={asyncComponent(() => import('./Feature/About.react'))} />
+      <Route exact path="/" component={asyncComponent(() => import(/* webpackChunkName: "home" */ './Feature/Home.react'))} />
+      <Route path="/about" component={asyncComponent(() => import(/* webpackChunkName: "about" */ './Feature/About.react'))} />
       <Route path="/someRedirect" component={SomeRedirect} />
       <Route component={NotFound} />
     </Switch>

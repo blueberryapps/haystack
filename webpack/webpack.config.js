@@ -14,7 +14,7 @@ const environemtVariables = enviroment(process.env, { isBrowser: true });
 const isProduction = environemtVariables.NODE_PRODUCTION;
 
 const plugins = isProduction
-  ? [new webpack.optimize.UglifyJsPlugin({ sourceMap: true }), new webpack.optimize.OccurrenceOrderPlugin(), webpackIsomorphicToolsPlugin]
+  ? [new webpack.optimize.UglifyJsPlugin({ sourceMap: true }), new webpack.optimize.OccurrenceOrderPlugin(), webpackIsomorphicToolsPlugin, new webpack.optimize.ModuleConcatenationPlugin()]
   : [new webpack.HotModuleReplacementPlugin(), webpackIsomorphicToolsPlugin.development()];
 
 if (process.env.DEBUG_BUNDLE) {
@@ -36,7 +36,7 @@ module.exports = {
     filename: '[name].[hash].js',
     path: path.join(__dirname, '..', 'dist', 'public', 'assets'),
     sourceMapFilename: '[file].map',
-    chunkFilename: '[id].[chunkhash].bundle.js',
+    chunkFilename: '[id].[name].[chunkhash].js',
     publicPath: '/assets/'
   },
   module: {
