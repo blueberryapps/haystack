@@ -9,5 +9,22 @@ exports[`test shallowly renders App 1`] = `
       alt="logo"
       src="test-file-stub" />
   </button>
+  <br />
+  <br />
+  <button
+    onClick={[Function]}>
+    +
+  </button>
+  <button
+    onClick={[Function]}>
+    -
+  </button>
+  <p />
+  <span
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "¯\\_(ツ)_/¯",
+      }
+    } />
 </div>
 `;

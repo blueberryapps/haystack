@@ -1,10 +1,11 @@
 /* eslint-disable react/no-danger */
 import React, { PropTypes as RPT } from 'react';
+import serialize from 'serialize-javascript';
 import Rollbar from './scripts/Rollbar';
 import Script from './Script.react';
 import { googleTagManagerNoScript, googleTagManagerScript } from './scripts/GoogleTagManager';
 
-const Html = ({ bodyHtml, javascripts = {}, helmet, options }) => (
+const Html = ({ bodyHtml, javascripts = {}, helmet, options, mobxState }) => (
   <html lang="en">
     <head>
       {googleTagManagerScript()}
@@ -24,6 +25,7 @@ const Html = ({ bodyHtml, javascripts = {}, helmet, options }) => (
     <body>
       {googleTagManagerNoScript()}
       <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `window.__FEATURES=${JSON.stringify(options.features)}` }} />
+      <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `window.MOBX_STATE=${serialize(mobxState)}` }} />
       <div id="app" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
       <Script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Symbol" />
       {!options.disableJS && javascripts.vendor && <Script src={javascripts.vendor} />}
@@ -47,7 +49,10 @@ Html.propTypes = {
   }),
   options: RPT.shape({
     disableJS: RPT.bool
-  })
+  }),
+  mobxState: RPT.shape({
+    sample: RPT.object
+  }).isRequired
 };
 
 Html.defaultProps = {

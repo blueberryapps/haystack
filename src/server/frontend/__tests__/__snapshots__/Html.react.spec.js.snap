@@ -20,6 +20,13 @@ exports[`test shallowly renders Html 1`] = `
         }
       }
       type="text/javascript" />
+    <script
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "window.MOBX_STATE={\"sample\":{\"count\":0}}",
+        }
+      }
+      type="text/javascript" />
     <div
       dangerouslySetInnerHTML={
         Object {
