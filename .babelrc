@@ -5,6 +5,7 @@
     "add-module-exports",
     "transform-object-rest-spread",
     "transform-class-properties",
+    "dynamic-import-node",
     "transform-es2015-classes"
   ]
 }

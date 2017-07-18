@@ -37,10 +37,13 @@ function configure(env, { isBrowser, customEnvVariables }) {
       NODE_ENV: env.NODE_ENV !== 'production' ? 'development' : 'production',
       NODE_PRODUCTION: env.NODE_ENV === 'production',
       NODE_DEVELOPMENT: env.NODE_ENV !== 'production',
+      DEBUG_BUNDLE: env.DEBUG_BUNDLE,
       ROLLBAR_SERVER_TOKEN: env.ROLLBAR_SERVER_TOKEN || '9275dbbc016848b2ac0e31564426d1be',
       ROLLBAR_CLIENT_TOKEN: env.ROLLBAR_CLIENT_TOKEN || '606f40eba9e14fb9860f8075543ca98c',
       IS_BROWSER: isBrowser,
+      FEATURES: env.FEATURES || '',
       GTM_ID: env.GTM_ID || null,
+      ENABLE_SEARCH_BOTS: env.ENABLE_SEARCH_BOTS,
     },
     customEnvVariables || {}
   ), isBrowser);
