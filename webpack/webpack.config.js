@@ -13,7 +13,7 @@ const environemtVariables = enviroment(process.env, { isBrowser: true });
 const isProduction = environemtVariables.NODE_PRODUCTION;
 
 const plugins = isProduction
-  ? [new webpack.optimize.UglifyJsPlugin({ sourceMap: true }), new webpack.optimize.OccurrenceOrderPlugin(), webpackIsomorphicToolsPlugin]
+  ? [new webpack.optimize.UglifyJsPlugin({ sourceMap: true }), new webpack.optimize.OccurrenceOrderPlugin(), webpackIsomorphicToolsPlugin, new webpack.optimize.ModuleConcatenationPlugin()]
   : [new webpack.HotModuleReplacementPlugin(), webpackIsomorphicToolsPlugin.development()];
 
 const appEntry = isProduction
