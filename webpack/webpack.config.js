@@ -5,6 +5,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const MD5Hash = require('webpack-md5-hash');
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const webpackIsomorphicAssets = require('./assets');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicAssets);
 
@@ -16,6 +17,10 @@ const plugins = isProduction
   ? [new webpack.optimize.UglifyJsPlugin({ sourceMap: true }), new webpack.optimize.OccurrenceOrderPlugin(), webpackIsomorphicToolsPlugin, new webpack.optimize.ModuleConcatenationPlugin()]
   : [new webpack.HotModuleReplacementPlugin(), webpackIsomorphicToolsPlugin.development()];
 
+if (process.env.DEBUG_BUNDLE) {
+  plugins.push(new BundleAnalyzerPlugin());
+}
+
 const appEntry = isProduction
     ? []
     : ['webpack-hot-middleware/client?reload=true'];
@@ -24,8 +29,7 @@ module.exports = {
   entry: {
     app: appEntry.concat([
       path.join(__dirname, '..', 'src', 'browser', 'main.js')
-    ]),
-    vendor: ['react', 'react-dom'],
+    ])
   },
   devtool: 'source-map',
   output: {
@@ -55,6 +59,7 @@ module.exports = {
             plugins: [
               'add-module-exports',
               'transform-decorators-legacy',
+              'dynamic-import-webpack',
               ['transform-runtime', { polyfill: false, regenerator: false }]
             ],
             env: {
@@ -78,11 +83,6 @@ module.exports = {
     new MD5Hash(),
     new webpack.DefinePlugin({
       'process.env': environemtVariables
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity,
-      filename: '[name].[hash].js',
     }),
     new ManifestPlugin()
   ]),
