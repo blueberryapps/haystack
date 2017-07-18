@@ -25,5 +25,4 @@ NotFound.defaultProps = {
   staticContext: {}
 };
 
-
 export default NotFound;
