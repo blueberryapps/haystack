@@ -2,7 +2,7 @@ import React, { PropTypes as RPT } from 'react';
 import { Provider } from 'react-redux';
 import createStore from '../common/createStore';
 
-const store = createStore({});
+const store = createStore(window.REDUX_STATE || {});
 
 const BrowserProvider = ({ children }) => (
   <Provider store={store}>

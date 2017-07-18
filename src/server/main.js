@@ -4,8 +4,10 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import rollbar from 'rollbar';
+import disableSourceMaps from './apps/disableSourceMaps';
 import errorHandler from './middlewares/errorHandler';
 import frontend from './frontend';
+import robots from './apps/robots';
 import sitemap from './apps/sitemap';
 
 const app = express();
@@ -23,7 +25,9 @@ app.use(compression());
 app.use(cookieParser());
 
 // Apps
+app.use(disableSourceMaps);
 app.use(sitemap);
+app.use(robots);
 app.use(frontend);
 
 // Error reporter

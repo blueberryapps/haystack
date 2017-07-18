@@ -22,6 +22,7 @@ export default function render(app, options = {}) {
       options={options}
       helmet={Helmet.rewind()}
       bodyHtml={`<div id="app">${appHtml}</div>`}
+      reduxState={store.getState()}
     />
   );
   return `<!DOCTYPE html>${docHtml}`;
