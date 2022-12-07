@@ -65,7 +65,7 @@
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
-    "express": "^4.14.0",
+    "express": "^4.17.3",
     "file-loader": "^0.10.1",
     "helmet": "^3.4.0",
     "html-webpack-plugin": "^2.28.0",
